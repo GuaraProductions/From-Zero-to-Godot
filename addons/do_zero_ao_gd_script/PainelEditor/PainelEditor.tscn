@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://c18vt2dx5s86b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0hrhp"]
+content_margin_left = 50.0
+content_margin_top = 50.0
+content_margin_right = 50.0
+content_margin_bottom = 50.0
+bg_color = Color(0.172833, 0.172833, 0.172833, 1)
+
+[node name="PainelEditor" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0hrhp")
+
+[node name="_" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="_"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Seja bem vindo!"
+horizontal_alignment = 1
