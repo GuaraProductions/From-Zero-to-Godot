@@ -34,6 +34,7 @@ func calcular():
 	if not _eh_numero_valido(texto):
 		erro.text = "Erro! A entrada de texto é inválida!\nColoque um número inteiro positivo!"
 		erro.modulate = Color.RED
+		erro.visible = true
 		tabuada_panel.visible = false
 		return
 
@@ -42,6 +43,7 @@ func calcular():
 	if not _esta_dentro_do_intervalo(n):
 		erro.text = "Erro! A entrada de texto é inválida!\nColoque um número maior que %d e menor que %d!" % [0, MAX]
 		erro.modulate = Color.RED
+		erro.visible = true
 		tabuada_panel.visible = false
 		return
 	
