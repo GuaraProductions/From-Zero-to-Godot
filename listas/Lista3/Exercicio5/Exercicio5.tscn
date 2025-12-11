@@ -1,0 +1,117 @@
+[gd_scene load_steps=5 format=3 uid="uid://b00n00xdetbho"]
+
+[ext_resource type="Script" uid="uid://bwyaasbvv0ykh" path="res://listas/Lista3/Exercicio5/Exercicio5.gd" id="1_b4ulq"]
+[ext_resource type="Texture2D" uid="uid://rwyjcs56pgly" path="res://assets/Lista3/Exercicio5/circulo.png" id="2_p7ias"]
+[ext_resource type="Texture2D" uid="uid://nqbydespxaa3" path="res://assets/Lista3/Exercicio5/quadrado.png" id="3_5jatx"]
+[ext_resource type="Texture2D" uid="uid://em00vkj68raf" path="res://assets/Lista3/Exercicio5/triangulo.png" id="4_5vymq"]
+
+[node name="Exercicio5" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+script = ExtResource("1_b4ulq")
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Center"]
+layout_mode = 2
+theme_override_constants/h_separation = 105
+theme_override_constants/v_separation = 15
+columns = 3
+
+[node name="CirculoLabel" type="Label" parent="Center/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Círculo"
+horizontal_alignment = 1
+
+[node name="QuadradoLabel" type="Label" parent="Center/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Quadrado"
+horizontal_alignment = 1
+
+[node name="TrianguloPressed" type="Label" parent="Center/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Triângulo"
+horizontal_alignment = 1
+
+[node name="CirculoIcon" type="TextureRect" parent="Center/GridContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+texture = ExtResource("2_p7ias")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="QuadradoIcon" type="TextureRect" parent="Center/GridContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+texture = ExtResource("3_5jatx")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="TrianguloIcon" type="TextureRect" parent="Center/GridContainer"]
+custom_minimum_size = Vector2(155, 0)
+layout_mode = 2
+texture = ExtResource("4_5vymq")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="CirculoButton" type="Button" parent="Center/GridContainer"]
+layout_mode = 2
+text = "Calcular área"
+
+[node name="QuadradoButton" type="Button" parent="Center/GridContainer"]
+layout_mode = 2
+text = "Calcular área"
+
+[node name="TrianguloButton" type="Button" parent="Center/GridContainer"]
+layout_mode = 2
+text = "Calcular área"
+
+[node name="CirculoLineEdit" type="LineEdit" parent="Center/GridContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+placeholder_text = "Insira raio aqui"
+
+[node name="QuadradoLineEdit" type="LineEdit" parent="Center/GridContainer"]
+layout_mode = 2
+placeholder_text = "Insira lado aqui"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Center/GridContainer"]
+layout_mode = 2
+
+[node name="TrianguloAlturaLineEdit" type="LineEdit" parent="Center/GridContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Altura aqui"
+
+[node name="TrianguloBaseLineEdit" type="LineEdit" parent="Center/GridContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Base aqui"
+
+[node name="CirculoResultado" type="Label" parent="Center/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="QuadradoResultado" type="Label" parent="Center/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="TrianguloResultado" type="Label" parent="Center/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Center/GridContainer/CirculoButton" to="." method="_on_circulo_pressed"]
+[connection signal="pressed" from="Center/GridContainer/QuadradoButton" to="." method="_on_quadrado_pressed"]
+[connection signal="pressed" from="Center/GridContainer/TrianguloButton" to="." method="_on_triangulo_pressed"]

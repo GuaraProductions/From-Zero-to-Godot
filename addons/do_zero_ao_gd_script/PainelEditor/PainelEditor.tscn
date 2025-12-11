@@ -1,4 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c18vt2dx5s86b"]
+[gd_scene load_steps=4 format=3 uid="uid://c18vt2dx5s86b"]
+
+[ext_resource type="Script" uid="uid://bv18c6git5fp6" path="res://addons/do_zero_ao_gd_script/PainelEditor/painel_editor.gd" id="1_pqrcs"]
+[ext_resource type="PackedScene" uid="uid://cj3stl1gx6rq8" path="res://addons/do_zero_ao_gd_script/Markdown/MarkdownPreProcessador.tscn" id="2_r7cba"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0hrhp"]
 content_margin_left = 50.0
@@ -13,13 +16,69 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_0hrhp")
+script = ExtResource("1_pqrcs")
 
-[node name="_" type="VBoxContainer" parent="."]
+[node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 2
+current_tab = 0
 
-[node name="Label" type="Label" parent="_"]
+[node name="Seja Bem Vindo" type="VBoxContainer" parent="TabContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "Seja bem vindo!"
-horizontal_alignment = 1
+metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Seja Bem Vindo"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ListasSection" type="Label" parent="TabContainer/Seja Bem Vindo/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Olá! E sejam muito bem vindos!
+
+Este repositório contém uma série de listas de exercícios práticos em GDScript, projetadas para auxiliar no aprendizado e domínio da linguagem utilizada no Godot Engine.
+
+As listas são focadas no desenvolvimento de lógica de programação dentro do contexto de interfaces gráficas (UI) já prontas. O aluno interage com componentes da cena (como botões, caixas de texto e rótulos), e seu único objetivo é completar a função lógica responsável pelo cálculo ou verificação.
+
+As atividades cobrem os seguintes conteúdos:
+
+- Operações matemáticas básicas
+- Condicionais (if, elif, else)
+- Estruturas de repetição (for, while)
+- Criação e chamada de funções
+- Uso de listas e dicionários. (Ainda não implemetando)
+- Interação com Classes e os princípios do POO (Ainda não implemetando)
+
+Cada exercício possui:
+
+- Uma descrição clara da tarefa
+- Uma interface gráfica pronta
+- Um script com estrutura inicial completa, faltando apenas a lógica do exercício.
+- Dicas para orientar o raciocínio do aluno"
+autowrap_mode = 3
+
+[node name="ListasDeExercicios" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Titulo" type="Label" parent="TabContainer/ListasDeExercicios"]
+layout_mode = 2
+text = "Escolha um exercício"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/ListasDeExercicios"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Listas" type="VBoxContainer" parent="TabContainer/ListasDeExercicios/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarkdownPreProcessador" parent="TabContainer/ListasDeExercicios/HBoxContainer" instance=ExtResource("2_r7cba")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3

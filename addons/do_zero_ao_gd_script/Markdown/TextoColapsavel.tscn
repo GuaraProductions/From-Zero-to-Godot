@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg7t0ta4e1m4b"]
+
+[ext_resource type="Script" uid="uid://b521pmp1ih3ne" path="res://addons/do_zero_ao_gd_script/Markdown/texto_colapsavel.gd" id="1_vh176"]
+
+[node name="TextoColapsavel" type="VBoxContainer"]
+script = ExtResource("1_vh176")
+
+[node name="MostrarEsconder" type="Button" parent="."]
+layout_mode = 2
+text = "Mostrar Dica"
+
+[node name="Dica" type="Label" parent="."]
+layout_mode = 2
+text = "Texto"
+
+[connection signal="pressed" from="MostrarEsconder" to="." method="_on_mostrar_esconder_pressed" flags=18]
