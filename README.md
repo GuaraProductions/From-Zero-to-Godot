@@ -14,8 +14,8 @@ As atividades cobrem os seguintes conteúdos:
 * Condicionais (`if`, `elif`, `else`)
 * Estruturas de repetição (`for`, `while`)
 * Criação e chamada de funções
-* Uso de listas e dicionários. (Ainda não implemetando)
-* Interação com Classes e os princípios do POO (Ainda não implemetando)
+* Uso de listas e dicionários. 
+* Interação com Classes e os princípios do POO
 
 Cada exercício possui:
 
