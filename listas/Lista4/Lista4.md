@@ -1,41 +1,54 @@
-### 📘 **Lista 4 – Listas e Dicionários**
+# 📘 **Lista 4 – Listas e Dicionários**
 
-**Objetivo:**  
-Nessa lista vamos revisar o que aprendemos sobre listas e dicionários.
----
-
-#### **1️⃣ Gerenciador de Tarefas (Aplicativo de TODO)**  
+## **1️⃣ Gerenciador de Tarefas (Aplicativo de TODO)**  
 
 **Tarefa:**  
 
-- Complete a classe `OrganizadorDeTarefas` e `Tarefa`:
-- `OrganizadorDeTarefas`
-  - `adicionar_tarefa(desc: String)` → instancia `Tarefa` e adiciona a `_tarefas`
-  - `concluir_tarefa(indice: int)` → marca `concluida = true` se índice válido
-  - `deletar_tarefa(indice: int)` → deleta a tarefa se índice válido
-  - `get_tarefas(): Array` → retorna cópia de `_tarefas`
-- `Tarefa`
-  - `_init(p_id, p_descricao)` → constroi a instancia da classe Tarefa
-  - `marcar_concluida()` → atribui a propriedade de `concluída` para verdadeiro
+Complete as classes `OrganizadorDeTarefas` e `Tarefa`:
+
+**Classe OrganizadorDeTarefas:**
+
+| Método | Descrição |
+|--------|-----------|
+| `adicionar_tarefa(desc: String)` | Instancia `Tarefa` e adiciona a `_tarefas` |
+| `concluir_tarefa(indice: int)` | Marca `concluida = true` se índice válido |
+| `deletar_tarefa(indice: int)` | Deleta a tarefa se índice válido |
+| `get_tarefas(): Array` | Retorna cópia de `_tarefas` |
+
+**Classe Tarefa:**
+
+| Método | Descrição |
+|--------|-----------|
+| `_init(p_id, p_descricao)` | Constrói a instância da classe Tarefa |
+| `marcar_concluida()` | Atribui a propriedade de `concluída` para verdadeiro |
 
 <details><summary>Dica</summary>Use `tarefas.duplicate()` ou itere para criar um novo `Array` antes de retornar.</details>
 
 ---
 
-#### **2️⃣ Inventário**  
-A classe `Inventario` já vem com a propriedade `_itens: Dictionary = {}`. Complete:
-- `vazio() -> bool` → retorna cópia de `_itens`.   
-- `adicionar_item(nome: String, qtd: int)` → cria instância do `Item` e adiciona em `_itens`.
-- `remover_item(nome: String, qtd: int)` → remove um número `qtd` de `Item`. Caso não tenha mais nenhum item, remover ele de `_itens`.
-- `get_itens(): Dictionary` → retorna cópia de `_itens`.  
-- `get_item_nome(id: int) -> String` → retorna nome correspondente ao item com o indice `id`, caso não exista, retorne uma String vazia. 
-- `get_item_descricao(id: int) -> String` → retorna a descrição correspondente ao item com o indice `id`, caso não exista, retorne uma String vazia. 
-- `get_item_quantidade(id: int) -> int` → retorna a quantidade do item com o indice `id`, caso o item não exista, retorne -1
-- `get_item_nome_com_quantidade(id: int) -> String` → retorna nome correspondente ao item com o indice `id`, junto com a quantidade desse item, caso não exista, retorne uma String vazia. 
+## **2️⃣ Inventário**  
 
-Complete também a classe `Item`:
-  - `_init(p_id, p_descricao, p_nome, p_descricao, p_textura)` → constroi a instancia da classe Item
-  - `to_dict()` → retorna a instancia atual e formato de um dicionario
+A classe `Inventario` já vem com a propriedade `_itens: Dictionary = {}`. 
 
-DICA: As chaves do dicionário do `to_dict()` do `Item` precisam ter os mesmos nomes das propriedades do mesmo.
+**Classe Inventario:**
+
+| Método | Descrição |
+|--------|-----------|
+| `vazio() -> bool` | Retorna cópia de `_itens` |
+| `adicionar_item(nome: String, qtd: int)` | Cria instância do `Item` e adiciona em `_itens` |
+| `remover_item(nome: String, qtd: int)` | Remove um número `qtd` de `Item`. Caso não tenha mais nenhum item, remove ele de `_itens` |
+| `get_itens(): Dictionary` | Retorna cópia de `_itens` |
+| `get_item_nome(id: int) -> String` | Retorna nome correspondente ao item com o índice `id`, caso não exista, retorna uma String vazia |
+| `get_item_descricao(id: int) -> String` | Retorna a descrição correspondente ao item com o índice `id`, caso não exista, retorna uma String vazia |
+| `get_item_quantidade(id: int) -> int` | Retorna a quantidade do item com o índice `id`, caso o item não exista, retorna -1 |
+| `get_item_nome_com_quantidade(id: int) -> String` | Retorna nome correspondente ao item com o índice `id`, junto com a quantidade desse item, caso não exista, retorna uma String vazia |
+
+**Classe Item:**
+
+| Método | Descrição |
+|--------|-----------|
+| `_init(p_id, p_descricao, p_nome, p_descricao, p_textura)` | Constrói a instância da classe Item |
+| `to_dict()` | Retorna a instância atual em formato de um dicionário |
+
+<details><summary>Dica</summary>As chaves do dicionário do `to_dict()` do `Item` precisam ter os mesmos nomes das propriedades do mesmo.</details>
 ---

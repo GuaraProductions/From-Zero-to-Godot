@@ -14,6 +14,7 @@ script = ExtResource("1_gobie")
 
 [node name="MarkdownPreProcessador" parent="." instance=ExtResource("1_8ufuj")]
 layout_mode = 1
+formula_font_size = 18
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

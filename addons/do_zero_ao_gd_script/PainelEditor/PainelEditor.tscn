@@ -23,9 +23,10 @@ script = ExtResource("1_pqrcs")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 2
-current_tab = 0
+current_tab = 1
 
 [node name="Seja Bem Vindo" type="VBoxContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -60,25 +61,24 @@ Cada exercício possui:
 autowrap_mode = 3
 
 [node name="ListasDeExercicios" type="VBoxContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
 [node name="Titulo" type="Label" parent="TabContainer/ListasDeExercicios"]
 layout_mode = 2
-text = "Escolha um exercício"
+text = "Escolha uma lista"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/ListasDeExercicios"]
+[node name="_" type="HBoxContainer" parent="TabContainer/ListasDeExercicios"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Listas" type="VBoxContainer" parent="TabContainer/ListasDeExercicios/HBoxContainer"]
+[node name="Listas" type="VBoxContainer" parent="TabContainer/ListasDeExercicios/_"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarkdownPreProcessador" parent="TabContainer/ListasDeExercicios/HBoxContainer" instance=ExtResource("2_r7cba")]
+[node name="MarkdownPreProcessador" parent="TabContainer/ListasDeExercicios/_" instance=ExtResource("2_r7cba")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3

@@ -1,13 +1,5 @@
 ### 📘 **Lista 3 - Programação Orientada a Objetos com GDScript**
 
-**Objetivo:**
-Esta lista de exercícios introduz os pilares da Programação Orientada a Objetos (POO) utilizando GDScript. 
-Cada questão trabalha um ou mais pilares: **Abstração**, **Encapsulamento**, **Herança**, **Composição** e **Polimorfismo**.
-
-Cada cena conterá classes parcialmente construídas (exceto a questão 5) e o aluno deverá completar ou criar novas classes conforme solicitado.
-
----
-
 #### **1️⃣ Classe Retângulo - Abstração e Encapsulamento**
 
 **Exemplos:**

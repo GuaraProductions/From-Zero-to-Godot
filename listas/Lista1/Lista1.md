@@ -1,4 +1,4 @@
-#### **1️⃣ Questão 1 - Conversor de Temperatura**
+# **1️⃣ Questão 1 - Conversor de Temperatura**
 
 Complete uma função que converta uma temperatura em Celsius para Fahrenheit.  
 A fórmula de conversão é:
@@ -7,7 +7,7 @@ $$
 F=(C×1.8)+32
 $$
 
-### Exemplo:
+## Exemplo:
 	
 - Entrada: 0 → Saída esperada: 32.00
 - Entrada: 100 → Saída esperada: 212.00
@@ -17,7 +17,7 @@ $$
 
 ---
 
-#### **2️⃣ Questão 2 - Calculadora de Juros Simples**
+# **2️⃣ Questão 2 - Calculadora de Juros Simples**
 
 Complete uma função que receba três informações do usuário:
 
@@ -43,7 +43,7 @@ Onde:
 - t é o tempo
 	
 
-### Exemplo
+## Exemplo
 
 - Entrada: C=1000, i=5%, t=12 → Saída esperada: 1600.00
 - Entrada: C=500, i=10%, t=6 → Saída esperada: 800.00
@@ -55,7 +55,7 @@ Onde:
 <details> <summary>Dica 2</b></font></summary>A fórmula precisa ser aplicada corretamente para o cálculo do montante. Faça o cálculo do produto e some ao capital. </details>
 
 ---
-####  3️⃣ **Questão 3 - Calculadora de Média e Situação Escolar**
+#  3️⃣ **Questão 3 - Calculadora de Média e Situação Escolar**
 
 Complete uma função que receba as 3 notas de um aluno e calcule a média final.  
 Com a média em mãos, retorne da função:
@@ -66,7 +66,7 @@ Com a média em mãos, retorne da função:
 	
 - `"Reprovado"` se a média for menor que 40.
 
-### Exemplo
+## Exemplo
 
 - Entrada: 60, 70, 80 → Saída esperada: Aprovado
 - Entrada: 40, 55, 50 → Saída esperada: Recuperação
@@ -79,7 +79,7 @@ Com a média em mãos, retorne da função:
 
 ---
 
-#### **4️⃣ Questão 4 - Calculadora de Desconto em Compras**
+# **4️⃣ Questão 4 - Calculadora de Desconto em Compras**
 
 Calcule e exiba:
 
@@ -89,7 +89,7 @@ Calcule e exiba:
 	
 - Se o valor final for superior a R$ 500,00, pois então o cliente irá ganhar um brinde.
 
-### Exemplo
+## Exemplo
 
 - Entrada: valor=1000, desconto=10% → Saída esperada: Desconto: 100.00, Final: 900.00 Mensagem: brinde
 - Entrada: valor=600, desconto=5% → Saída esperada: Desconto: 30.00, Final: 570.00, Mensagem: brinde
@@ -105,7 +105,7 @@ Calcule e exiba:
 
 ---
 
-#### **5️⃣Questão 5 - Verificação de Ano Bissexto**
+# **5️⃣Questão 5 - Verificação de Ano Bissexto**
 
 Complete uma função que receba um ano do usuário e verifique se ele é bissexto ou não.  
 Para um ano ser bissexto, ele deve:
@@ -114,7 +114,7 @@ Para um ano ser bissexto, ele deve:
 	
 - Não ser divisível por 100, exceto se também for divisível por 400.
 
-### Exemplo
+## Exemplo
 
 - Entrada: 2024 → Saída esperada: É bissexto
 - Entrada: 1900 → Saída esperada: Não é bissexto
