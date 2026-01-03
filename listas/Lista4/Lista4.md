@@ -1,8 +1,11 @@
 # 📘 **Lista 4 – Listas e Dicionários**
 
-## **1️⃣ Gerenciador de Tarefas (Aplicativo de TODO)**  
+---
 
-**Tarefa:**  
+## **1️⃣ Gerenciador de Tarefas (Aplicativo de TODO)**
+[open_scene](Exercicio1/Exercicio1.tscn)
+
+### Tarefa:
 
 Complete as classes `OrganizadorDeTarefas` e `Tarefa`:
 
@@ -25,8 +28,12 @@ Complete as classes `OrganizadorDeTarefas` e `Tarefa`:
 <details><summary>Dica</summary>Use `tarefas.duplicate()` ou itere para criar um novo `Array` antes de retornar.</details>
 
 ---
+---
 
-## **2️⃣ Inventário**  
+## **2️⃣ Inventário**
+[open_scene](Exercicio2/Exercicio2.tscn)
+
+### Tarefa:
 
 A classe `Inventario` já vem com a propriedade `_itens: Dictionary = {}`. 
 

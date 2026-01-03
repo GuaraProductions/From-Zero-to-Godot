@@ -3,8 +3,9 @@
 ---
 
 ## **1️⃣ Somador com Repetição**
+[open_scene](Exercicio1/Exercicio1.tscn)
 
-- Complete uma função que some todos números de 1 até N (incluso)
+Complete uma função que some todos números de 1 até N (incluso).
 
 ### Exemplo
 
@@ -17,12 +18,14 @@
 <details> <summary>Dica 3</b></font></summary> Vá somando de "i" com "soma" dentro do loop. </details>
 
 ---
+---
 
-#### **2️⃣ Tabuada de um Número**
+## **2️⃣ Tabuada de um Número**
+[open_scene](Exercicio2/Exercicio2.tscn)
 
-- Complete uma função que calcule a tabuada dos números de 1 até 10, das operações que vão de 1 até n
+Complete uma função que calcule a tabuada dos números de 1 até 10, das operações que vão de 1 até n.
 
-Obs.: A função em si não retorna nada (já que é do tipo void), você precisa usar a função `adicionar_tabuada` para adicionar os resultados dos seus cálculos
+**Obs.:** A função em si não retorna nada (já que é do tipo void), você precisa usar a função `adicionar_tabuada` para adicionar os resultados dos seus cálculos.
 
 ### Exemplo de saída:
 
@@ -32,10 +35,12 @@ Obs.: A função em si não retorna nada (já que é do tipo void), você precis
 <details> <summary>Dica 2</b></font></summary> Em cada iteração, calcule `i * N` </details>
 
 ---
+---
 
-#### **3️⃣ Contador de Múltiplos de 3**
+## **3️⃣ Contador de Múltiplos de 3**
+[open_scene](Exercicio3/Exercicio3.tscn)
 
-- Complete uma função que retorne quantos números entre 1 e N são múltiplos de 3.
+Complete uma função que retorne quantos números entre 1 e N são múltiplos de 3.
 
 ### Exemplo
 
@@ -48,10 +53,12 @@ Obs.: A função em si não retorna nada (já que é do tipo void), você precis
 <details> <summary>Dica 3</b></font></summary> Use uma variável e uma estrutura condicional sempre que encontrar um múltiplo </details>
 
 ---
+---
 
-#### **4️⃣ Fatorial de um Número**
+## **4️⃣ Fatorial de um Número**
+[open_scene](Exercicio4/Exercicio4.tscn)
 
-- Complete uma função que calcula o fatorial de `N`
+Complete uma função que calcula o fatorial de `N`.
 
 ### Exemplo
 
@@ -61,11 +68,14 @@ Obs.: A função em si não retorna nada (já que é do tipo void), você precis
 
 <details> <summary>Dica 1</b></font></summary> O fatorial é o produto de todos os inteiros positivos até N: `N * (N-1) * ... * 1` </details>
 <details> <summary>Dica 2</b></font></summary> Use `for i in range(1, N + 1): resultado *= i` </details>
+
+---
 ---
 
-#### **5️⃣ Soma dos Pares entre 1 e N**
+## **5️⃣ Soma dos Pares entre 1 e N**
+[open_scene](Exercicio5/Exercicio5.tscn)
 
-- Complete uma função que calcula a soma dos números pares entre 1 e N (incluso).
+Complete uma função que calcula a soma dos números pares entre 1 e N (incluso).
 
 ### Exemplo
 

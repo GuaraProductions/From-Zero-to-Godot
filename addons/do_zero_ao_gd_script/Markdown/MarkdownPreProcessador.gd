@@ -12,6 +12,9 @@ class_name MarkdownPreProcessador
 @export_range(1,50) var table_cell_padding: int = 4
 @export var debug_mode: bool = false
 
+# Sinal para solicitar abertura de cenas no editor
+signal abrir_cena_solicitada(caminho_cena: String)
+
 const TextoColapasavelScene = preload("res://addons/do_zero_ao_gd_script/Markdown/TextoColapsavel.tscn")
 
 func _debug_print(mensagem: String) -> void:
@@ -27,9 +30,12 @@ func parse_markdown_to_scene(md_path: String) -> Control:
 
 	var text = file.get_as_text()
 	file.close()
-
+	
+	# Extrai o diretório base do arquivo markdown para resolver caminhos relativos
+	var base_dir = md_path.get_base_dir()
 	_debug_print("=== INICIANDO PARSE DO MARKDOWN ===")
 	_debug_print("Arquivo: " + md_path)
+	_debug_print("Diretório base: " + base_dir)
 
 	# Cria o container principal da "cena"
 	var scroll = ScrollContainer.new()
@@ -38,6 +44,7 @@ func parse_markdown_to_scene(md_path: String) -> Control:
 	scroll.anchor_bottom = 1
 	scroll.set_h_size_flags(Control.SIZE_EXPAND_FILL)
 	scroll.set_v_size_flags(Control.SIZE_EXPAND_FILL)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 
 	# Cria o container principal da "cena"
 	var root = VBoxContainer.new()
@@ -99,9 +106,12 @@ func parse_markdown_to_scene(md_path: String) -> Control:
 				i += 1
 				continue
 		
-		# Ignora linhas de separação ---
+		# Desenha linhas de separação ---
 		if line_stripped.begins_with("---"):
-			_debug_print("[Linha %d] SEPARADOR --- - pulando" % linha_count)
+			_debug_print("[Linha %d] SEPARADOR --- - adicionando linha visual" % linha_count)
+			var separator = HSeparator.new()
+			separator.custom_minimum_size = Vector2(0, 2)
+			root.add_child(separator)
 			i += 1
 			continue
 		
@@ -111,18 +121,37 @@ func parse_markdown_to_scene(md_path: String) -> Control:
 			var img_data = line_stripped.substr(2, line_stripped.find(")") - 2)  # remove ![
 			var parts = img_data.split("](")
 			if parts.size() == 2:
-				var path = parts[1].strip_edges()
-				var tex = load(path) 
+				var relative_path = parts[1].strip_edges()
+				# Resolve o caminho relativo ao diretório do markdown
+				var full_path = base_dir.path_join(relative_path)
+				_debug_print("  -> Caminho relativo: %s" % relative_path)
+				_debug_print("  -> Caminho completo: %s" % full_path)
+				
+				var tex = load(full_path) 
 				if tex:
+					# Container para centralizar a imagem
+					var img_container = CenterContainer.new()
+					img_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+					
 					var img = TextureRect.new()
 					img.texture = tex
-					img.custom_minimum_size = Vector2(200, 200)
-					img.expand_mode = TextureRect.EXPAND_KEEP_SIZE
-					img.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
-					root.add_child(img)
-					_debug_print("  -> Imagem adicionada com sucesso")
+					img.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+					img.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+					
+					# Limita o tamanho da imagem com margem de segurança
+					var img_size = tex.get_size()
+					var max_width = 700  # Largura máxima em pixels (com margem de segurança)
+					if img_size.x > max_width:
+						var scale_factor = max_width / img_size.x
+						img.custom_minimum_size = Vector2(max_width, img_size.y * scale_factor)
+					else:
+						img.custom_minimum_size = img_size
+					
+					img_container.add_child(img)
+					root.add_child(img_container)
+					_debug_print("  -> Imagem adicionada com sucesso (tamanho: %s)" % str(img.custom_minimum_size))
 				else:
-					_debug_print("  -> ERRO: Não foi possível carregar a imagem: " + path)
+					_debug_print("  -> ERRO: Não foi possível carregar a imagem: " + full_path)
 			i += 1
 			continue
 		
@@ -198,6 +227,20 @@ func parse_markdown_to_scene(md_path: String) -> Control:
 					break
 			var text_content = line_stripped.substr(lvl).strip_edges()
 			_debug_print("[Linha %d] TÍTULO nível %d: %s" % [linha_count, lvl, text_content])
+			
+			# Verifica se a próxima linha contém [open_scene]
+			var caminho_cena = ""
+			if i + 1 < lines.size():
+				var next_line = lines[i + 1].strip_edges()
+				if next_line.begins_with("[open_scene](") and next_line.ends_with(")"):
+					var inicio = next_line.find("(") + 1
+					var fim = next_line.rfind(")")
+					if fim > inicio:
+						caminho_cena = next_line.substr(inicio, fim - inicio).strip_edges()
+						i += 1  # Pula a linha com [open_scene]
+						linha_count += 1
+						_debug_print("  -> Caminho de cena detectado: %s" % caminho_cena)
+			
 			text_content = _converter_markdown_para_bbcode(text_content)
 			
 			# Determina o tamanho da fonte baseado no nível
@@ -214,14 +257,31 @@ func parse_markdown_to_scene(md_path: String) -> Control:
 					size_lbl = normal_font_size
 					cor_titulo = text_color
 			
+			# Cria HBoxContainer para título + botão (se houver cena)
+			var hbox = HBoxContainer.new()
+			hbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			
 			var rt = RichTextLabel.new()
 			rt.bbcode_enabled = true
 			rt.fit_content = true
 			rt.scroll_active = false
+			rt.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			rt.bbcode_text = "[font_size=%d]%s[/font_size]" % [size_lbl, text_content]
 			rt.add_theme_color_override("default_color", cor_titulo)
 			rt.add_theme_stylebox_override("normal", StyleBoxEmpty.new())
-			root.add_child(rt)
+			hbox.add_child(rt)
+			
+			# Adiciona botão se houver caminho de cena
+			if not caminho_cena.is_empty():
+				var full_scene_path = base_dir.path_join(caminho_cena)
+				var btn = Button.new()
+				btn.text = "📂 Abrir Cena"
+				btn.custom_minimum_size = Vector2(120, 0)
+				btn.pressed.connect(_on_botao_abrir_cena_pressed.bind(full_scene_path))
+				hbox.add_child(btn)
+				_debug_print("  -> Botão de abrir cena adicionado para: %s" % full_scene_path)
+			
+			root.add_child(hbox)
 			_debug_print("  -> Título adicionado, nível %d, tamanho fonte: %d" % [lvl, size_lbl])
 			i += 1
 			continue
@@ -322,3 +382,10 @@ func _adicionar_details_colapsavel(container: VBoxContainer, linha_details: Stri
 		_debug_print("  -> Details colapsável adicionado: %s" % titulo)
 	else:
 		_debug_print("  -> ERRO ao processar details: não foi possível extrair summary/content")
+
+func _on_botao_abrir_cena_pressed(caminho_cena: String) -> void:
+	_debug_print("Solicitando abertura da cena: %s" % caminho_cena)
+	if FileAccess.file_exists(caminho_cena):
+		abrir_cena_solicitada.emit(caminho_cena)
+	else:
+		push_error("Cena não encontrada: %s" % caminho_cena)
