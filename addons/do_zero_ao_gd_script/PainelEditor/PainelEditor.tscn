@@ -1,14 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://c18vt2dx5s86b"]
+[gd_scene load_steps=5 format=3 uid="uid://c18vt2dx5s86b"]
 
 [ext_resource type="Script" uid="uid://bv18c6git5fp6" path="res://addons/do_zero_ao_gd_script/PainelEditor/painel_editor.gd" id="1_pqrcs"]
 [ext_resource type="PackedScene" uid="uid://cj3stl1gx6rq8" path="res://addons/do_zero_ao_gd_script/Markdown/MarkdownPreProcessador.tscn" id="2_r7cba"]
+[ext_resource type="PackedScene" uid="uid://dfkg1dp0vyqqi" path="res://addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn" id="3_wlh6l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0hrhp"]
-content_margin_left = 50.0
-content_margin_top = 50.0
-content_margin_right = 50.0
-content_margin_bottom = 50.0
-bg_color = Color(0.172833, 0.172833, 0.172833, 1)
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.15686275, 0.18039216, 0.22352941, 1)
 
 [node name="PainelEditor" type="PanelContainer"]
 anchors_preset = 15
@@ -60,25 +61,29 @@ Cada exercício possui:
 - Dicas para orientar o raciocínio do aluno"
 autowrap_mode = 3
 
-[node name="ListasDeExercicios" type="VBoxContainer" parent="TabContainer"]
+[node name="Listas De Exercicios" type="VBoxContainer" parent="TabContainer"]
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Titulo" type="Label" parent="TabContainer/ListasDeExercicios"]
+[node name="Titulo" type="Label" parent="TabContainer/Listas De Exercicios"]
 layout_mode = 2
 text = "Escolha uma lista"
 
-[node name="_" type="HBoxContainer" parent="TabContainer/ListasDeExercicios"]
+[node name="_" type="HBoxContainer" parent="TabContainer/Listas De Exercicios"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Listas" type="VBoxContainer" parent="TabContainer/ListasDeExercicios/_"]
+[node name="Listas" type="VBoxContainer" parent="TabContainer/Listas De Exercicios/_"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarkdownPreProcessador" parent="TabContainer/ListasDeExercicios/_" instance=ExtResource("2_r7cba")]
+[node name="MarkdownPreProcessador" parent="TabContainer/Listas De Exercicios/_" instance=ExtResource("2_r7cba")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Teste" parent="TabContainer" instance=ExtResource("3_wlh6l")]
+visible = false
+layout_mode = 2

@@ -1,0 +1,42 @@
+{
+	"funcao": "calcular_situacao_escolar",
+	"timeout": 5,
+	"comparacao": "exato",
+	"casos": [
+		{
+			"nome": "Teste 1: Média 70 - Aprovado",
+			"entrada": [60, 70, 80],
+			"saida_esperada": "Aprovado"
+		},
+		{
+			"nome": "Teste 2: Média 48.33 - Recuperação",
+			"entrada": [40, 55, 50],
+			"saida_esperada": "Recuperação"
+		},
+		{
+			"nome": "Teste 3: Média 30 - Reprovado",
+			"entrada": [30, 20, 40],
+			"saida_esperada": "Reprovado"
+		},
+		{
+			"nome": "Teste 4: Média exata 60 - Aprovado",
+			"entrada": [60, 60, 60],
+			"saida_esperada": "Aprovado"
+		},
+		{
+			"nome": "Teste 5: Média exata 40 - Recuperação",
+			"entrada": [40, 40, 40],
+			"saida_esperada": "Recuperação"
+		},
+		{
+			"nome": "Teste 6: Média 39.99 - Reprovado",
+			"entrada": [39, 40, 40],
+			"saida_esperada": "Reprovado"
+		},
+		{
+			"nome": "Teste 7: Notas variadas - Aprovado",
+			"entrada": [90, 85, 95],
+			"saida_esperada": "Aprovado"
+		}
+	]
+}

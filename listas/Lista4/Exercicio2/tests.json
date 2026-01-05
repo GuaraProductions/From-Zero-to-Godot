@@ -1,0 +1,73 @@
+{
+  "tipo": "classe",
+  "classe": "Inventario",
+  "timeout": 1000,
+  "metodos": [
+    {
+      "nome": "vazio",
+      "comparacao": "exato",
+      "casos": [
+        {
+          "nome": "Inventário vazio retorna true",
+          "construtor_params": [],
+          "entrada": [],
+          "saida_esperada": true
+        }
+      ]
+    },
+    {
+      "nome": "adicionar_item",
+      "comparacao": "exato",
+      "casos": [
+        {
+          "nome": "Adicionar 5 poções",
+          "construtor_params": [],
+          "entrada": ["Poção", 5],
+          "saida_esperada": null
+        },
+        {
+          "nome": "Adicionar 10 espadas",
+          "construtor_params": [],
+          "entrada": ["Espada", 10],
+          "saida_esperada": null
+        }
+      ]
+    },
+    {
+      "nome": "remover_item",
+      "comparacao": "exato",
+      "casos": [
+        {
+          "nome": "Remover 2 poções",
+          "construtor_params": [],
+          "entrada": ["Poção", 2],
+          "saida_esperada": null
+        }
+      ]
+    },
+    {
+      "nome": "get_item_quantidade",
+      "comparacao": "exato",
+      "casos": [
+        {
+          "nome": "Obter quantidade de item inexistente",
+          "construtor_params": [],
+          "entrada": [999],
+          "saida_esperada": -1
+        }
+      ]
+    },
+    {
+      "nome": "get_item_nome",
+      "comparacao": "exato",
+      "casos": [
+        {
+          "nome": "Obter nome de item inexistente",
+          "construtor_params": [],
+          "entrada": [999],
+          "saida_esperada": ""
+        }
+      ]
+    }
+  ]
+}

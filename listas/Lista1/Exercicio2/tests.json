@@ -1,0 +1,33 @@
+{
+	"funcao": "calcular_montante",
+	"timeout": 5,
+	"comparacao": "aproximado",
+	"tolerancia": 0.01,
+	"casos": [
+		{
+			"nome": "Teste 1: Capital 1000, taxa 5%, 12 meses",
+			"entrada": [1000, 5, 12],
+			"saida_esperada": 1600.0
+		},
+		{
+			"nome": "Teste 2: Capital 500, taxa 10%, 6 meses",
+			"entrada": [500, 10, 6],
+			"saida_esperada": 800.0
+		},
+		{
+			"nome": "Teste 3: Capital 2000, taxa 2.5%, 10 meses",
+			"entrada": [2000, 2.5, 10],
+			"saida_esperada": 2500.0
+		},
+		{
+			"nome": "Teste 4: Capital baixo",
+			"entrada": [100, 15, 24],
+			"saida_esperada": 460.0
+		},
+		{
+			"nome": "Teste 5: Taxa decimal",
+			"entrada": [1500, 3.75, 8],
+			"saida_esperada": 1950.0
+		}
+	]
+}

@@ -1,0 +1,19 @@
+{
+  "tipo": "classe",
+  "classe": "Animal",
+  "timeout": 1000,
+  "metodos": [
+    {
+      "nome": "falar",
+      "comparacao": "exato",
+      "casos": [
+        {
+          "nome": "Cachorro fala 'Au au!'",
+          "construtor_params": [],
+          "entrada": [],
+          "saida_esperada": "Au au!"
+        }
+      ]
+    }
+  ]
+}

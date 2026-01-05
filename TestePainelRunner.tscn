@@ -1,0 +1,120 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6h8j5k7nan0p"]
+
+[ext_resource type="Script" path="res://addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/painel_testes.gd" id="1_abcde"]
+
+[node name="TestePainelRunner" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PainelTestes" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_abcde")
+
+[node name="MarginContainer" type="MarginContainer" parent="PainelTestes"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HSplitContainer" type="HSplitContainer" parent="PainelTestes/MarginContainer"]
+layout_mode = 2
+split_offset = 300
+
+[node name="LeftPanel" type="VBoxContainer" parent="PainelTestes/MarginContainer/HSplitContainer"]
+layout_mode = 2
+
+[node name="BuscaContainer" type="VBoxContainer" parent="PainelTestes/MarginContainer/HSplitContainer/LeftPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PainelTestes/MarginContainer/HSplitContainer/LeftPanel/BuscaContainer"]
+layout_mode = 2
+text = "Buscar Exercício:"
+
+[node name="AcharQuestao" type="LineEdit" parent="PainelTestes/MarginContainer/HSplitContainer/LeftPanel/BuscaContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Digite para filtrar..."
+
+[node name="ListaDeExercicios" type="ItemList" parent="PainelTestes/MarginContainer/HSplitContainer/LeftPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RightPanel" type="VBoxContainer" parent="PainelTestes/MarginContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DetalhesExercicio" type="VBoxContainer" parent="PainelTestes/MarginContainer/HSplitContainer/RightPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PainelTestes/MarginContainer/HSplitContainer/RightPanel/DetalhesExercicio"]
+layout_mode = 2
+text = "Detalhes do Exercício:"
+theme_type_variation = &"HeaderMedium"
+
+[node name="DetalhesExercicioAtual" type="RichTextLabel" parent="PainelTestes/MarginContainer/HSplitContainer/RightPanel/DetalhesExercicio"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+fit_content = true
+
+[node name="ScriptSelection" type="VBoxContainer" parent="PainelTestes/MarginContainer/HSplitContainer/RightPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PainelTestes/MarginContainer/HSplitContainer/RightPanel/ScriptSelection"]
+layout_mode = 2
+text = "Selecionar Script do Aluno:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PainelTestes/MarginContainer/HSplitContainer/RightPanel/ScriptSelection"]
+layout_mode = 2
+
+[node name="ExercicioEscolhidoLineEdit" type="LineEdit" parent="PainelTestes/MarginContainer/HSplitContainer/RightPanel/ScriptSelection/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+placeholder_text = "Nenhum script selecionado"
+
+[node name="EscolhaExercicioButton" type="Button" parent="PainelTestes/MarginContainer/HSplitContainer/RightPanel/ScriptSelection/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Escolher Script"
+
+[node name="ExecutarTesteAtual" type="Button" parent="PainelTestes/MarginContainer/HSplitContainer/RightPanel/ScriptSelection/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Executar Testes"
+
+[node name="ProgressoTestes" type="ProgressBar" parent="PainelTestes/MarginContainer/HSplitContainer/RightPanel/ScriptSelection"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ResultadoTeste" type="ScrollContainer" parent="PainelTestes/MarginContainer/HSplitContainer/RightPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ResultadoTeste" type="RichTextLabel" parent="PainelTestes/MarginContainer/HSplitContainer/RightPanel/ResultadoTeste"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+fit_content = true

@@ -16,7 +16,7 @@ func _criar_botoes_listas():
 	# Limpa botões existentes
 	for child in listas.get_children():
 		child.queue_free()
-	print("teste?")
+
 	# Lê as pastas do diretório
 	var dir = DirAccess.open(diretorio_listas)
 	if not dir:

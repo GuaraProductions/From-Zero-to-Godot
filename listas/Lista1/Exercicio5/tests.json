@@ -1,0 +1,42 @@
+{
+	"funcao": "verificar_ano_bissexto",
+	"timeout": 5,
+	"comparacao": "exato",
+	"casos": [
+		{
+			"nome": "Teste 1: 2024 - É bissexto",
+			"entrada": [2024],
+			"saida_esperada": true
+		},
+		{
+			"nome": "Teste 2: 1900 - Não é bissexto",
+			"entrada": [1900],
+			"saida_esperada": false
+		},
+		{
+			"nome": "Teste 3: 2000 - É bissexto",
+			"entrada": [2000],
+			"saida_esperada": true
+		},
+		{
+			"nome": "Teste 4: 2023 - Não é bissexto",
+			"entrada": [2023],
+			"saida_esperada": false
+		},
+		{
+			"nome": "Teste 5: 2020 - É bissexto",
+			"entrada": [2020],
+			"saida_esperada": true
+		},
+		{
+			"nome": "Teste 6: 1800 - Não é bissexto",
+			"entrada": [1800],
+			"saida_esperada": false
+		},
+		{
+			"nome": "Teste 7: 2400 - É bissexto",
+			"entrada": [2400],
+			"saida_esperada": true
+		}
+	]
+}

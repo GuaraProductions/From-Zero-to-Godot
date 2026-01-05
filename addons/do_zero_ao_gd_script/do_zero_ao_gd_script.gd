@@ -5,6 +5,8 @@ const painel_editor_cena = preload("res://addons/do_zero_ao_gd_script/PainelEdit
 
 var painel_editor_instancia : PanelContainer = null
 var markdown_preprocessador : MarkdownPreProcessador = null
+var painel_testes : PainelTestes = null
+var file_dialog : EditorFileDialog = null
 
 func _enter_tree() -> void:
 	
@@ -15,6 +17,7 @@ func _enter_tree() -> void:
 	# Conecta o sinal do MarkdownPreProcessador após ele ser criado
 	await get_tree().process_frame
 	_conectar_markdown_preprocessador()
+	_configurar_painel_testes()
 
 	_make_visible(false)
 
@@ -22,10 +25,15 @@ func _exit_tree() -> void:
 	if markdown_preprocessador and markdown_preprocessador.abrir_cena_solicitada.is_connected(_on_abrir_cena_solicitada):
 		markdown_preprocessador.abrir_cena_solicitada.disconnect(_on_abrir_cena_solicitada)
 	
+	if file_dialog:
+		file_dialog.queue_free()
+		file_dialog = null
+	
 	if painel_editor_instancia:
 		painel_editor_instancia.queue_free()
 		painel_editor_instancia = null
 		markdown_preprocessador = null
+		painel_testes = null
 		
 func _has_main_screen() -> bool:
 	return true
@@ -44,7 +52,19 @@ func _conectar_markdown_preprocessador() -> void:
 		markdown_preprocessador = preprocessadores[0]
 		if not markdown_preprocessador.abrir_cena_solicitada.is_connected(_on_abrir_cena_solicitada):
 			markdown_preprocessador.abrir_cena_solicitada.connect(_on_abrir_cena_solicitada)
-			print("MarkdownPreProcessador conectado com sucesso")
+
+func _configurar_painel_testes() -> void:
+	# Procura o PainelTestes na árvore
+	var paineis = painel_editor_instancia.find_children("*", "PainelTestes", true, false)
+	if paineis.size() > 0:
+		painel_testes = paineis[0]
+		
+		# Cria e configura o EditorFileDialog
+		file_dialog = EditorFileDialog.new()
+		EditorInterface.get_base_control().add_child(file_dialog)
+		
+		# Configura o file dialog no painel de testes
+		painel_testes.configurar_file_dialog(file_dialog)
 
 func _on_abrir_cena_solicitada(caminho_cena: String) -> void:
 	print("Abrindo cena: %s" % caminho_cena)

@@ -1,0 +1,38 @@
+{
+  "tipo": "funcao",
+  "funcao": "calcular_fatorial",
+  "timeout": 1000,
+  "comparacao": "exato",
+  "casos": [
+    {
+      "nome": "Fatorial de 3",
+      "entrada": [3],
+      "saida_esperada": 6
+    },
+    {
+      "nome": "Fatorial de 5",
+      "entrada": [5],
+      "saida_esperada": 120
+    },
+    {
+      "nome": "Fatorial de 0",
+      "entrada": [0],
+      "saida_esperada": 1
+    },
+    {
+      "nome": "Fatorial de 1",
+      "entrada": [1],
+      "saida_esperada": 1
+    },
+    {
+      "nome": "Fatorial de 7",
+      "entrada": [7],
+      "saida_esperada": 5040
+    },
+    {
+      "nome": "Fatorial de 10",
+      "entrada": [10],
+      "saida_esperada": 3628800
+    }
+  ]
+}

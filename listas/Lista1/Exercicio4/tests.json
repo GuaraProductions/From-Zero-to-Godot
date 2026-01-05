@@ -1,0 +1,53 @@
+{
+	"funcao": "calcular_desconto",
+	"timeout": 5,
+	"comparacao": "aproximado",
+	"tolerancia": 0.01,
+	"casos": [
+		{
+			"nome": "Teste 1: Valor 1000, desconto 10% - Com brinde",
+			"entrada": [1000, 10],
+			"saida_esperada": {
+				"desconto": 100.0,
+				"valor_final": 900.0,
+				"ganhou_brinde": true
+			}
+		},
+		{
+			"nome": "Teste 2: Valor 600, desconto 5% - Com brinde",
+			"entrada": [600, 5],
+			"saida_esperada": {
+				"desconto": 30.0,
+				"valor_final": 570.0,
+				"ganhou_brinde": true
+			}
+		},
+		{
+			"nome": "Teste 3: Valor 400, desconto 20% - Sem brinde",
+			"entrada": [400, 20],
+			"saida_esperada": {
+				"desconto": 80.0,
+				"valor_final": 320.0,
+				"ganhou_brinde": false
+			}
+		},
+		{
+			"nome": "Teste 4: Valor exato 500 após desconto - Com brinde",
+			"entrada": [625, 20],
+			"saida_esperada": {
+				"desconto": 125.0,
+				"valor_final": 500.0,
+				"ganhou_brinde": false
+			}
+		},
+		{
+			"nome": "Teste 5: Valor 501 após desconto - Com brinde",
+			"entrada": [626.25, 20],
+			"saida_esperada": {
+				"desconto": 125.25,
+				"valor_final": 501.0,
+				"ganhou_brinde": true
+			}
+		}
+	]
+}

@@ -41,28 +41,36 @@ class Tarefa:
 	var concluida: bool 
 
 	func _init(p_id: int, p_descricao: String) -> void:
-		#TODO
-		pass
+		id = p_id
+		descricao = p_descricao
+		concluida = false
 
 	func marcar_concluida() -> void:
-		#TODO
-		pass
+		concluida = true
 
 class OrganizadorDeTarefas:
 	var _tarefas: Array = []
+	var _proximo_id: int = 0
 
 	func adicionar_tarefa(desc: String) -> Tarefa:
-		#TODO
-		return null
+		var nova_tarefa = Tarefa.new(_proximo_id, desc)
+		_tarefas.append(nova_tarefa)
+		_proximo_id += 1
+		return nova_tarefa
 
 	func concluir_tarefa(indice: int) -> bool:
-		#TODO
+		for tarefa in _tarefas:
+			if tarefa.id == indice:
+				tarefa.marcar_concluida()
+				return true
 		return false
 
 	func deletar_tarefa(indice: int) -> bool:
-		#TODO
+		for i in range(_tarefas.size()):
+			if _tarefas[i].id == indice:
+				_tarefas.remove_at(i)
+				return true
 		return false
 
 	func get_tarefas() -> Array:
-		#TODO
-		return []
+		return _tarefas.duplicate()

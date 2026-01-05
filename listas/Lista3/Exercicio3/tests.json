@@ -1,0 +1,25 @@
+{
+  "tipo": "classe",
+  "classe": "Carro",
+  "timeout": 1000,
+  "metodos": [
+    {
+      "nome": "ligar_carro",
+      "comparacao": "exato",
+      "casos": [
+        {
+          "nome": "Ligar carro com motor de potência 100",
+          "construtor_params": [],
+          "entrada": [],
+          "saida_esperada": "Motor ligado! Potência: 100"
+        },
+        {
+          "nome": "Ligar carro com motor de potência 200",
+          "construtor_params": [],
+          "entrada": [],
+          "saida_esperada": "Motor ligado! Potência: 200"
+        }
+      ]
+    }
+  ]
+}

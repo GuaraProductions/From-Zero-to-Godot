@@ -1,0 +1,73 @@
+{
+  "tipo": "classe",
+  "classe": "Cofrinho",
+  "timeout": 1000,
+  "metodos": [
+    {
+      "nome": "adicionar",
+      "comparacao": "exato",
+      "casos": [
+        {
+          "nome": "Adicionar 50",
+          "construtor_params": [],
+          "entrada": [50],
+          "saida_esperada": null,
+          "propriedades": {
+            "_saldo": 50
+          }
+        },
+        {
+          "nome": "Adicionar 25 e depois 30",
+          "construtor_params": [],
+          "entrada": [25],
+          "saida_esperada": null,
+          "propriedades": {
+            "_saldo": 25
+          }
+        }
+      ]
+    },
+    {
+      "nome": "sacar",
+      "comparacao": "exato",
+      "casos": [
+        {
+          "nome": "Sacar 30 com saldo 50",
+          "construtor_params": [],
+          "entrada": [30],
+          "saida_esperada": true,
+          "propriedades": {
+            "_saldo": 20
+          }
+        },
+        {
+          "nome": "Tentar sacar 100 com saldo 50",
+          "construtor_params": [],
+          "entrada": [100],
+          "saida_esperada": false,
+          "propriedades": {
+            "_saldo": 50
+          }
+        }
+      ]
+    },
+    {
+      "nome": "get_saldo",
+      "comparacao": "exato",
+      "casos": [
+        {
+          "nome": "Obter saldo inicial 0",
+          "construtor_params": [],
+          "entrada": [],
+          "saida_esperada": 0
+        },
+        {
+          "nome": "Obter saldo após adicionar 100",
+          "construtor_params": [],
+          "entrada": [],
+          "saida_esperada": 100
+        }
+      ]
+    }
+  ]
+}
