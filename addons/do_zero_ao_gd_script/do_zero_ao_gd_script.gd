@@ -1,5 +1,18 @@
 @tool
 extends EditorPlugin
+class_name DoZeroAoGDScript
+
+## Nome da configuração no ProjectSettings para o caminho da pasta de listas
+const SETTING_CAMINHO_LISTAS = "do_zero_ao_gd_script/caminho_listas"
+
+## Caminho padrão da pasta de listas de exercícios
+const CAMINHO_LISTAS_PADRAO = "res://listas"
+
+## Nome da configuração no ProjectSettings para o caminho da pasta de ebooks
+const SETTING_CAMINHO_EBOOKS = "do_zero_ao_gd_script/caminho_ebooks"
+
+## Caminho padrão da pasta de ebooks
+const CAMINHO_EBOOKS_PADRAO = "res://ebook"
 
 const painel_editor_cena = preload("res://addons/do_zero_ao_gd_script/PainelEditor/PainelEditor.tscn")
 
@@ -9,6 +22,8 @@ var painel_testes : PainelTestes = null
 var file_dialog : EditorFileDialog = null
 
 func _enter_tree() -> void:
+	# Configura ProjectSettings
+	_configurar_project_settings()
 	
 	painel_editor_instancia = painel_editor_cena.instantiate()
 
@@ -34,6 +49,9 @@ func _exit_tree() -> void:
 		painel_editor_instancia = null
 		markdown_preprocessador = null
 		painel_testes = null
+	
+	# Remove configuração do ProjectSettings
+	_remover_project_settings()
 		
 func _has_main_screen() -> bool:
 	return true
@@ -65,6 +83,64 @@ func _configurar_painel_testes() -> void:
 		
 		# Configura o file dialog no painel de testes
 		painel_testes.configurar_file_dialog(file_dialog)
+
+func _configurar_project_settings() -> void:
+	# Adiciona a configuração de listas se não existir
+	if not ProjectSettings.has_setting(SETTING_CAMINHO_LISTAS):
+		ProjectSettings.set_setting(SETTING_CAMINHO_LISTAS, CAMINHO_LISTAS_PADRAO)
+		
+		# Define propriedades da configuração para aparecer no editor
+		var property_info = {
+			"name": SETTING_CAMINHO_LISTAS,
+			"type": TYPE_STRING,
+			"hint": PROPERTY_HINT_DIR,
+			"hint_string": ""
+		}
+		ProjectSettings.add_property_info(property_info)
+		
+		# Marca como configuração básica (aparece na aba General)
+		ProjectSettings.set_initial_value(SETTING_CAMINHO_LISTAS, CAMINHO_LISTAS_PADRAO)
+		ProjectSettings.set_as_basic(SETTING_CAMINHO_LISTAS, true)
+	
+	# Adiciona a configuração de ebooks se não existir
+	if not ProjectSettings.has_setting(SETTING_CAMINHO_EBOOKS):
+		ProjectSettings.set_setting(SETTING_CAMINHO_EBOOKS, CAMINHO_EBOOKS_PADRAO)
+		
+		var property_info_ebooks = {
+			"name": SETTING_CAMINHO_EBOOKS,
+			"type": TYPE_STRING,
+			"hint": PROPERTY_HINT_DIR,
+			"hint_string": ""
+		}
+		ProjectSettings.add_property_info(property_info_ebooks)
+		
+		ProjectSettings.set_initial_value(SETTING_CAMINHO_EBOOKS, CAMINHO_EBOOKS_PADRAO)
+		ProjectSettings.set_as_basic(SETTING_CAMINHO_EBOOKS, true)
+	
+	# Salva as configurações
+	ProjectSettings.save()
+
+func _remover_project_settings() -> void:
+	# Remove as configurações quando o plugin é desativado
+	if ProjectSettings.has_setting(SETTING_CAMINHO_LISTAS):
+		ProjectSettings.clear(SETTING_CAMINHO_LISTAS)
+	
+	if ProjectSettings.has_setting(SETTING_CAMINHO_EBOOKS):
+		ProjectSettings.clear(SETTING_CAMINHO_EBOOKS)
+	
+	ProjectSettings.save()
+
+## Retorna o caminho da pasta de listas configurado no ProjectSettings
+## Use esta função estática em outros scripts para acessar o caminho:
+## var caminho = DoZeroAoGDScript.obter_caminho_listas()
+static func obter_caminho_listas() -> String:
+	return ProjectSettings.get_setting(SETTING_CAMINHO_LISTAS, CAMINHO_LISTAS_PADRAO)
+
+## Retorna o caminho da pasta de ebooks configurado no ProjectSettings
+## Use esta função estática em outros scripts para acessar o caminho:
+## var caminho = DoZeroAoGDScript.obter_caminho_ebooks()
+static func obter_caminho_ebooks() -> String:
+	return ProjectSettings.get_setting(SETTING_CAMINHO_EBOOKS, CAMINHO_EBOOKS_PADRAO)
 
 func _on_abrir_cena_solicitada(caminho_cena: String) -> void:
 	print("Abrindo cena: %s" % caminho_cena)

@@ -21,7 +21,10 @@ var exercicios_filtrados: Array[Dictionary] = []
 var exercicio_selecionado: Dictionary = {}
 var script_carregado: GDScript = null
 
-func _ready() -> void:
+var diretorio_listas : String = ""
+
+func _ready():
+	diretorio_listas = ProjectSettings.get_setting(DoZeroAoGDScript.SETTING_CAMINHO_LISTAS)
 	# Runner será criado dinamicamente baseado no tipo do teste
 	runner = null
 	
@@ -44,11 +47,11 @@ func _ready() -> void:
 
 func _carregar_todos_exercicios() -> void:
 	todos_exercicios.clear()
-	var dir_listas = "res://listas"
-	var dir = DirAccess.open(dir_listas)
+
+	var dir = DirAccess.open(diretorio_listas)
 	
 	if not dir:
-		push_error("Não foi possível abrir o diretório: %s" % dir_listas)
+		push_error("Não foi possível abrir o diretório: %s" % diretorio_listas)
 		return
 	
 	dir.list_dir_begin()
@@ -56,7 +59,7 @@ func _carregar_todos_exercicios() -> void:
 	
 	while nome_pasta != "":
 		if dir.current_is_dir() and nome_pasta.begins_with("Lista"):
-			_carregar_exercicios_da_lista(dir_listas.path_join(nome_pasta), nome_pasta)
+			_carregar_exercicios_da_lista(diretorio_listas.path_join(nome_pasta), nome_pasta)
 		nome_pasta = dir.get_next()
 	
 	dir.list_dir_end()
