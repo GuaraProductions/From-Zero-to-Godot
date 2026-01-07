@@ -1,5 +1,5 @@
 @tool
-extends VBoxContainer
+extends MarginContainer
 
 @onready var ebooks_disponiveis: VBoxContainer = %EbooksDisponiveis
 @onready var pre_visualizacao_ebook: MarkdownPreProcessador = %PreVisualizacaoEbook

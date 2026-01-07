@@ -9,7 +9,7 @@ symbol_color = Color(0.6784314, 0.7921569, 0.8745098, 1)
 function_color = Color(0.34117648, 0.7372549, 0.8980392, 1)
 member_variable_color = Color(0.7411765, 0.8509804, 0.98039216, 1)
 
-[node name="Ebook" type="VBoxContainer"]
+[node name="Ebook" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,36 +17,43 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 script = ExtResource("1_y53gh")
 metadata/_tab_index = 3
 
-[node name="Titulo" type="Label" parent="."]
-layout_mode = 2
-text = "Escolha um ebook"
-
-[node name="_" type="HBoxContainer" parent="."]
+[node name="_" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="_" type="ScrollContainer" parent="_"]
+[node name="Titulo" type="Label" parent="_"]
+layout_mode = 2
+text = "Escolha um ebook"
+
+[node name="_" type="HBoxContainer" parent="_"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="_" type="ScrollContainer" parent="_/_"]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 
-[node name="EbooksDisponiveis" type="VBoxContainer" parent="_/_"]
+[node name="EbooksDisponiveis" type="VBoxContainer" parent="_/_/_"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PreVisualizacaoEbook" parent="_" instance=ExtResource("1_hqtbe")]
+[node name="PreVisualizacaoEbook" parent="_/_" instance=ExtResource("1_hqtbe")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+paragraph_spacing = 16
+line_spacing = 6
 syntax_highlighters = Dictionary[String, CodeHighlighter]({
 "gdscript": SubResource("CodeHighlighter_y53gh")
 })
 
-[node name="CodeEdit" type="CodeEdit" parent="."]
-layout_mode = 2
-
-[editable path="_/PreVisualizacaoEbook"]
+[editable path="_/_/PreVisualizacaoEbook"]
