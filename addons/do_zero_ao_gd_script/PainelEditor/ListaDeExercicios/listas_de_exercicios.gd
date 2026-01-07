@@ -1,13 +1,19 @@
 @tool
 extends VBoxContainer
 
+signal abrir_teste_exercicio(lista: String, exercicio: String)
+
 @onready var listas: VBoxContainer = %Listas
 @onready var markdown_pre_processador: Control = %MarkdownPreProcessador
 
 var diretorio_listas : String = ""
 
+
 func _ready():
-	diretorio_listas = ProjectSettings.get_setting(DoZeroAoGDScript.SETTING_CAMINHO_LISTAS)
+	if Engine.is_editor_hint():
+		diretorio_listas = ProjectSettings.get_setting(DoZeroAoGDScript.SETTING_CAMINHO_LISTAS)
+	else:
+		diretorio_listas = "res://listas/"
 	_criar_botoes_listas()
 
 func _criar_botoes_listas():
@@ -53,4 +59,12 @@ func _carregar_markdown(nome_pasta: String):
 		child.queue_free()
 	
 	# Carrega o novo markdown
-	markdown_pre_processador.parse_markdown_to_scene(caminho_md)
+	var markdown_instance = markdown_pre_processador.parse_markdown_to_scene(caminho_md)
+	
+	# Conecta o sinal de abrir teste se ainda não estiver conectado
+	if markdown_instance and markdown_pre_processador.has_signal("abrir_teste_solicitado"):
+		if not markdown_pre_processador.abrir_teste_solicitado.is_connected(_on_abrir_teste_solicitado):
+			markdown_pre_processador.abrir_teste_solicitado.connect(_on_abrir_teste_solicitado)
+
+func _on_abrir_teste_solicitado(lista: String, exercicio: String) -> void:
+	abrir_teste_exercicio.emit(lista, exercicio)

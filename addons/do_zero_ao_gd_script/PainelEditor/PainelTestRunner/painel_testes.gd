@@ -1,6 +1,6 @@
 @tool
-extends Control
 class_name PainelTestes
+extends Control
 
 @onready var lista_de_exercicios: ItemList = %ListaDeExercicios
 @onready var escolha_exercicio_button: Button = %EscolhaExercicioButton
@@ -441,3 +441,19 @@ func _adicionar_resultado_ao_texto(resultado: Dictionary) -> void:
 		resultado_teste.text += "[color=orange][b]Erro:[/b] %s[/color]\n" % resultado.erro
 	
 	resultado_teste.text += "\n"
+
+func selecionar_exercicio(lista: String, exercicio: String) -> void:
+	# Busca o exercício correspondente na lista filtrada
+	var nome_busca = lista + " - " + exercicio
+	
+	for i in range(exercicios_filtrados.size()):
+		var ex = exercicios_filtrados[i]
+		if ex.nome == nome_busca:
+			# Seleciona o item no ItemList
+			if lista_de_exercicios:
+				lista_de_exercicios.select(i)
+				lista_de_exercicios.ensure_current_is_visible()
+				_on_exercicio_item_selecionado(i)
+			return
+	
+	print("Exercício não encontrado: %s" % nome_busca)

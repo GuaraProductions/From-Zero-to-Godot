@@ -3,7 +3,8 @@
 ---
 
 ## **1️⃣ Somador com Repetição**
-[open_scene](Exercicio1/Exercicio1.tscn)
+[open_scene](Exercicio1/Exercicio1.tscn) 
+[open_test](Lista2/Exercicio1)
 
 Complete uma função que some todos números de 1 até N (incluso).
 
@@ -21,7 +22,8 @@ Complete uma função que some todos números de 1 até N (incluso).
 ---
 
 ## **2️⃣ Tabuada de um Número**
-[open_scene](Exercicio2/Exercicio2.tscn)
+[open_scene](Exercicio2/Exercicio2.tscn) 
+[open_test](Lista2/Exercicio2)
 
 Complete uma função que calcule a tabuada dos números de 1 até 10, das operações que vão de 1 até n.
 
@@ -38,7 +40,8 @@ Complete uma função que calcule a tabuada dos números de 1 até 10, das opera
 ---
 
 ## **3️⃣ Contador de Múltiplos de 3**
-[open_scene](Exercicio3/Exercicio3.tscn)
+[open_scene](Exercicio3/Exercicio3.tscn) 
+[open_test](Lista2/Exercicio3)
 
 Complete uma função que retorne quantos números entre 1 e N são múltiplos de 3.
 
@@ -56,7 +59,8 @@ Complete uma função que retorne quantos números entre 1 e N são múltiplos d
 ---
 
 ## **4️⃣ Fatorial de um Número**
-[open_scene](Exercicio4/Exercicio4.tscn)
+[open_scene](Exercicio4/Exercicio4.tscn) 
+[open_test](Lista2/Exercicio4)
 
 Complete uma função que calcula o fatorial de `N`.
 
@@ -73,7 +77,8 @@ Complete uma função que calcula o fatorial de `N`.
 ---
 
 ## **5️⃣ Soma dos Pares entre 1 e N**
-[open_scene](Exercicio5/Exercicio5.tscn)
+[open_scene](Exercicio5/Exercicio5.tscn) 
+[open_test](Lista2/Exercicio5)
 
 Complete uma função que calcula a soma dos números pares entre 1 e N (incluso).
 

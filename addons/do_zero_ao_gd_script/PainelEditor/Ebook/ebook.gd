@@ -9,7 +9,10 @@ var ebook_selecionado: String = ""
 var capitulo_selecionado: String = ""
 
 func _ready() -> void:
-	diretorio_ebooks = DoZeroAoGDScript.obter_caminho_ebooks()
+	if Engine.is_editor_hint():
+		diretorio_ebooks = DoZeroAoGDScript.obter_caminho_ebooks()
+	else:
+		diretorio_ebooks = "res://ebook/"
 	_carregar_ebooks()
 
 ## Carrega todos os ebooks disponíveis e cria a interface de navegação

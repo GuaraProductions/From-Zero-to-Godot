@@ -1,21 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://bktgv1b0gfrwb"]
+[gd_scene load_steps=4 format=3 uid="uid://bktgv1b0gfrwb"]
 
 [ext_resource type="PackedScene" uid="uid://cj3stl1gx6rq8" path="res://addons/do_zero_ao_gd_script/Markdown/MarkdownPreProcessador.tscn" id="1_hqtbe"]
 [ext_resource type="Script" uid="uid://dsuqmqil008m3" path="res://addons/do_zero_ao_gd_script/PainelEditor/Ebook/ebook.gd" id="1_y53gh"]
 
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_y53gh"]
+number_color = Color(0.67058825, 0.7882353, 1, 1)
+symbol_color = Color(0.6784314, 0.7921569, 0.8745098, 1)
+function_color = Color(0.34117648, 0.7372549, 0.8980392, 1)
+member_variable_color = Color(0.7411765, 0.8509804, 0.98039216, 1)
+
 [node name="Ebook" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_y53gh")
 metadata/_tab_index = 3
 
 [node name="Titulo" type="Label" parent="."]
 layout_mode = 2
-text = "Escolha uma lista"
+text = "Escolha um ebook"
 
 [node name="_" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="EbooksDisponiveis" type="VBoxContainer" parent="_"]
+[node name="_" type="ScrollContainer" parent="_"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+
+[node name="EbooksDisponiveis" type="VBoxContainer" parent="_/_"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
@@ -25,5 +42,11 @@ size_flags_vertical = 3
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+syntax_highlighters = Dictionary[String, CodeHighlighter]({
+"gdscript": SubResource("CodeHighlighter_y53gh")
+})
+
+[node name="CodeEdit" type="CodeEdit" parent="."]
+layout_mode = 2
 
 [editable path="_/PreVisualizacaoEbook"]

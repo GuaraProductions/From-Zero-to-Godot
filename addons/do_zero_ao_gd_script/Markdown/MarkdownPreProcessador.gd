@@ -10,10 +10,14 @@ class_name MarkdownPreProcessador
 @export_color_no_alpha var title_color: Color = Color(1, 1, 1)
 @export_color_no_alpha var text_color: Color = Color(0.9, 0.9, 0.9)
 @export_range(1,50) var table_cell_padding: int = 4
+@export_range(0,50) var paragraph_spacing: int = 10
+@export_range(0,30) var line_spacing: int = 2
+@export var syntax_highlighters: Dictionary[String, CodeHighlighter] = {}  
 @export var debug_mode: bool = false
 
 # Sinal para solicitar abertura de cenas no editor
 signal abrir_cena_solicitada(caminho_cena: String)
+signal abrir_teste_solicitado(lista: String, exercicio: String)
 
 const TextoColapasavelScene = preload("res://addons/do_zero_ao_gd_script/Markdown/TextoColapsavel.tscn")
 
@@ -53,6 +57,8 @@ func parse_markdown_to_scene(md_path: String) -> Control:
 	root.anchor_bottom = 1
 	root.set_h_size_flags(Control.SIZE_EXPAND_FILL)
 	root.set_v_size_flags(Control.SIZE_EXPAND_FILL)
+	# Adiciona espaçamento entre elementos
+	root.add_theme_constant_override("separation", paragraph_spacing)
 
 	scroll.add_child(root)
 
@@ -105,6 +111,35 @@ func parse_markdown_to_scene(md_path: String) -> Control:
 				_adicionar_details_colapsavel(root, line_stripped)
 				i += 1
 				continue
+		
+		# Detecta blocos de código ```
+		if line_stripped.begins_with("```"):
+			_debug_print("[Linha %d] BLOCO DE CÓDIGO detectado" % linha_count)
+			
+			# Extrai a linguagem (se especificada)
+			var linguagem = line_stripped.substr(3).strip_edges()
+			if linguagem.is_empty():
+				linguagem = "text"
+			_debug_print("  -> Linguagem: %s" % linguagem)
+			
+			# Coleta o conteúdo do bloco
+			var codigo_conteudo = ""
+			i += 1
+			linha_count += 1
+			
+			while i < lines.size():
+				var code_line = lines[i]
+				if code_line.strip_edges().begins_with("```"):
+					_debug_print("  -> Fim do bloco de código na linha %d" % linha_count)
+					break
+				codigo_conteudo += code_line + "\n"
+				i += 1
+				linha_count += 1
+			
+			# Adiciona o bloco de código
+			_adicionar_bloco_codigo(root, codigo_conteudo, linguagem)
+			i += 1
+			continue
 		
 		# Desenha linhas de separação ---
 		if line_stripped.begins_with("---"):
@@ -228,18 +263,45 @@ func parse_markdown_to_scene(md_path: String) -> Control:
 			var text_content = line_stripped.substr(lvl).strip_edges()
 			_debug_print("[Linha %d] TÍTULO nível %d: %s" % [linha_count, lvl, text_content])
 			
-			# Verifica se a próxima linha contém [open_scene]
+			# Verifica se a próxima linha contém [open_scene] ou [open_test]
 			var caminho_cena = ""
-			if i + 1 < lines.size():
-				var next_line = lines[i + 1].strip_edges()
-				if next_line.begins_with("[open_scene](") and next_line.ends_with(")"):
-					var inicio = next_line.find("(") + 1
-					var fim = next_line.rfind(")")
-					if fim > inicio:
-						caminho_cena = next_line.substr(inicio, fim - inicio).strip_edges()
-						i += 1  # Pula a linha com [open_scene]
-						linha_count += 1
+			var caminho_teste = ""
+			var linhas_puladas = 0
+			
+			# Verifica até 3 linhas à frente para encontrar [open_scene] e [open_test]
+			for offset in range(1, 4):
+				if i + offset >= lines.size():
+					break
+					
+				var check_line = lines[i + offset].strip_edges()
+				
+				# Verifica [open_scene] (pode estar junto com [open_test] na mesma linha)
+				if caminho_cena.is_empty() and check_line.find("[open_scene](") != -1:
+					var regex_scene = RegEx.new()
+					regex_scene.compile("\\[open_scene\\]\\(([^)]+)\\)")
+					var match_scene = regex_scene.search(check_line)
+					if match_scene:
+						caminho_cena = match_scene.get_string(1).strip_edges()
+						linhas_puladas = max(linhas_puladas, offset)
 						_debug_print("  -> Caminho de cena detectado: %s" % caminho_cena)
+				
+				# Verifica [open_test] (pode estar junto com [open_scene] na mesma linha)
+				if caminho_teste.is_empty() and check_line.find("[open_test](") != -1:
+					var regex_test = RegEx.new()
+					regex_test.compile("\\[open_test\\]\\(([^)]+)\\)")
+					var match_test = regex_test.search(check_line)
+					if match_test:
+						caminho_teste = match_test.get_string(1).strip_edges()
+						linhas_puladas = max(linhas_puladas, offset)
+						_debug_print("  -> Caminho de teste detectado: %s" % caminho_teste)
+				
+				# Se encontrou ambos ou a linha está vazia, para de procurar
+				if (not caminho_cena.is_empty() and not caminho_teste.is_empty()) or check_line.is_empty():
+					break
+			
+			# Pula as linhas que continham os atalhos
+			i += linhas_puladas
+			linha_count += linhas_puladas
 			
 			text_content = _converter_markdown_para_bbcode(text_content)
 			
@@ -271,7 +333,7 @@ func parse_markdown_to_scene(md_path: String) -> Control:
 			rt.add_theme_stylebox_override("normal", StyleBoxEmpty.new())
 			hbox.add_child(rt)
 			
-			# Adiciona botão se houver caminho de cena
+			# Adiciona botão de abrir cena se houver caminho
 			if not caminho_cena.is_empty():
 				var full_scene_path = base_dir.path_join(caminho_cena)
 				var btn = Button.new()
@@ -280,6 +342,21 @@ func parse_markdown_to_scene(md_path: String) -> Control:
 				btn.pressed.connect(_on_botao_abrir_cena_pressed.bind(full_scene_path))
 				hbox.add_child(btn)
 				_debug_print("  -> Botão de abrir cena adicionado para: %s" % full_scene_path)
+			
+			# Adiciona botão de abrir teste se houver caminho
+			if not caminho_teste.is_empty():
+				# Extrai lista e exercício do caminho
+				var partes = caminho_teste.split("/")
+				if partes.size() >= 2:
+					var lista = partes[-2]  # Penúltimo elemento
+					var exercicio = partes[-1].get_basename()  # Último elemento sem extensão
+					
+					var btn_teste = Button.new()
+					btn_teste.text = "🧪 Testar"
+					btn_teste.custom_minimum_size = Vector2(100, 0)
+					btn_teste.pressed.connect(_on_botao_abrir_teste_pressed.bind(lista, exercicio))
+					hbox.add_child(btn_teste)
+					_debug_print("  -> Botão de teste adicionado para: Lista=%s, Exercicio=%s" % [lista, exercicio])
 			
 			root.add_child(hbox)
 			_debug_print("  -> Título adicionado, nível %d, tamanho fonte: %d" % [lvl, size_lbl])
@@ -296,6 +373,7 @@ func parse_markdown_to_scene(md_path: String) -> Control:
 		rt.bbcode_text = texto_convertido
 		rt.add_theme_color_override("default_color", text_color)
 		rt.add_theme_font_size_override("normal_font_size", normal_font_size)
+		rt.add_theme_constant_override("line_separation", line_spacing)
 		rt.add_theme_stylebox_override("normal", StyleBoxEmpty.new())
 		root.add_child(rt)
 		_debug_print("  -> Texto adicionado (BBCode: %s)" % texto_convertido)
@@ -383,9 +461,101 @@ func _adicionar_details_colapsavel(container: VBoxContainer, linha_details: Stri
 	else:
 		_debug_print("  -> ERRO ao processar details: não foi possível extrair summary/content")
 
+func _adicionar_bloco_codigo(container: VBoxContainer, codigo: String, linguagem: String) -> void:
+	_debug_print("  -> Adicionando bloco de código (linguagem: %s, linhas: %d)" % [linguagem, codigo.count("\n")])
+	
+	# Cria o CodeEdit
+	var code_edit = CodeEdit.new()
+	code_edit.text = codigo.strip_edges()
+	code_edit.editable = false
+	code_edit.scroll_fit_content_height = true
+	code_edit.wrap_mode = TextEdit.LINE_WRAPPING_NONE
+	code_edit.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	code_edit.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	code_edit.custom_minimum_size = Vector2(0, 100)
+	
+	# Aplica o syntax highlighter se disponível
+	if syntax_highlighters.has(linguagem):
+		code_edit.gutters_draw_line_numbers = true
+		var highlighter: CodeHighlighter = syntax_highlighters[linguagem]
+		if highlighter:
+			code_edit.syntax_highlighter = highlighter
+			_debug_print("    -> Syntax highlighter aplicado para: %s" % linguagem)
+		else:
+			_debug_print("    -> Syntax highlighter configurado mas null para: %s" % linguagem)
+	else:
+		_debug_print("    -> Nenhum syntax highlighter disponível para: %s" % linguagem)
+	
+	# Configura cores e estilo
+	code_edit.add_theme_color_override("background_color", Color(0.1, 0.1, 0.12))
+	code_edit.add_theme_color_override("font_color", Color(0.9, 0.9, 0.9))
+	code_edit.add_theme_font_size_override("font_size", normal_font_size)
+	
+	# Cria o botão de copiar
+	var btn_copiar = Button.new()
+	btn_copiar.text = "📋 Copiar"
+	btn_copiar.custom_minimum_size = Vector2(100, 30)
+
+	# Configura âncoras para canto superior direito
+	btn_copiar.set_anchors_preset(Control.PRESET_TOP_RIGHT)
+	btn_copiar.offset_left = -110  # 100 (largura) + 10 (margem direita)
+	btn_copiar.offset_top = 8      # Margem do topo
+	btn_copiar.offset_right = -10  # Margem da direita
+	btn_copiar.offset_bottom = 38  # 30 (altura) + 8 (margem do topo)
+	btn_copiar.grow_horizontal = Control.GROW_DIRECTION_BEGIN
+	btn_copiar.grow_vertical = Control.GROW_DIRECTION_END
+	
+	# Estilo do botão
+	var style_normal = StyleBoxFlat.new()
+	style_normal.bg_color = Color(0.2, 0.25, 0.3, 0.9)
+	style_normal.corner_radius_top_left = 4
+	style_normal.corner_radius_top_right = 4
+	style_normal.corner_radius_bottom_left = 4
+	style_normal.corner_radius_bottom_right = 4
+	btn_copiar.add_theme_stylebox_override("normal", style_normal)
+	
+	var style_hover = StyleBoxFlat.new()
+	style_hover.bg_color = Color(0.3, 0.35, 0.4, 0.95)
+	style_hover.corner_radius_top_left = 4
+	style_hover.corner_radius_top_right = 4
+	style_hover.corner_radius_bottom_left = 4
+	style_hover.corner_radius_bottom_right = 4
+	btn_copiar.add_theme_stylebox_override("hover", style_hover)
+	
+	var style_pressed = StyleBoxFlat.new()
+	style_pressed.bg_color = Color(0.15, 0.2, 0.25, 1.0)
+	style_pressed.corner_radius_top_left = 4
+	style_pressed.corner_radius_top_right = 4
+	style_pressed.corner_radius_bottom_left = 4
+	style_pressed.corner_radius_bottom_right = 4
+	btn_copiar.add_theme_stylebox_override("pressed", style_pressed)
+	
+	# Conecta o sinal de clique
+	btn_copiar.pressed.connect(_on_copiar_codigo_pressed.bind(code_edit, btn_copiar))
+
+	code_edit.add_child(btn_copiar)
+	container.add_child(code_edit)
+	_debug_print("  -> Bloco de código adicionado com sucesso (com botão copiar)")
+
+func _on_copiar_codigo_pressed(code_edit: CodeEdit, btn: Button) -> void:
+	var codigo = code_edit.text
+	DisplayServer.clipboard_set(codigo)
+	_debug_print("Código copiado para o clipboard (%d caracteres)" % codigo.length())
+	
+	# Feedback visual: muda temporariamente o texto do botão
+	var texto_original = btn.text
+	btn.text = "✓ Copiado!"
+	await get_tree().create_timer(1.5).timeout
+	if is_instance_valid(btn):
+		btn.text = texto_original
+
 func _on_botao_abrir_cena_pressed(caminho_cena: String) -> void:
 	_debug_print("Solicitando abertura da cena: %s" % caminho_cena)
 	if FileAccess.file_exists(caminho_cena):
 		abrir_cena_solicitada.emit(caminho_cena)
 	else:
 		push_error("Cena não encontrada: %s" % caminho_cena)
+
+func _on_botao_abrir_teste_pressed(lista: String, exercicio: String) -> void:
+	_debug_print("Solicitando abertura do teste: Lista=%s, Exercicio=%s" % [lista, exercicio])
+	abrir_teste_solicitado.emit(lista, exercicio)

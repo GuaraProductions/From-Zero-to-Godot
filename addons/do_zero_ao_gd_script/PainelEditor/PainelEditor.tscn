@@ -28,6 +28,7 @@ layout_mode = 2
 current_tab = 2
 
 [node name="Seja Bem Vindo" type="VBoxContainer" parent="TabContainer"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 metadata/_tab_index = 0
@@ -63,11 +64,14 @@ Cada exercício possui:
 autowrap_mode = 3
 
 [node name="Listas De Exercicios" parent="TabContainer" instance=ExtResource("2_44xd1")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Exercicios" parent="TabContainer" instance=ExtResource("3_wlh6l")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Ebook" parent="TabContainer" instance=ExtResource("4_44xd1")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2

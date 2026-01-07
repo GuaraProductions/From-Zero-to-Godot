@@ -3,7 +3,8 @@
 ---
 
 ## **1️⃣ Classe Retângulo - Abstração e Encapsulamento**
-[open_scene](Exercicio1/Exercicio1.tscn)
+[open_scene](Exercicio1/Exercicio1.tscn) 
+[open_test](Lista3/Exercicio1)
 
 ### Exemplos:
 
@@ -26,7 +27,8 @@ sejam exibidas na tela
 ---
 
 ## **2️⃣ Classe Animal - Herança**
-[open_scene](Exercicio2/Exercicio2.tscn)
+[open_scene](Exercicio2/Exercicio2.tscn) 
+[open_test](Lista3/Exercicio2)
 
 ### Exemplos:
 
@@ -51,7 +53,8 @@ O script deve demonstrar o uso da herança com polimorfismo (chamar `animal.fala
 ---
 
 ## **3️⃣ Carro com Composição de Motor**
-[open_scene](Exercicio3/Exercicio3.tscn)
+[open_scene](Exercicio3/Exercicio3.tscn) 
+[open_test](Lista3/Exercicio3)
 
 ### Exemplos:
 
@@ -72,7 +75,8 @@ Esse exercício ilustra **composição**: `Carro` depende de um `Motor`, mas pod
 ---
 
 ## **4️⃣ Cofrinho - Encapsulamento**
-[open_scene](Exercicio4/Exercicio4.tscn)
+[open_scene](Exercicio4/Exercicio4.tscn) 
+[open_test](Lista3/Exercicio4)
 
 ### Exemplos:
 
@@ -103,7 +107,8 @@ Não permita acesso direto ao atributo `saldo`. Use a funcionalidade do `set` e 
 ---
 
 ## **5️⃣ Forma - Polimorfismo e Herança**
-[open_scene](Exercicio5/Exercicio5.tscn)
+[open_scene](Exercicio5/Exercicio5.tscn) 
+[open_test](Lista3/Exercicio5)
 
 ### Exemplos:
 

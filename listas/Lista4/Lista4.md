@@ -3,7 +3,8 @@
 ---
 
 ## **1️⃣ Gerenciador de Tarefas (Aplicativo de TODO)**
-[open_scene](Exercicio1/Exercicio1.tscn)
+[open_scene](Exercicio1/Exercicio1.tscn) 
+[open_test](Lista4/Exercicio1)
 
 ### Tarefa:
 
@@ -31,7 +32,8 @@ Complete as classes `OrganizadorDeTarefas` e `Tarefa`:
 ---
 
 ## **2️⃣ Inventário**
-[open_scene](Exercicio2/Exercicio2.tscn)
+[open_scene](Exercicio2/Exercicio2.tscn) 
+[open_test](Lista4/Exercicio2)
 
 ### Tarefa:
 

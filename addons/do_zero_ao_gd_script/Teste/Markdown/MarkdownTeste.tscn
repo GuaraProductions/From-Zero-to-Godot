@@ -14,6 +14,9 @@ script = ExtResource("1_gobie")
 
 [node name="MarkdownPreProcessador" parent="." instance=ExtResource("1_8ufuj")]
 layout_mode = 1
+paragraph_spacing = 15
+line_spacing = 5
+debug_mode = true
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
