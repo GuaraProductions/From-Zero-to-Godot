@@ -25,11 +25,10 @@ script = ExtResource("1_pqrcs")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 2
-current_tab = 2
+current_tab = 0
 
 [node name="Seja Bem Vindo" type="VBoxContainer" parent="TabContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -52,8 +51,8 @@ As atividades cobrem os seguintes conteúdos:
 - Condicionais (if, elif, else)
 - Estruturas de repetição (for, while)
 - Criação e chamada de funções
-- Uso de listas e dicionários. (Ainda não implemetando)
-- Interação com Classes e os princípios do POO (Ainda não implemetando)
+- Uso de listas e dicionários.
+- Interação com Classes e os princípios do POO 
 
 Cada exercício possui:
 
@@ -69,6 +68,7 @@ layout_mode = 2
 
 [node name="Exercicios" parent="TabContainer" instance=ExtResource("3_wlh6l")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="Ebook" parent="TabContainer" instance=ExtResource("4_44xd1")]
