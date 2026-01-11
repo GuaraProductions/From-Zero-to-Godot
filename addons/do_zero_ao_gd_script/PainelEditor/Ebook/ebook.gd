@@ -7,6 +7,7 @@ extends MarginContainer
 var diretorio_ebooks: String = ""
 var ebook_selecionado: String = ""
 var capitulo_selecionado: String = ""
+var config_ebook: Dictionary = {}
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -83,6 +84,14 @@ func _carregar_capitulos(nome_ebook: String, container_capitulos: VBoxContainer)
 		child.queue_free()
 	
 	var caminho_ebook = diretorio_ebooks.path_join(nome_ebook)
+	
+	# Tenta carregar configuração do ebook
+	config_ebook = _carregar_config_ebook(caminho_ebook)
+	
+	# Adiciona botão de introdução se configurado
+	if config_ebook.has("introducao") and not config_ebook["introducao"].is_empty():
+		_criar_botao_especial(nome_ebook, config_ebook["introducao"], "📖 Introdução", container_capitulos, Color("#A78BFA"))
+	
 	var dir = DirAccess.open(caminho_ebook)
 	
 	if not dir:
@@ -99,6 +108,10 @@ func _carregar_capitulos(nome_ebook: String, container_capitulos: VBoxContainer)
 		nome_pasta = dir.get_next()
 	
 	dir.list_dir_end()
+	
+	# Adiciona botão de conclusão se configurado
+	if config_ebook.has("conclusao") and not config_ebook["conclusao"].is_empty():
+		_criar_botao_especial(nome_ebook, config_ebook["conclusao"], "🎓 Conclusão", container_capitulos, Color("#F472B6"))
 
 ## Cria um botão para o capítulo e seus arquivos markdown
 func _criar_botao_capitulo(nome_ebook: String, nome_capitulo: String, container_capitulos: VBoxContainer) -> void:
@@ -175,6 +188,56 @@ func _criar_botao_arquivo(nome_ebook: String, nome_capitulo: String, nome_arquiv
 ## Carrega e exibe um arquivo markdown no pré-visualizador
 func _carregar_markdown(nome_ebook: String, nome_capitulo: String, nome_arquivo: String) -> void:
 	var caminho_md = diretorio_ebooks.path_join(nome_ebook).path_join(nome_capitulo).path_join(nome_arquivo)
+	
+	if not FileAccess.file_exists(caminho_md):
+		push_error("Arquivo não encontrado: %s" % caminho_md)
+		return
+	
+	# Limpa conteúdo anterior
+	for child in pre_visualizacao_ebook.get_children():
+		child.queue_free()
+	
+	# Carrega o novo markdown
+	pre_visualizacao_ebook.parse_markdown_to_scene(caminho_md)
+
+## Carrega a configuração JSON do ebook
+func _carregar_config_ebook(caminho_ebook: String) -> Dictionary:
+	var caminho_config = caminho_ebook.path_join("ebook.json")
+	
+	if not FileAccess.file_exists(caminho_config):
+		return {}
+	
+	var file = FileAccess.open(caminho_config, FileAccess.READ)
+	if not file:
+		push_warning("Não foi possível abrir o arquivo de configuração: %s" % caminho_config)
+		return {}
+	
+	var json_string = file.get_as_text()
+	file.close()
+	
+	var json = JSON.new()
+	var error = json.parse(json_string)
+	
+	if error != OK:
+		push_error("Erro ao parsear JSON em %s: %s" % [caminho_config, json.get_error_message()])
+		return {}
+	
+	return json.data
+
+## Cria um botão especial para introdução ou conclusão
+func _criar_botao_especial(nome_ebook: String, caminho_relativo: String, texto_botao: String, container: VBoxContainer, cor: Color) -> void:
+	var botao = Button.new()
+	botao.text = "  " + texto_botao
+	botao.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	botao.pressed.connect(_carregar_markdown_raiz.bind(nome_ebook, caminho_relativo))
+	botao.add_theme_color_override("font_color", cor)
+	botao.add_theme_color_override("font_pressed_color", cor.darkened(0.2))
+	botao.add_theme_color_override("font_hover_color", cor.lightened(0.2))
+	container.add_child(botao)
+
+## Carrega um markdown da raiz do ebook (introdução/conclusão)
+func _carregar_markdown_raiz(nome_ebook: String, caminho_relativo: String) -> void:
+	var caminho_md = diretorio_ebooks.path_join(nome_ebook).path_join(caminho_relativo)
 	
 	if not FileAccess.file_exists(caminho_md):
 		push_error("Arquivo não encontrado: %s" % caminho_md)

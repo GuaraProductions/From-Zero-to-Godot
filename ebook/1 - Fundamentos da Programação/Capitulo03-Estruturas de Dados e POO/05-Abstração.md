@@ -40,25 +40,28 @@ A abstração não tem uma palavra-chave única, ela é um conceito de design. V
 
 Veja como podemos criar um sistema onde o script principal não precisa saber detalhes dos filhos, apenas o que eles "abstraem":
 
+**Arquivo: Habilidade.gd (Nossa base abstrata)**
+
 ```gdscript
-# No arquivo Habilidade.gd (Nossa base abstrata)
 class_name Habilidade
 extends Node
 
 func usar():
 	print("Esta habilidade não faz nada sozinha.")
+```
 
-# ---------------------------------------------------------
+**Arquivo: BolaDeFogo.gd**
 
-# No arquivo BolaDeFogo.gd
+```gdscript
 extends Habilidade
 
 func usar():
 	print("Lançando uma bola de fogo explosiva!")
+```
 
-# ---------------------------------------------------------
+**No seu Script Principal**
 
-# No seu Script Principal
+```gdscript
 func _ready():
 	# Abstraímos 'BolaDeFogo' como sendo apenas uma 'Habilidade'
 	var minha_magia: Habilidade = BolaDeFogo.new()

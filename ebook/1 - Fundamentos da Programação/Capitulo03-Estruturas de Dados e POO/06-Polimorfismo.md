@@ -28,33 +28,37 @@ Para que o polimorfismo funcione via herança, a classe filha deve usar o mesmo 
 
 Veja como podemos tratar diferentes tipos de personagens como se fossem apenas um "Combatente", mas cada um agindo de um jeito único:
 
+**Arquivo: Combatente.gd (Classe Pai)**
+
 ```gdscript
-# No arquivo Combatente.gd (Classe Pai)
 class_name Combatente
 extends Node
 
 func atacar():
 	print("O combatente ataca de forma básica.")
+```
 
-# ---------------------------------------------------------
+**Arquivo: Arqueiro.gd (Classe Filha)**
 
-# No arquivo Arqueiro.gd (Classe Filha)
+```gdscript
 extends Combatente
 
 func atacar():
 	print("O arqueiro dispara uma flecha certeira!")
+```
 
-# ---------------------------------------------------------
+**Arquivo: Guerreiro.gd (Classe Filha)**
 
-# No arquivo Guerreiro.gd (Classe Filha)
+```gdscript
 extends Combatente
 
 func atacar():
 	print("O guerreiro golpeia com sua espada!")
+```
 
-# ---------------------------------------------------------
+**No seu Script Principal**
 
-# No seu Script Principal
+```gdscript
 func _ready():
 	# Criamos uma lista (Array) de combatentes diferentes
 	var time = [Arqueiro.new(), Guerreiro.new()]

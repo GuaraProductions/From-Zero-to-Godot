@@ -2,12 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cj3stl1gx6rq8" path="res://addons/do_zero_ao_gd_script/Markdown/MarkdownPreProcessador.tscn" id="1_hqtbe"]
 [ext_resource type="Script" uid="uid://dsuqmqil008m3" path="res://addons/do_zero_ao_gd_script/PainelEditor/Ebook/ebook.gd" id="1_y53gh"]
-
-[sub_resource type="CodeHighlighter" id="CodeHighlighter_y53gh"]
-number_color = Color(0.67058825, 0.7882353, 1, 1)
-symbol_color = Color(0.6784314, 0.7921569, 0.8745098, 1)
-function_color = Color(0.34117648, 0.7372549, 0.8980392, 1)
-member_variable_color = Color(0.7411765, 0.8509804, 0.98039216, 1)
+[ext_resource type="CodeHighlighter" uid="uid://cbqojgnbnehb8" path="res://addons/do_zero_ao_gd_script/PainelEditor/Ebook/GDScriptHighlighter.tres" id="3_4brg3"]
 
 [node name="Ebook" type="MarginContainer"]
 anchors_preset = 15
@@ -53,7 +48,7 @@ size_flags_horizontal = 3
 paragraph_spacing = 16
 line_spacing = 6
 syntax_highlighters = Dictionary[String, CodeHighlighter]({
-"gdscript": SubResource("CodeHighlighter_y53gh")
+"gdscript": ExtResource("3_4brg3")
 })
 
 [editable path="_/_/PreVisualizacaoEbook"]

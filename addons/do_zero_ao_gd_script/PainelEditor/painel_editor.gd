@@ -4,7 +4,7 @@ extends PanelContainer
 @onready var seja_bem_vindo: VBoxContainer = %"Seja Bem Vindo"
 @onready var listas_de_exercicios: VBoxContainer = %"Listas De Exercicios"
 @onready var exercicios: PainelTestes = %Exercicios
-@onready var ebook: VBoxContainer = %Ebook
+@onready var ebook: MarginContainer = %Ebook
 
 func _ready() -> void:
 	# Conecta sinal de abrir teste da lista de exercícios

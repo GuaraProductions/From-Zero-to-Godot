@@ -58,6 +58,57 @@ func _ready():
 	print("Personagem atual: ", nome) # Dispara o 'get'
 ```
 
+## Exemplo Prático: Funções Separadas
+
+Às vezes, a regra de validação é complexa demais para ficar "espremida" na declaração da variável. Nesses casos, podemos criar funções normais e apenas "avisar" a variável que ela deve usá-las.
+
+Veja como isso deixa o topo do seu script mais limpo:
+
+```gdscript
+extends Node
+
+# Variável interna (o "cofre" onde o valor real fica guardado)
+var _vida: int = 100
+
+# Aqui nós apenas LIGAMOS a variável às funções 'obter_vida' e 'definir_vida'
+var vida: int : get = obter_vida, set = definir_vida
+
+# --- Lógica dos Getters e Setters fica separada abaixo ---
+
+# Função Getter (Leitura)
+func obter_vida():
+    print("O jogo pediu o valor da vida.")
+    return _vida
+
+# Função Setter (Escrita e Validação)
+func definir_vida(novo_valor):
+    print("Tentando alterar a vida para: ", novo_valor)
+    
+    if novo_valor < 0:
+        print(" > Cuidado! Vida não pode ser negativa. Travando em 0.")
+        _vida = 0
+    elif novo_valor > 100:
+        print(" > Cura excessiva! Limitando ao máximo de 100.")
+        _vida = 100
+    else:
+        _vida = novo_valor # Valor válido, alteração permitida
+        
+# ---------------------------------------------------------
+
+func _ready():
+    # Testando o sistema
+    vida = 50   # Funciona normalmente
+    vida = -20  # O Setter vai impedir e travar em 0
+    vida = 500  # O Setter vai impedir e travar em 100
+    
+    print("Vida final: ", vida) # O Getter busca o valor final
+```
+
+## Por que usar este método?
+
+- Organização: Se a sua regra de validação tiver 20 linhas de código, ela não polui a lista de variáveis no topo do arquivo.
+- Reutilização: Embora raro em propriedades, tecnicamente você poderia usar a mesma função de validação para duas variáveis diferentes.
+
 ## Vantagens do Encapsulamento
 
 ✅ **Segurança**: Protege informações sensíveis contra erros acidentais

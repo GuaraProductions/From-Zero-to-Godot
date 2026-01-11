@@ -27,8 +27,9 @@ No GDScript, a palavra-chave que ativa a herança é o `extends`. Ela define de 
 
 Vamos ver como isto funciona na prática. Imagine que temos um script base para todos os seres vivos do jogo:
 
+**Arquivo: SER_VIVO.GD (O Pai)**
+
 ```gdscript
-# SER_VIVO.GD (O Pai)
 class_name SerVivo
 extends Node
 
@@ -37,10 +38,11 @@ var saude = 100
 func receber_dano(quantidade):
 	saude -= quantidade
 	print("Saúde atual: ", saude)
+```
 
-# ---------------------------------------------------------
+**Arquivo: JOGADOR.GD (O Filho)**
 
-# JOGADOR.GD (O Filho)
+```gdscript
 extends SerVivo # Aqui a herança acontece!
 
 func _ready():

@@ -79,7 +79,3 @@ func _ready():
 
 - Se você precisa de algo para **processar cálculos matemáticos**, use um `RefCounted`
 - Se você precisa de algo que **apareça na tela** ou interaja com o tempo do jogo, use um `Node`
-
----
-
-🎉 **Parabéns!** Você concluiu o ebook "Fundamentos da Programação"! Agora você tem uma base sólida para criar jogos incríveis na Godot Engine!

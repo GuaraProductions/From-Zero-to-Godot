@@ -23,10 +23,10 @@ A interface da Engine é o exemplo visual perfeito da composição. Quando você
 - O **Node Principal** (ex: `CharacterBody2D`) é o corpo
 - Os **Nodes Filhos** (ex: `Sprite2D` para visual, `CollisionShape2D` para física) são os componentes que dão habilidades a esse corpo
 
-Composição via Código
+## Composição via Código
 No GDScript, a composição acontece quando uma classe guarda uma referência a outra classe dentro de uma variável.
 
-```
+```gdscript
 # No arquivo Inventario.gd
 class_name Inventario
 var itens = []
@@ -35,7 +35,7 @@ func adicionar_item(item):
     itens.append(item)
 ```
 
-```
+```gdscript
 # No arquivo Player.gd
 extends Node2D
 
@@ -48,16 +48,16 @@ Composição com Nodes (Cenas)
 Outra forma poderosa de composição é usar o get_node() ou o atalho $ para acessar componentes que você montou na interface.
 ```
 
-```
+```gdscript
 func _ready():
     # Acessando o componente de animação (Composição de Nodes)
     $AnimationPlayer.play("andar")
 ```
 
-Vantagens da Composição
+## Vantagens da Composição
 
-Flexibilidade: Você pode criar um "Inimigo" e um "Player" usando o mesmo componente de "Saúde".
+✅ **Flexibilidade**: Você pode criar um "Inimigo" e um "Player" usando o mesmo componente de "Saúde".
 
-Manutenção Fácil: Se o componente de "Inventário" der erro, você só precisa consertar um arquivo, sem medo de quebrar toda a hierarquia de herança do jogo.
+✅ **Manutenção Fácil**: Se o componente de "Inventário" der erro, você só precisa consertar um arquivo, sem medo de quebrar toda a hierarquia de herança do jogo.
 
-Modularidade: Você constrói seu jogo como se estivesse montando blocos de LEGO.
+✅ **Modularidade**: Você constrói seu jogo como se estivesse montando blocos de LEGO. Você adiciona apenas os componentes que uma classe precisa.
