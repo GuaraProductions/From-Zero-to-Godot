@@ -15,7 +15,7 @@ Antes de escrevermos código, vamos aprender a pensar como programadores. Vamos 
 
 ### 2. A Ferramenta (Capítulo 02)
 
-Vamos mergulhar na sintaxe do GDScript. Você vai dominar as variáveis, funções e estruturas de controle que dão vida ao jogo.
+Vamos mergulhar na sintaxe do GDScript. Você vai dominar as variáveis, funções e estruturas de controle que dão vida ao código.
 
 ### 3. A Arquitetura (Capítulo 03)
 
@@ -23,8 +23,4 @@ Aqui está o coração do desenvolvimento moderno: a **Programação Orientada a
 
 ### 4. Memória (Capítulo 04)
 
-Por fim, vamos olhar "debaixo do capô". Entender como a **Memória** funciona e a diferença entre Valor e Referência é o que separa um iniciante de um programador capaz de otimizar seus jogos.
-
----
-
-Prepare seu café (ou chá), abra sua mente e vamos começar a construir a base do seu futuro como desenvolvedor!
+Por fim, vamos olhar "debaixo do capô". Entender como a **Memória** funciona e a diferença entre Valor e Referência, que são conceitos muito importantes de entender desde o início da sua jornada.

@@ -1,6 +1,6 @@
 # Preparando o Ambiente de Trabalho
 
-Agora que você já entende a teoria por trás das linguagens, é hora de colocar a mão na massa dentro da Godot. Como o nosso foco aqui é aprender a programar, vamos direto ao ponto importante da interface para que você possa começar a escrever suas primeiras linhas de código.
+Agora que você já entende a teoria por trás das linguagens, é hora de colocar a mão na massa dentro do Godot. Como o nosso foco aqui é aprender a programar, vamos direto ao ponto importante da interface para que você possa começar a escrever suas primeiras linhas de código.
 
 ## Criando sua Primeira Cena e Script
 
@@ -29,4 +29,4 @@ Assim que você criar o script, a interface da Godot mudará automaticamente par
 - **Centro da tela**: Editor de texto onde você escreverá o código
 - **Parte inferior**: **Painel de Saída (Output)** - onde o programa conversa com você, mostrando mensagens e resultados
 
-Com essa estrutura pronta, você já tem o seu primeiro script "pendurado" em um objeto da cena e está pronto para começar a dar ordens para o computador! 🎮
+Com essa estrutura pronta, você já tem o seu primeiro script "pendurado" em um objeto da cena e está pronto para criar o seu primeiro código! 🎮

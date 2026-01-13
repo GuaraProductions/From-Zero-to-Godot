@@ -25,10 +25,11 @@ script = ExtResource("1_pqrcs")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 2
-current_tab = 0
+current_tab = 3
 
 [node name="Seja Bem Vindo" type="VBoxContainer" parent="TabContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -41,9 +42,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Olá! E sejam muito bem vindos!
 
-Este repositório contém uma série de listas de exercícios práticos em GDScript, projetadas para auxiliar no aprendizado e domínio da linguagem utilizada no Godot Engine.
+Este é um projeto educativo, com o único propósito de trazer o aprendizado do Godot Engine para dentro dela mesma. Inicialmente, feito para ser um repositório com exercícios de GDScript, agora você irá encontrar tanto exercícios, quanto testadores de exercícios, e ebooks.
 
-As listas são focadas no desenvolvimento de lógica de programação dentro do contexto de interfaces gráficas (UI) já prontas. O aluno interage com componentes da cena (como botões, caixas de texto e rótulos), e seu único objetivo é completar a função lógica responsável pelo cálculo ou verificação.
+Sobre os exercícios: as listas são focadas no desenvolvimento de lógica de programação dentro do contexto de interfaces gráficas (UI) já prontas. O aluno interage com componentes da cena (como botões, caixas de texto e rótulos), e seu único objetivo é completar a função lógica responsável pelo cálculo ou verificação.
 
 As atividades cobrem os seguintes conteúdos:
 
@@ -59,19 +60,22 @@ Cada exercício possui:
 - Uma descrição clara da tarefa
 - Uma interface gráfica pronta
 - Um script com estrutura inicial completa, faltando apenas a lógica do exercício.
-- Dicas para orientar o raciocínio do aluno"
+- Dicas para orientar o raciocínio do aluno
+- Testador para testar a solução do aluno e ver se e a mesma é válida."
 autowrap_mode = 3
-
-[node name="Listas De Exercicios" parent="TabContainer" instance=ExtResource("2_44xd1")]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="Exercicios" parent="TabContainer" instance=ExtResource("3_wlh6l")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
 
 [node name="Ebook" parent="TabContainer" instance=ExtResource("4_44xd1")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Listas De Exercicios" parent="TabContainer" instance=ExtResource("2_44xd1")]
+unique_name_in_owner = true
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Testador de Exercicios" parent="TabContainer" instance=ExtResource("3_wlh6l")]
+unique_name_in_owner = true
+layout_mode = 2
+metadata/_tab_index = 3

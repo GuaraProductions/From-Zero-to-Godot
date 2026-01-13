@@ -39,7 +39,7 @@ Os operadores lógicos são usados para combinar múltiplas condições booleana
 ## Exemplo Prático para Testar
 Copie o código abaixo para a função _ready() do seu script para ver os operadores em ação no painel de Saída:
 
-```
+```gdscript
 func _ready():
 	# Operadores Aritméticos
 	var vida = 100

@@ -14,11 +14,4 @@ Em vez de gastar tempo tentando adaptar linguagens que não foram feitas especif
 
 ## Por que Usar GDScript?
 
-Embora existam outras opções como **C#** e **C++**, o GDScript continua sendo a recomendação número um para quem está começando, tanto na Godot quanto no desenvolvimento de jogos em geral. Ele foi desenhado para reduzir a complexidade e aumentar a sua produtividade, permitindo que você crie protótipos e jogos completos de forma muito veloz.
-
-O grande segredo é que o GDScript não tenta ser uma linguagem para tudo; ele foca em ser a **melhor opção possível para criar jogos dentro da Godot**, oferecendo recursos como:
-
-- ✅ Edição ao vivo
-- ✅ Preenchimento automático de código
-- ✅ Integração perfeita com o sistema de Nodes
-- ✅ Performance otimizada para games
+Embora existam outras opções como **C#** e **C++**, o GDScript continua sendo a recomendação número um para quem está começando no Godot. Ele foi projetada para reduzir a complexidade e aumentar a sua produtividade, permitindo que você crie protótipos e jogos completos de forma muito veloz. Se você gostaria de exemplos de jogos feitos na Engine, recomendo você dar uma olhada no canal do Clécio Espíndola, onde o mesmo faz frequentemente vídeos mostrando jogos feitos no Godot.

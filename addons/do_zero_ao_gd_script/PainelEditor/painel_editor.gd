@@ -3,7 +3,7 @@ extends PanelContainer
 
 @onready var seja_bem_vindo: VBoxContainer = %"Seja Bem Vindo"
 @onready var listas_de_exercicios: VBoxContainer = %"Listas De Exercicios"
-@onready var exercicios: PainelTestes = %Exercicios
+@onready var exercicios: PainelTestes = %"Testador de Exercicios"
 @onready var ebook: MarginContainer = %Ebook
 
 func _ready() -> void:
