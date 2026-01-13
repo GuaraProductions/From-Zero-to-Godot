@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c18vt2dx5s86b"]
+[gd_scene load_steps=7 format=3 uid="uid://c18vt2dx5s86b"]
 
 [ext_resource type="Script" uid="uid://bv18c6git5fp6" path="res://addons/do_zero_ao_gd_script/PainelEditor/painel_editor.gd" id="1_pqrcs"]
+[ext_resource type="Script" uid="uid://cd3cgpudec55o" path="res://addons/do_zero_ao_gd_script/Markdown/MarkdownPreProcessador.gd" id="2_33yy4"]
 [ext_resource type="PackedScene" uid="uid://jttguxauudsl" path="res://addons/do_zero_ao_gd_script/PainelEditor/ListaDeExercicios/listas_de_exercicios.tscn" id="2_44xd1"]
 [ext_resource type="PackedScene" uid="uid://dfkg1dp0vyqqi" path="res://addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn" id="3_wlh6l"]
 [ext_resource type="PackedScene" uid="uid://bktgv1b0gfrwb" path="res://addons/do_zero_ao_gd_script/PainelEditor/Ebook/Ebook.tscn" id="4_44xd1"]
@@ -25,44 +26,19 @@ script = ExtResource("1_pqrcs")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 2
-current_tab = 3
+current_tab = 0
 
 [node name="Seja Bem Vindo" type="VBoxContainer" parent="TabContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Seja Bem Vindo"]
+[node name="TelaInicial" type="Control" parent="TabContainer/Seja Bem Vindo"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="ListasSection" type="Label" parent="TabContainer/Seja Bem Vindo/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Olá! E sejam muito bem vindos!
-
-Este é um projeto educativo, com o único propósito de trazer o aprendizado do Godot Engine para dentro dela mesma. Inicialmente, feito para ser um repositório com exercícios de GDScript, agora você irá encontrar tanto exercícios, quanto testadores de exercícios, e ebooks.
-
-Sobre os exercícios: as listas são focadas no desenvolvimento de lógica de programação dentro do contexto de interfaces gráficas (UI) já prontas. O aluno interage com componentes da cena (como botões, caixas de texto e rótulos), e seu único objetivo é completar a função lógica responsável pelo cálculo ou verificação.
-
-As atividades cobrem os seguintes conteúdos:
-
-- Operações matemáticas básicas
-- Condicionais (if, elif, else)
-- Estruturas de repetição (for, while)
-- Criação e chamada de funções
-- Uso de listas e dicionários.
-- Interação com Classes e os princípios do POO 
-
-Cada exercício possui:
-
-- Uma descrição clara da tarefa
-- Uma interface gráfica pronta
-- Um script com estrutura inicial completa, faltando apenas a lógica do exercício.
-- Dicas para orientar o raciocínio do aluno
-- Testador para testar a solução do aluno e ver se e a mesma é válida."
-autowrap_mode = 3
+script = ExtResource("2_33yy4")
+metadata/_custom_type_script = "uid://cd3cgpudec55o"
 
 [node name="Ebook" parent="TabContainer" instance=ExtResource("4_44xd1")]
 unique_name_in_owner = true
@@ -77,5 +53,6 @@ metadata/_tab_index = 2
 
 [node name="Testador de Exercicios" parent="TabContainer" instance=ExtResource("3_wlh6l")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3

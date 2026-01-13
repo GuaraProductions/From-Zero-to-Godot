@@ -11,9 +11,14 @@ var config_ebook: Dictionary = {}
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
-		diretorio_ebooks = DoZeroAoGDScript.obter_caminho_ebooks()
+		diretorio_ebooks = FromZeroToGodot.get_localized_ebook_path()
 	else:
-		diretorio_ebooks = "res://ebook/"
+		diretorio_ebooks = FromZeroToGodot.get_localized_ebook_path()
+	_carregar_ebooks()
+
+func recarregar_ebooks() -> void:
+	"""Recarrega ebooks após mudança de locale"""
+	diretorio_ebooks = FromZeroToGodot.get_localized_ebook_path()
 	_carregar_ebooks()
 
 ## Carrega todos os ebooks disponíveis e cria a interface de navegação
@@ -27,6 +32,13 @@ func _carregar_ebooks() -> void:
 		child.queue_free()
 	
 	# Verifica se o diretório existe
+	if not DirAccess.dir_exists_absolute(diretorio_ebooks):
+		var label = Label.new()
+		label.text = "Ebooks not available for this language yet.\nDirectory: %s" % diretorio_ebooks
+		label.add_theme_color_override("font_color", Color.ORANGE)
+		ebooks_disponiveis.add_child(label)
+		return
+	
 	var dir = DirAccess.open(diretorio_ebooks)
 	if not dir:
 		push_error("Não foi possível abrir o diretório: %s" % diretorio_ebooks)

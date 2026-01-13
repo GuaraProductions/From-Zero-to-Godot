@@ -23,6 +23,12 @@ window/stretch/aspect="expand"
 
 enabled=PackedStringArray("res://addons/do_zero_ao_gd_script/plugin.cfg")
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://translations/pt_BR.po", "res://translations/en.po")
+locale/translations_pot_files=PackedStringArray("res://addons/do_zero_ao_gd_script/PainelEditor/PainelEditor.tscn", "res://addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn", "res://addons/do_zero_ao_gd_script/PainelEditor/ListaDeExercicios/listas_de_exercicios.tscn", "res://addons/do_zero_ao_gd_script/PainelEditor/Ebook/Ebook.tscn")
+locale/translation_add_builtin_strings_to_pot=true
+
 [rendering]
 
 renderer/rendering_method="mobile"

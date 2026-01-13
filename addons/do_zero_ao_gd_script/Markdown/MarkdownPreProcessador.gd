@@ -1,3 +1,4 @@
+@icon("res://addons/do_zero_ao_gd_script/icons/markdown.svg")
 @tool
 extends Control
 class_name MarkdownPreProcessador

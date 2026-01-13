@@ -1,0 +1,91 @@
+[gd_scene load_steps=6 format=3 uid="uid://wob7vkno03hn"]
+
+[ext_resource type="Script" uid="uid://idlb17ofjykl" path="res://exercises-lists/pt-br/Lista3/Exercicio1/Exercicio1.gd" id="1_l6sp5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_07jpv"]
+font_size = 38
+
+[sub_resource type="LabelSettings" id="LabelSettings_l6sp5"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_aw723"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_e0lnp"]
+font_size = 18
+
+[node name="Exercicio1" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+script = ExtResource("1_l6sp5")
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Titulo" type="Label" parent="Center/VBox"]
+layout_mode = 2
+text = "Calculadora:
+Características do Retângulo"
+label_settings = SubResource("LabelSettings_07jpv")
+horizontal_alignment = 1
+
+[node name="AlturaField" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="Center/VBox/AlturaField"]
+layout_mode = 2
+text = "Altura"
+label_settings = SubResource("LabelSettings_l6sp5")
+
+[node name="AlturaEntrada" type="LineEdit" parent="Center/VBox/AlturaField"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Insira a altura aqui"
+
+[node name="BaseField" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="Center/VBox/BaseField"]
+layout_mode = 2
+text = "Base"
+label_settings = SubResource("LabelSettings_aw723")
+
+[node name="BaseEntrada" type="LineEdit" parent="Center/VBox/BaseField"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Insira a base aqui"
+
+[node name="Calcular" type="Button" parent="Center/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Calcular"
+
+[node name="Resultado" type="Label" parent="Center/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+label_settings = SubResource("LabelSettings_e0lnp")
+vertical_alignment = 1
+
+[connection signal="pressed" from="Center/VBox/Calcular" to="." method="calcular"]

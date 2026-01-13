@@ -1,0 +1,217 @@
+# From Zero to Godot - Translation Template
+# Copyright (C) 2026
+# This file is distributed under the same license as the From Zero to Godot package.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: From Zero to Godot 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-13 12:00-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: PanelEditor.tscn
+msgid "Seja Bem Vindo"
+msgstr ""
+
+#: PanelEditor.tscn
+msgid "Ebook"
+msgstr ""
+
+#: PanelEditor.tscn
+msgid "Listas De Exercicios"
+msgstr ""
+
+#: PanelEditor.tscn
+msgid "Testador de Exercicios"
+msgstr ""
+
+#: painel_testes.gd
+msgid "Exercício:"
+msgstr ""
+
+#: painel_testes.gd
+msgid "Classe:"
+msgstr ""
+
+#: painel_testes.gd
+msgid "Função:"
+msgstr ""
+
+#: painel_testes.gd
+msgid "Timeout:"
+msgstr ""
+
+#: painel_testes.gd
+msgid "Comparação:"
+msgstr ""
+
+#: painel_testes.gd
+msgid "Casos de teste:"
+msgstr ""
+
+#: painel_testes.gd
+msgid "Tipo:"
+msgstr ""
+
+#: painel_testes.gd
+msgid "Testes customizados (por código)"
+msgstr ""
+
+#: painel_testes.gd
+msgid "Entrada:"
+msgstr ""
+
+#: painel_testes.gd
+msgid "Esperado:"
+msgstr ""
+
+#: painel_testes.gd
+msgid "Obtido:"
+msgstr ""
+
+#: painel_testes.gd
+msgid "Erro:"
+msgstr ""
+
+#: painel_testes.gd
+msgid "Passou:"
+msgstr ""
+
+#: painel_testes.gd
+msgid "Falhou:"
+msgstr ""
+
+#: painel_testes.gd
+msgid "Total:"
+msgstr ""
+
+#: painel_testes.gd
+msgid "Taxa de acerto:"
+msgstr ""
+
+#: ebook.gd
+msgid "Introdução"
+msgstr ""
+
+#: ebook.gd
+msgid "Conclusão"
+msgstr ""
+
+#: listas_de_exercicios.gd
+msgid "Lista"
+msgstr ""
+
+#: listas_de_exercicios.gd
+msgid "Exercício"
+msgstr ""
+
+#: listas_de_exercicios.gd
+msgid "Abrir Cena"
+msgstr ""
+
+#: listas_de_exercicios.gd
+msgid "Testar"
+msgstr ""
+
+#: do_zero_ao_gd_script.gd
+msgid "README.md não encontrado em:"
+msgstr ""
+
+#: do_zero_ao_gd_script.gd
+msgid "Arquivo não encontrado:"
+msgstr ""
+
+#: do_zero_ao_gd_script.gd
+msgid "Não foi possível abrir o diretório:"
+msgstr ""
+
+#: do_zero_ao_gd_script.gd
+msgid "Erro ao parsear JSON em"
+msgstr ""
+
+#: TestRunner
+msgid "Teste passou!"
+msgstr ""
+
+#: TestRunner
+msgid "Teste falhou!"
+msgstr ""
+
+#: TestRunner
+msgid "Timeout excedido"
+msgstr ""
+
+#: TestRunner
+msgid "Classe não encontrada"
+msgstr ""
+
+#: TestRunner
+msgid "Método não encontrado"
+msgstr ""
+
+#: TestRunner
+msgid "Função não encontrada"
+msgstr ""
+
+#: Settings
+msgid "Exercises Path"
+msgstr ""
+
+#: Settings
+msgid "Ebook Path"
+msgstr ""
+
+#: Settings
+msgid "Introduction Path"
+msgstr ""
+
+#: Settings
+msgid "Locale"
+msgstr ""
+
+#: Settings
+msgid "System Default"
+msgstr ""
+
+#: Settings
+msgid "Portuguese (Brazil)"
+msgstr ""
+
+#: Settings
+msgid "English"
+msgstr ""
+
+#: Settings
+msgid "Spanish"
+msgstr ""
+
+#: Settings
+msgid "French"
+msgstr ""
+
+#: Settings
+msgid "German"
+msgstr ""
+
+#: Settings
+msgid "Italian"
+msgstr ""
+
+#: Settings
+msgid "Japanese"
+msgstr ""
+
+#: Settings
+msgid "Chinese"
+msgstr ""
+
+#: Settings
+msgid "Russian"
+msgstr ""

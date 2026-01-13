@@ -11,9 +11,14 @@ var diretorio_listas : String = ""
 
 func _ready():
 	if Engine.is_editor_hint():
-		diretorio_listas = ProjectSettings.get_setting(DoZeroAoGDScript.SETTING_CAMINHO_LISTAS)
+		diretorio_listas = FromZeroToGodot.get_localized_exercises_path()
 	else:
-		diretorio_listas = "res://listas/"
+		diretorio_listas = FromZeroToGodot.get_localized_exercises_path()
+	_criar_botoes_listas()
+
+func recarregar_listas() -> void:
+	"""Recarrega listas após mudança de locale"""
+	diretorio_listas = FromZeroToGodot.get_localized_exercises_path()
 	_criar_botoes_listas()
 
 func _criar_botoes_listas():
@@ -24,6 +29,14 @@ func _criar_botoes_listas():
 	# Limpa botões existentes
 	for child in listas.get_children():
 		child.queue_free()
+
+	# Verifica se o diretório existe
+	if not DirAccess.dir_exists_absolute(diretorio_listas):
+		var label = Label.new()
+		label.text = "Exercise lists not available for this language yet.\nDirectory: %s" % diretorio_listas
+		label.add_theme_color_override("font_color", Color.ORANGE)
+		listas.add_child(label)
+		return
 
 	# Lê as pastas do diretório
 	var dir = DirAccess.open(diretorio_listas)

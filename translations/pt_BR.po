@@ -1,0 +1,120 @@
+# LANGUAGE translation for From Zero to Godot
+# Copyright (C) 2026
+# This file is distributed under the same license as the From Zero to Godot package.
+# Guará Programador, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: From Zero to Godot\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelEditor.tscn
+msgid "Seja Bem Vindo"
+msgstr "Seja Bem Vindo"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelEditor.tscn
+msgid "Ebook"
+msgstr "Ebook"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelEditor.tscn
+msgid "Listas De Exercicios"
+msgstr "Listas De Exercicios"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelEditor.tscn
+msgid "Testador de Exercicios"
+msgstr "Testador de Exercicios"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Digite qual questão você quer testar"
+msgstr "Digite qual questão você quer testar"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista1 - Exercicio1"
+msgstr "Lista1 - Exercicio1"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista1 - Exercicio2"
+msgstr "Lista1 - Exercicio2"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista1 - Exercicio3"
+msgstr "Lista1 - Exercicio3"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista1 - Exercicio4"
+msgstr "Lista1 - Exercicio4"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista1 - Exercicio5"
+msgstr "Lista1 - Exercicio5"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista2 - Exercicio1"
+msgstr "Lista2 - Exercicio1"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista2 - Exercicio2"
+msgstr "Lista2 - Exercicio2"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista2 - Exercicio3"
+msgstr "Lista2 - Exercicio3"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista2 - Exercicio4"
+msgstr "Lista2 - Exercicio4"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista2 - Exercicio5"
+msgstr "Lista2 - Exercicio5"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista3 - Exercicio1"
+msgstr "Lista3 - Exercicio1"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista3 - Exercicio2"
+msgstr "Lista3 - Exercicio2"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista3 - Exercicio3"
+msgstr "Lista3 - Exercicio3"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista3 - Exercicio4"
+msgstr "Lista3 - Exercicio4"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista3 - Exercicio5"
+msgstr "Lista3 - Exercicio5"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista4 - Exercicio1"
+msgstr "Lista4 - Exercicio1"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista4 - Exercicio2"
+msgstr "Lista4 - Exercicio2"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Escolha o script"
+msgstr "Escolha o script"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Resultado dos Testes"
+msgstr "Resultado dos Testes"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Executar testes"
+msgstr "Executar testes"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/ListaDeExercicios/listas_de_exercicios.tscn
+msgid "Escolha uma lista"
+msgstr "Escolha uma lista"
+
+#: addons/do_zero_ao_gd_script/PainelEditor/Ebook/Ebook.tscn
+msgid "Escolha um ebook"
+msgstr "Escolha um ebook"

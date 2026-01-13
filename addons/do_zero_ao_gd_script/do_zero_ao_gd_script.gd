@@ -1,18 +1,27 @@
 @tool
 extends EditorPlugin
-class_name DoZeroAoGDScript
+class_name FromZeroToGodot
 
-## Nome da configuração no ProjectSettings para o caminho da pasta de listas
-const SETTING_CAMINHO_LISTAS = "do_zero_ao_gd_script/caminho_listas"
+## Emitted when the locale setting changes
+signal locale_changed(new_locale: String)
 
-## Caminho padrão da pasta de listas de exercícios
-const CAMINHO_LISTAS_PADRAO = "res://listas"
+## Project settings key for the exercises folder path
+const SETTING_EXERCISES_PATH = "from_zero_to_godot/exercises_path"
 
-## Nome da configuração no ProjectSettings para o caminho da pasta de ebooks
-const SETTING_CAMINHO_EBOOKS = "do_zero_ao_gd_script/caminho_ebooks"
+## Default path for exercises folder
+const EXERCISES_PATH_DEFAULT = "res://exercises-lists"
 
-## Caminho padrão da pasta de ebooks
-const CAMINHO_EBOOKS_PADRAO = "res://ebook"
+## Project settings key for the ebook folder path
+const SETTING_EBOOK_PATH = "from_zero_to_godot/ebook_path"
+
+## Default path for ebook folder
+const EBOOK_PATH_DEFAULT = "res://ebook"
+
+## Project settings key for introduction folder path
+const SETTING_INTRODUCTION_PATH = "from_zero_to_godot/introduction_path"
+
+## Default path for introduction folder
+const INTRODUCTION_PATH_DEFAULT = "res://introduction"
 
 const painel_editor_cena = preload("res://addons/do_zero_ao_gd_script/PainelEditor/PainelEditor.tscn")
 
@@ -20,6 +29,7 @@ var painel_editor_instancia : PanelContainer = null
 var markdown_preprocessador : MarkdownPreProcessador = null
 var painel_testes : PainelTestes = null
 var file_dialog : EditorFileDialog = null
+var locale_atual : String = ""
 
 func _enter_tree() -> void:
 	# Configura ProjectSettings
@@ -29,12 +39,23 @@ func _enter_tree() -> void:
 
 	EditorInterface.get_editor_main_screen().add_child(painel_editor_instancia)
 	
+	# Conecta signal de mudança de locale ao painel
+	if painel_editor_instancia.has_method("conectar_signal_locale"):
+		painel_editor_instancia.conectar_signal_locale(self)
+	
 	# Conecta o sinal do MarkdownPreProcessador após ele ser criado
 	await get_tree().process_frame
 	_conectar_markdown_preprocessador()
 	_configurar_painel_testes()
-
+	
+	# Monitora mudanças no idioma do editor
+	locale_atual = get_locale()
+	var editor_settings = EditorInterface.get_editor_settings()
+	if editor_settings and editor_settings.settings_changed.is_connected(_verificar_mudanca_locale) == false:
+		editor_settings.settings_changed.connect(_verificar_mudanca_locale)
+	
 	_make_visible(false)
+
 
 func _exit_tree() -> void:
 	if markdown_preprocessador and markdown_preprocessador.abrir_cena_solicitada.is_connected(_on_abrir_cena_solicitada):
@@ -61,7 +82,7 @@ func _make_visible(visible: bool) -> void:
 		painel_editor_instancia.visible = visible
 		
 func _get_plugin_name() -> String:
-	return "DoZeroAoGDScript"
+	return "From Zero to Godot"
 
 func _get_plugin_icon() -> Texture2D:
 	return EditorInterface.get_editor_theme().get_icon("GodotMonochrome", "EditorIcons")
@@ -73,6 +94,15 @@ func _conectar_markdown_preprocessador() -> void:
 		markdown_preprocessador = preprocessadores[0]
 		if not markdown_preprocessador.abrir_cena_solicitada.is_connected(_on_abrir_cena_solicitada):
 			markdown_preprocessador.abrir_cena_solicitada.connect(_on_abrir_cena_solicitada)
+
+func _verificar_mudanca_locale() -> void:
+	"""Verifica se o locale mudou e emite signal"""
+	var novo_locale = get_locale()
+	if novo_locale != locale_atual:
+		print("aqui: ", novo_locale)
+		locale_atual = novo_locale
+		TranslationServer.set_locale(novo_locale)
+		locale_changed.emit(novo_locale)
 
 func _configurar_painel_testes() -> void:
 	# Procura o PainelTestes na árvore
@@ -88,65 +118,151 @@ func _configurar_painel_testes() -> void:
 		painel_testes.configurar_file_dialog(file_dialog)
 
 func _configurar_project_settings() -> void:
-	# Adiciona a configuração de listas se não existir
-	if not ProjectSettings.has_setting(SETTING_CAMINHO_LISTAS):
-		ProjectSettings.set_setting(SETTING_CAMINHO_LISTAS, CAMINHO_LISTAS_PADRAO)
+	# Add exercises path setting if it doesn't exist
+	if not ProjectSettings.has_setting(SETTING_EXERCISES_PATH):
+		ProjectSettings.set_setting(SETTING_EXERCISES_PATH, EXERCISES_PATH_DEFAULT)
 		
-		# Define propriedades da configuração para aparecer no editor
+		# Define property info for editor display
 		var property_info = {
-			"name": SETTING_CAMINHO_LISTAS,
+			"name": SETTING_EXERCISES_PATH,
 			"type": TYPE_STRING,
 			"hint": PROPERTY_HINT_DIR,
 			"hint_string": ""
 		}
 		ProjectSettings.add_property_info(property_info)
 		
-		# Marca como configuração básica (aparece na aba General)
-		ProjectSettings.set_initial_value(SETTING_CAMINHO_LISTAS, CAMINHO_LISTAS_PADRAO)
-		ProjectSettings.set_as_basic(SETTING_CAMINHO_LISTAS, true)
+		# Mark as basic setting (appears in General tab)
+		ProjectSettings.set_initial_value(SETTING_EXERCISES_PATH, EXERCISES_PATH_DEFAULT)
+		ProjectSettings.set_as_basic(SETTING_EXERCISES_PATH, true)
 	
-	# Adiciona a configuração de ebooks se não existir
-	if not ProjectSettings.has_setting(SETTING_CAMINHO_EBOOKS):
-		ProjectSettings.set_setting(SETTING_CAMINHO_EBOOKS, CAMINHO_EBOOKS_PADRAO)
+	# Add ebook path setting if it doesn't exist
+	if not ProjectSettings.has_setting(SETTING_EBOOK_PATH):
+		ProjectSettings.set_setting(SETTING_EBOOK_PATH, EBOOK_PATH_DEFAULT)
 		
 		var property_info_ebooks = {
-			"name": SETTING_CAMINHO_EBOOKS,
+			"name": SETTING_EBOOK_PATH,
 			"type": TYPE_STRING,
 			"hint": PROPERTY_HINT_DIR,
 			"hint_string": ""
 		}
 		ProjectSettings.add_property_info(property_info_ebooks)
 		
-		ProjectSettings.set_initial_value(SETTING_CAMINHO_EBOOKS, CAMINHO_EBOOKS_PADRAO)
-		ProjectSettings.set_as_basic(SETTING_CAMINHO_EBOOKS, true)
+		ProjectSettings.set_initial_value(SETTING_EBOOK_PATH, EBOOK_PATH_DEFAULT)
+		ProjectSettings.set_as_basic(SETTING_EBOOK_PATH, true)
+		# Add introduction path setting if it doesn't exist
+	if not ProjectSettings.has_setting(SETTING_INTRODUCTION_PATH):
+		ProjectSettings.set_setting(SETTING_INTRODUCTION_PATH, INTRODUCTION_PATH_DEFAULT)
+		
+		var property_info_intro = {
+			"name": SETTING_INTRODUCTION_PATH,
+			"type": TYPE_STRING,
+			"hint": PROPERTY_HINT_DIR,
+			"hint_string": ""
+		}
+		ProjectSettings.add_property_info(property_info_intro)
+		
+		ProjectSettings.set_initial_value(SETTING_INTRODUCTION_PATH, INTRODUCTION_PATH_DEFAULT)
+		ProjectSettings.set_as_basic(SETTING_INTRODUCTION_PATH, true)
 	
-	# Salva as configurações
+	# Save settings
 	ProjectSettings.save()
 
 func _remover_project_settings() -> void:
-	# Remove as configurações quando o plugin é desativado
-	if ProjectSettings.has_setting(SETTING_CAMINHO_LISTAS):
-		ProjectSettings.clear(SETTING_CAMINHO_LISTAS)
+	# Remove settings when plugin is disabled
+	if ProjectSettings.has_setting(SETTING_EXERCISES_PATH):
+		ProjectSettings.clear(SETTING_EXERCISES_PATH)
 	
-	if ProjectSettings.has_setting(SETTING_CAMINHO_EBOOKS):
-		ProjectSettings.clear(SETTING_CAMINHO_EBOOKS)
+	if ProjectSettings.has_setting(SETTING_EBOOK_PATH):
+		ProjectSettings.clear(SETTING_EBOOK_PATH)
+	
+	if ProjectSettings.has_setting(SETTING_INTRODUCTION_PATH):
+		ProjectSettings.clear(SETTING_INTRODUCTION_PATH)
 	
 	ProjectSettings.save()
 
-## Retorna o caminho da pasta de listas configurado no ProjectSettings
-## Use esta função estática em outros scripts para acessar o caminho:
-## var caminho = DoZeroAoGDScript.obter_caminho_listas()
-static func obter_caminho_listas() -> String:
-	return ProjectSettings.get_setting(SETTING_CAMINHO_LISTAS, CAMINHO_LISTAS_PADRAO)
+## Returns the editor locale from Godot's Editor Language setting
+## Returns the locale code (e.g.: "pt-br", "en", "es")
+static func get_locale() -> String:
+	# Try to get editor language setting
+	var editor_settings = EditorInterface.get_editor_settings()
+	if editor_settings:
+		var editor_locale = editor_settings.get_setting("interface/editor/editor_language")
+		if editor_locale and not editor_locale.is_empty():
+			# Map Godot's locale codes to our folder names
+			if editor_locale.begins_with("pt"):
+				return "pt-br"
+			elif editor_locale.begins_with("en"):
+				return "en"
+			elif editor_locale.begins_with("es"):
+				return "es"
+			elif editor_locale.begins_with("fr"):
+				return "fr"
+			elif editor_locale.begins_with("de"):
+				return "de"
+			elif editor_locale.begins_with("it"):
+				return "it"
+			elif editor_locale.begins_with("ja"):
+				return "ja"
+			elif editor_locale.begins_with("zh"):
+				return "zh"
+			elif editor_locale.begins_with("ru"):
+				return "ru"
+	
+	# Fallback to OS locale
+	var os_locale = OS.get_locale().to_lower()
+	if os_locale.begins_with("pt"):
+		return "pt-br"
+	elif os_locale.begins_with("en"):
+		return "en"
+	
+	# Default fallback
+	return "pt-br"
 
-## Retorna o caminho da pasta de ebooks configurado no ProjectSettings
-## Use esta função estática em outros scripts para acessar o caminho:
-## var caminho = DoZeroAoGDScript.obter_caminho_ebooks()
-static func obter_caminho_ebooks() -> String:
-	return ProjectSettings.get_setting(SETTING_CAMINHO_EBOOKS, CAMINHO_EBOOKS_PADRAO)
+## Returns the exercises folder path configured in ProjectSettings
+## Use this static function in other scripts to access the path:
+## var path = FromZeroToGodot.get_exercises_path()
+static func get_exercises_path() -> String:
+	return ProjectSettings.get_setting(SETTING_EXERCISES_PATH, EXERCISES_PATH_DEFAULT)
+
+## Returns the ebook folder path configured in ProjectSettings
+## Use this static function in other scripts to access the path:
+## var path = FromZeroToGodot.get_ebook_path()
+static func get_ebook_path() -> String:
+	return ProjectSettings.get_setting(SETTING_EBOOK_PATH, EBOOK_PATH_DEFAULT)
+
+## Returns the full exercises path including locale
+## Example: "res://exercises-lists/pt-br"
+static func get_localized_exercises_path() -> String:
+	var base = get_exercises_path()
+	var locale = get_locale()
+	return base.path_join(locale)
+
+## Returns the full ebook path including locale
+## Example: "res://ebook/pt-br"
+static func get_localized_ebook_path() -> String:
+	var base = get_ebook_path()
+	var locale = get_locale()
+	return base.path_join(locale)
+
+## Returns the introduction folder path configured in ProjectSettings
+## Use this static function in other scripts to access the path:
+## var path = FromZeroToGodot.get_introduction_path()
+static func get_introduction_path() -> String:
+	return ProjectSettings.get_setting(SETTING_INTRODUCTION_PATH, INTRODUCTION_PATH_DEFAULT)
+
+## Returns the full introduction path including locale
+## Example: "res://introduction/pt-br"
+static func get_localized_introduction_path() -> String:
+	var base = get_introduction_path()
+	var locale = get_locale()
+	return base.path_join(locale)
+
+## Returns the full path to the README.md file in the localized introduction folder
+## Example: "res://introduction/pt-br/README.md"
+static func get_localized_readme_path() -> String:
+	return get_localized_introduction_path().path_join("README.md")
 
 func _on_abrir_cena_solicitada(caminho_cena: String) -> void:
-	print("Abrindo cena: %s" % caminho_cena)
 	EditorInterface.open_scene_from_path(caminho_cena)
 	
 	await get_tree().create_timer(0.01).timeout

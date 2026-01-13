@@ -24,7 +24,7 @@ var script_carregado: GDScript = null
 var diretorio_listas : String = ""
 
 func _ready():
-	diretorio_listas = ProjectSettings.get_setting(DoZeroAoGDScript.SETTING_CAMINHO_LISTAS)
+	diretorio_listas = FromZeroToGodot.get_localized_exercises_path()
 	# Runner será criado dinamicamente baseado no tipo do teste
 	runner = null
 	
@@ -45,8 +45,19 @@ func _ready():
 	# Carrega todos os exercícios
 	_carregar_todos_exercicios()
 
+func recarregar_todos_exercicios() -> void:
+	"""Recarrega todos exercícios após mudança de locale"""
+	diretorio_listas = FromZeroToGodot.get_localized_exercises_path()
+	_carregar_todos_exercicios()
+
 func _carregar_todos_exercicios() -> void:
 	todos_exercicios.clear()
+
+	# Verifica se o diretório existe
+	if not DirAccess.dir_exists_absolute(diretorio_listas):
+		push_warning("Exercises directory not available for this language: %s" % diretorio_listas)
+		_atualizar_lista_ui()
+		return
 
 	var dir = DirAccess.open(diretorio_listas)
 	
