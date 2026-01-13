@@ -3,18 +3,42 @@ extends MarginContainer
 
 @onready var ebooks_disponiveis: VBoxContainer = %EbooksDisponiveis
 @onready var pre_visualizacao_ebook: MarkdownPreProcessador = %PreVisualizacaoEbook
+@onready var titulo_label: Label = $"_/Titulo"
 
 var diretorio_ebooks: String = ""
 var ebook_selecionado: String = ""
 var capitulo_selecionado: String = ""
 var config_ebook: Dictionary = {}
+var plugin_reference: FromZeroToGodot = null
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		diretorio_ebooks = FromZeroToGodot.get_localized_ebook_path()
 	else:
 		diretorio_ebooks = FromZeroToGodot.get_localized_ebook_path()
+	
+	# Atualiza traduções
+	_atualizar_traducoes()
+	
 	_carregar_ebooks()
+
+func conectar_signal_locale(plugin: FromZeroToGodot) -> void:
+	"""Conecta ao signal de mudança de locale"""
+	plugin_reference = plugin
+	if plugin and not plugin.locale_changed.is_connected(_on_locale_changed):
+		plugin.locale_changed.connect(_on_locale_changed)
+
+func _on_locale_changed(new_locale: String) -> void:
+	"""Atualiza UI quando locale muda"""
+	_atualizar_traducoes()
+	recarregar_ebooks()
+
+func _atualizar_traducoes() -> void:
+	"""Atualiza textos da interface"""
+	var locale = FromZeroToGodot.get_locale()
+	
+	if titulo_label:
+		titulo_label.text = TranslationHelper.translate("Escolha um ebook", locale)
 
 func recarregar_ebooks() -> void:
 	"""Recarrega ebooks após mudança de locale"""

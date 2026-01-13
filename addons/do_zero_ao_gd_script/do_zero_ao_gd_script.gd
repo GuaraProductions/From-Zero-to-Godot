@@ -30,8 +30,15 @@ var markdown_preprocessador : MarkdownPreProcessador = null
 var painel_testes : PainelTestes = null
 var file_dialog : EditorFileDialog = null
 var locale_atual : String = ""
+var plugin_tab_name: String = "From Zero to Godot"
 
 func _enter_tree() -> void:
+	
+	auto_translate_mode = Node.AUTO_TRANSLATE_MODE_ALWAYS
+	
+	# Load translations
+	_load_translations()
+	
 	# Configura ProjectSettings
 	_configurar_project_settings()
 
@@ -39,12 +46,13 @@ func _enter_tree() -> void:
 
 	EditorInterface.get_editor_main_screen().add_child(painel_editor_instancia)
 	
-	# Conecta signal de mudança de locale ao painel
+	# Conecta o sinal do MarkdownPreProcessador após ele ser criado
+	await get_tree().process_frame
+	
+	# Conecta signal de mudança de locale ao painel (após aguardar inicialização)
 	if painel_editor_instancia.has_method("conectar_signal_locale"):
 		painel_editor_instancia.conectar_signal_locale(self)
 	
-	# Conecta o sinal do MarkdownPreProcessador após ele ser criado
-	await get_tree().process_frame
 	_conectar_markdown_preprocessador()
 	_configurar_painel_testes()
 	
@@ -82,7 +90,8 @@ func _make_visible(visible: bool) -> void:
 		painel_editor_instancia.visible = visible
 		
 func _get_plugin_name() -> String:
-	return "From Zero to Godot"
+	var locale = get_locale()
+	return TranslationHelper.translate("From Zero to Godot", locale)
 
 func _get_plugin_icon() -> Texture2D:
 	return EditorInterface.get_editor_theme().get_icon("GodotMonochrome", "EditorIcons")
@@ -99,10 +108,39 @@ func _verificar_mudanca_locale() -> void:
 	"""Verifica se o locale mudou e emite signal"""
 	var novo_locale = get_locale()
 	if novo_locale != locale_atual:
-		print("aqui: ", novo_locale)
 		locale_atual = novo_locale
-		TranslationServer.set_locale(novo_locale)
+		# Update plugin tab name
+		plugin_tab_name = TranslationHelper.translate("From Zero to Godot", novo_locale)
+		# Force UI update by hiding and showing
+		if painel_editor_instancia:
+			var was_visible = painel_editor_instancia.visible
+			_make_visible(false)
+			await get_tree().process_frame
+			_make_visible(was_visible)
 		locale_changed.emit(novo_locale)
+
+func _load_translations() -> void:
+	"""Carrega arquivos de tradução no TranslationServer"""
+	# Try to load .translation files (compiled from .po)
+	var en_translation = load("res://translations/en.translation") if ResourceLoader.exists("res://translations/en.translation") else null
+	if en_translation:
+		TranslationServer.add_translation(en_translation)
+	
+	var pt_translation = load("res://translations/pt_BR.translation") if ResourceLoader.exists("res://translations/pt_BR.translation") else null
+	if pt_translation:
+		TranslationServer.add_translation(pt_translation)
+	
+	# If .translation files don't exist, try loading .po files directly
+	if not en_translation or not pt_translation:
+		var en_po = load("res://translations/en.po") if ResourceLoader.exists("res://translations/en.po") else null
+		if en_po and en_po is Translation:
+			TranslationServer.add_translation(en_po)
+		
+		var pt_po = load("res://translations/pt_BR.po") if ResourceLoader.exists("res://translations/pt_BR.po") else null
+		if pt_po and pt_po is Translation:
+			TranslationServer.add_translation(pt_po)
+	
+	print("[From Zero to Godot] Translations loaded")
 
 func _configurar_painel_testes() -> void:
 	# Procura o PainelTestes na árvore

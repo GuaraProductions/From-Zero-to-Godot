@@ -27,11 +27,27 @@ func _atualizar_nomes_abas() -> void:
 		return
 	
 	var locale = FromZeroToGodot.get_locale()
+	
+	# Translate tab names using TranslationHelper
+	tab_container.set_tab_title(0, TranslationHelper.translate("Seja Bem Vindo", locale))
+	tab_container.set_tab_title(1, TranslationHelper.translate("Ebook", locale))
+	tab_container.set_tab_title(2, TranslationHelper.translate("Listas De Exercicios", locale))
+	tab_container.set_tab_title(3, TranslationHelper.translate("Testador de Exercicios", locale))
 
 func conectar_signal_locale(plugin: FromZeroToGodot) -> void:
-	"""Conecta ao signal de mudança de locale do plugin"""
+	"""Conecta ao signal de mudança de locale do plugin e propaga para componentes"""
 	if plugin and not plugin.locale_changed.is_connected(_on_locale_changed):
 		plugin.locale_changed.connect(_on_locale_changed)
+	
+	# Conecta signal aos componentes filhos
+	if ebook and ebook.has_method("conectar_signal_locale"):
+		ebook.conectar_signal_locale(plugin)
+	
+	if listas_de_exercicios and listas_de_exercicios.has_method("conectar_signal_locale"):
+		listas_de_exercicios.conectar_signal_locale(plugin)
+	
+	if exercicios and exercicios.has_method("conectar_signal_locale"):
+		exercicios.conectar_signal_locale(plugin)
 
 func _on_locale_changed(new_locale: String) -> void:
 	"""Chamado quando o locale muda"""

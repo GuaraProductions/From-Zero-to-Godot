@@ -5,8 +5,10 @@ signal abrir_teste_exercicio(lista: String, exercicio: String)
 
 @onready var listas: VBoxContainer = %Listas
 @onready var markdown_pre_processador: Control = %MarkdownPreProcessador
+@onready var titulo_label: Label = $Titulo
 
 var diretorio_listas : String = ""
+var plugin_reference: FromZeroToGodot = null
 
 
 func _ready():
@@ -14,7 +16,29 @@ func _ready():
 		diretorio_listas = FromZeroToGodot.get_localized_exercises_path()
 	else:
 		diretorio_listas = FromZeroToGodot.get_localized_exercises_path()
+	
+	# Atualiza traduções
+	_atualizar_traducoes()
+	
 	_criar_botoes_listas()
+
+func conectar_signal_locale(plugin: FromZeroToGodot) -> void:
+	"""Conecta ao signal de mudança de locale"""
+	plugin_reference = plugin
+	if plugin and not plugin.locale_changed.is_connected(_on_locale_changed):
+		plugin.locale_changed.connect(_on_locale_changed)
+
+func _on_locale_changed(new_locale: String) -> void:
+	"""Atualiza UI quando locale muda"""
+	_atualizar_traducoes()
+	recarregar_listas()
+
+func _atualizar_traducoes() -> void:
+	"""Atualiza textos da interface"""
+	var locale = FromZeroToGodot.get_locale()
+	
+	if titulo_label:
+		titulo_label.text = TranslationHelper.translate("Escolha uma lista", locale)
 
 func recarregar_listas() -> void:
 	"""Recarrega listas após mudança de locale"""

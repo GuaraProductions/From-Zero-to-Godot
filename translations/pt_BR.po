@@ -118,3 +118,7 @@ msgstr "Escolha uma lista"
 #: addons/do_zero_ao_gd_script/PainelEditor/Ebook/Ebook.tscn
 msgid "Escolha um ebook"
 msgstr "Escolha um ebook"
+
+#: addons/do_zero_ao_gd_script/do_zero_ao_gd_script.gd
+msgid "From Zero to Godot"
+msgstr "Do Zero ao Godot"

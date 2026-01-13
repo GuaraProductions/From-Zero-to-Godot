@@ -30,6 +30,7 @@ current_tab = 0
 
 [node name="Seja Bem Vindo" type="VBoxContainer" parent="TabContainer"]
 unique_name_in_owner = true
+auto_translate_mode = 1
 layout_mode = 2
 metadata/_tab_index = 0
 

@@ -10,6 +10,9 @@ extends Control
 @onready var progresso_testes: ProgressBar = %ProgressoTestes
 @onready var achar_questao: LineEdit = %AcharQuestao
 @onready var executar_teste_atual: Button = %ExecutarTesteAtual
+@onready var resultado_label: Label = %ResultadosTestes
+
+var plugin_reference: FromZeroToGodot = null
 
 # FileDialog - pode ser EditorFileDialog (no editor) ou FileDialog (fora do editor)
 var file_dialog: Window = null
@@ -42,8 +45,38 @@ func _ready():
 	if achar_questao:
 		achar_questao.text_changed.connect(_on_filtro_texto_mudado)
 	
+	# Atualiza traduções
+	_atualizar_traducoes()
+	
 	# Carrega todos os exercícios
 	_carregar_todos_exercicios()
+
+func conectar_signal_locale(plugin: FromZeroToGodot) -> void:
+	"""Conecta ao signal de mudança de locale"""
+	plugin_reference = plugin
+	if plugin and not plugin.locale_changed.is_connected(_on_locale_changed):
+		plugin.locale_changed.connect(_on_locale_changed)
+
+func _on_locale_changed(new_locale: String) -> void:
+	"""Atualiza UI quando locale muda"""
+	_atualizar_traducoes()
+	recarregar_todos_exercicios()
+
+func _atualizar_traducoes() -> void:
+	"""Atualiza todos os textos da interface"""
+	var locale = FromZeroToGodot.get_locale()
+	
+	if achar_questao:
+		achar_questao.placeholder_text = TranslationHelper.translate("Digite qual questão você quer testar", locale)
+	
+	if escolha_exercicio_button:
+		escolha_exercicio_button.text = TranslationHelper.translate("Escolha o script", locale)
+	
+	if executar_teste_atual:
+		executar_teste_atual.text = TranslationHelper.translate("Executar testes", locale)
+	
+	if resultado_label:
+		resultado_label.text = TranslationHelper.translate("Resultado dos Testes", locale)
 
 func recarregar_todos_exercicios() -> void:
 	"""Recarrega todos exercícios após mudança de locale"""
@@ -203,18 +236,20 @@ func _atualizar_detalhes_exercicio() -> void:
 		
 		dados = json.data
 	
+	var locale = FromZeroToGodot.get_locale()
+	
 	# Formata informações
-	var texto = "[b]Exercício:[/b] %s\n\n" % exercicio_selecionado.nome
+	var texto = "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Exercício:", locale), exercicio_selecionado.nome]
 	
 	# Exibe nome da função ou classe
 	if tipo_teste == "classe" or tipo_teste == "classe_custom":
-		texto += "[b]Classe:[/b] %s\n\n" % dados.get("classe", "?")
+		texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Classe:", locale), dados.get("classe", "?")]
 		if tipo_teste == "classe_custom":
-			texto += "[b]Tipo:[/b] Testes customizados (por código)\n\n"
+			texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Tipo:", locale), TranslationHelper.translate("Testes customizados (por código)", locale)]
 	else:
-		texto += "[b]Função:[/b] %s()\n\n" % dados.get("funcao", "?")
+		texto += "[b]%s[/b] %s()\n\n" % [TranslationHelper.translate("Função:", locale), dados.get("funcao", "?")]
 	
-	texto += "[b]Timeout:[/b] %dms\n\n" % dados.get("timeout", 1000)
+	texto += "[b]%s[/b] %dms\n\n" % [TranslationHelper.translate("Timeout:", locale), dados.get("timeout", 1000)]
 	
 	# Informação de comparação (se aplicável)
 	if dados.has("comparacao"):
@@ -443,10 +478,12 @@ func _adicionar_resultado_ao_texto(resultado: Dictionary) -> void:
 	var cor = "green" if resultado.passou else "red"
 	var icone = "✅" if resultado.passou else "❌"
 	
+	var locale = FromZeroToGodot.get_locale()
+	
 	resultado_teste.text += "[bgcolor=#333333]%s [b]%s[/b] (%dms)[/bgcolor]\n" % [icone, resultado.nome, resultado.tempo_ms]
-	resultado_teste.text += "[b]Entrada:[/b] %s\n" % str(resultado.entrada)
-	resultado_teste.text += "[b]Esperado:[/b] %s\n" % str(resultado.saida_esperada)
-	resultado_teste.text += "[b]Obtido:[/b] [color=%s]%s[/color]\n" % [cor, str(resultado.saida_obtida)]
+	resultado_teste.text += "[b]%s[/b] %s\n" % [TranslationHelper.translate("Entrada:", locale), str(resultado.entrada)]
+	resultado_teste.text += "[b]%s[/b] %s\n" % [TranslationHelper.translate("Esperado:", locale), str(resultado.saida_esperada)]
+	resultado_teste.text += "[b]%s[/b] [color=%s]%s[/color]\n" % [TranslationHelper.translate("Obtido:", locale), cor, str(resultado.saida_obtida)]
 	
 	if not resultado.erro.is_empty():
 		resultado_teste.text += "[color=orange][b]Erro:[/b] %s[/color]\n" % resultado.erro
