@@ -1,42 +1,42 @@
 {
   "tipo": "classe",
-  "classe": "Forma",
+  "class": "Forma",
   "timeout": 1000,
-  "metodos": [
+  "methods": [
     {
-      "nome": "area",
-      "comparacao": "aproximado",
-      "tolerancia": 0.1,
-      "casos": [
+      "name": "area",
+      "comparison": "approximate",
+      "tolerance": 0.1,
+      "cases": [
         {
-          "nome": "Círculo com raio 5",
-          "construtor_params": [],
-          "entrada": [],
-          "saida_esperada": 78.54
+          "name": "Círculo com raio 5",
+          "constructor_params": [],
+          "input": [],
+          "expected_output": 78.54
         },
         {
-          "nome": "Quadrado com lado 4",
-          "construtor_params": [],
-          "entrada": [],
-          "saida_esperada": 16
+          "name": "Quadrado com lado 4",
+          "constructor_params": [],
+          "input": [],
+          "expected_output": 16
         },
         {
-          "nome": "Triângulo com base 6 e altura 3",
-          "construtor_params": [],
-          "entrada": [],
-          "saida_esperada": 9
+          "name": "Triângulo com base 6 e altura 3",
+          "constructor_params": [],
+          "input": [],
+          "expected_output": 9
         },
         {
-          "nome": "Círculo com raio 10",
-          "construtor_params": [],
-          "entrada": [],
-          "saida_esperada": 314.16
+          "name": "Círculo com raio 10",
+          "constructor_params": [],
+          "input": [],
+          "expected_output": 314.16
         },
         {
-          "nome": "Quadrado com lado 7",
-          "construtor_params": [],
-          "entrada": [],
-          "saida_esperada": 49
+          "name": "Quadrado com lado 7",
+          "constructor_params": [],
+          "input": [],
+          "expected_output": 49
         }
       ]
     }

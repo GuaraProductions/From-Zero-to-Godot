@@ -1,71 +1,71 @@
 {
   "tipo": "classe",
-  "classe": "Cofrinho",
+  "class": "Cofrinho",
   "timeout": 1000,
-  "metodos": [
+  "methods": [
     {
-      "nome": "adicionar",
-      "comparacao": "exato",
-      "casos": [
+      "name": "adicionar",
+      "comparison": "exact",
+      "cases": [
         {
-          "nome": "Adicionar 50",
-          "construtor_params": [],
-          "entrada": [50],
-          "saida_esperada": null,
-          "propriedades": {
+          "name": "Adicionar 50",
+          "constructor_params": [],
+          "input": [50],
+          "expected_output": null,
+          "properties": {
             "_saldo": 50
           }
         },
         {
-          "nome": "Adicionar 25 e depois 30",
-          "construtor_params": [],
-          "entrada": [25],
-          "saida_esperada": null,
-          "propriedades": {
+          "name": "Adicionar 25 e depois 30",
+          "constructor_params": [],
+          "input": [25],
+          "expected_output": null,
+          "properties": {
             "_saldo": 25
           }
         }
       ]
     },
     {
-      "nome": "sacar",
-      "comparacao": "exato",
-      "casos": [
+      "name": "sacar",
+      "comparison": "exact",
+      "cases": [
         {
-          "nome": "Sacar 30 com saldo 50",
-          "construtor_params": [],
-          "entrada": [30],
-          "saida_esperada": true,
-          "propriedades": {
+          "name": "Sacar 30 com saldo 50",
+          "constructor_params": [],
+          "input": [30],
+          "expected_output": true,
+          "properties": {
             "_saldo": 20
           }
         },
         {
-          "nome": "Tentar sacar 100 com saldo 50",
-          "construtor_params": [],
-          "entrada": [100],
-          "saida_esperada": false,
-          "propriedades": {
+          "name": "Tentar sacar 100 com saldo 50",
+          "constructor_params": [],
+          "input": [100],
+          "expected_output": false,
+          "properties": {
             "_saldo": 50
           }
         }
       ]
     },
     {
-      "nome": "get_saldo",
-      "comparacao": "exato",
-      "casos": [
+      "name": "get_saldo",
+      "comparison": "exact",
+      "cases": [
         {
-          "nome": "Obter saldo inicial 0",
-          "construtor_params": [],
-          "entrada": [],
-          "saida_esperada": 0
+          "name": "Obter saldo inicial 0",
+          "constructor_params": [],
+          "input": [],
+          "expected_output": 0
         },
         {
-          "nome": "Obter saldo após adicionar 100",
-          "construtor_params": [],
-          "entrada": [],
-          "saida_esperada": 100
+          "name": "Obter saldo após adicionar 100",
+          "constructor_params": [],
+          "input": [],
+          "expected_output": 100
         }
       ]
     }

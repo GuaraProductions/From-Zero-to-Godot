@@ -96,7 +96,7 @@ func _executar_caso_custom(caso: Dictionary) -> Dictionary:
 	var classe_alvo = _obter_classe_inner(script_testado, nome_classe)
 	
 	if not classe_alvo:
-		resultado.erro = "Classe '%s' não encontrada no script" % nome_classe
+		resultado.error = "Classe '%s' não encontrada no script" % nome_classe
 		return resultado
 	
 	# Cria instância
@@ -110,7 +110,7 @@ func _executar_caso_custom(caso: Dictionary) -> Dictionary:
 		instancia = callable_construtor.callv(construtor_params)
 	
 	if not instancia:
-		resultado.erro = "Erro ao criar instância da classe"
+		resultado.error = "Erro ao criar instância da classe"
 		return resultado
 	
 	# Executa o método se especificado
@@ -119,7 +119,7 @@ func _executar_caso_custom(caso: Dictionary) -> Dictionary:
 	
 	if not nome_metodo.is_empty():
 		if not instancia.has_method(nome_metodo):
-			resultado.erro = "Método '%s()' não encontrado" % nome_metodo
+			resultado.error = "Método '%s()' não encontrado" % nome_metodo
 			instancia.free()
 			return resultado
 		
@@ -144,28 +144,28 @@ func _executar_caso_custom(caso: Dictionary) -> Dictionary:
 			if instancia_testes.has_method(nome_funcao):
 				resultado_validacao = instancia_testes.callv(nome_funcao, [retorno_metodo, instancia])
 			else:
-				resultado.erro = "Função de validação '%s' não encontrada" % nome_funcao
+				resultado.error = "Função de validação '%s' não encontrada" % nome_funcao
 		# Se for String, chama pelo nome
 		elif funcao_validar is String:
 			if instancia_testes.has_method(funcao_validar):
 				resultado_validacao = instancia_testes.callv(funcao_validar, [retorno_metodo, instancia])
 			else:
-				resultado.erro = "Função de validação '%s' não encontrada" % funcao_validar
+				resultado.error = "Função de validação '%s' não encontrada" % funcao_validar
 		
 		if resultado_validacao:
 			if resultado_validacao is Dictionary:
-				resultado.passou = resultado_validacao.get("sucesso", false)
-				resultado.erro = resultado_validacao.get("erro", "")
+				resultado.passed = resultado_validacao.get("sucesso", false)
+				resultado.error = resultado_validacao.get("erro", "")
 				if resultado_validacao.has("saida_esperada"):
 					resultado.saida_esperada = resultado_validacao.saida_esperada
 				if resultado_validacao.has("saida_obtida"):
 					resultado.saida_obtida = resultado_validacao.saida_obtida
 			else:
-				resultado.passou = resultado_validacao == true
+				resultado.passed = resultado_validacao == true
 	else:
-		resultado.erro = "Função de validação não fornecida"
+		resultado.error = "Função de validação não fornecida"
 	
 	var tempo_fim = Time.get_ticks_msec()
-	resultado.tempo_ms = tempo_fim - tempo_inicio
+	resultado.time_ms = tempo_fim - tempo_inicio
 	
 	return resultado

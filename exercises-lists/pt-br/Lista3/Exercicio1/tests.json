@@ -1,53 +1,53 @@
 {
   "tipo": "classe",
-  "classe": "Retangulo",
+  "class": "Retangulo",
   "timeout": 1000,
-  "metodos": [
+  "methods": [
 	{
-	  "nome": "calcular_area",
-	  "comparacao": "exato",
-	  "casos": [
+	  "name": "calcular_area",
+	  "comparison": "exact",
+	  "cases": [
 		{
-		  "nome": "Área: base=10, altura=5",
-		  "construtor_params": [10, 5],
-		  "entrada": [],
-		  "saida_esperada": 50
+		  "name": "Área: base=10, altura=5",
+		  "constructor_params": [10, 5],
+		  "input": [],
+		  "expected_output": 50
 		},
 		{
-		  "nome": "Área: base=7, altura=3",
-		  "construtor_params": [7, 3],
-		  "entrada": [],
-		  "saida_esperada": 21
+		  "name": "Área: base=7, altura=3",
+		  "constructor_params": [7, 3],
+		  "input": [],
+		  "expected_output": 21
 		},
 		{
-		  "nome": "Área: base=20, altura=15",
-		  "construtor_params": [20, 15],
-		  "entrada": [],
-		  "saida_esperada": 300
+		  "name": "Área: base=20, altura=15",
+		  "constructor_params": [20, 15],
+		  "input": [],
+		  "expected_output": 300
 		}
 	  ]
 	},
 	{
-	  "nome": "calcular_perimetro",
-	  "comparacao": "exato",
-	  "casos": [
+	  "name": "calcular_perimetro",
+	  "comparison": "exact",
+	  "cases": [
 		{
-		  "nome": "Perímetro: base=10, altura=5",
-		  "construtor_params": [10, 5],
-		  "entrada": [],
-		  "saida_esperada": 30
+		  "name": "Perímetro: base=10, altura=5",
+		  "constructor_params": [10, 5],
+		  "input": [],
+		  "expected_output": 30
 		},
 		{
-		  "nome": "Perímetro: base=7, altura=3",
-		  "construtor_params": [7, 3],
-		  "entrada": [],
-		  "saida_esperada": 20
+		  "name": "Perímetro: base=7, altura=3",
+		  "constructor_params": [7, 3],
+		  "input": [],
+		  "expected_output": 20
 		},
 		{
-		  "nome": "Perímetro: base=20, altura=15",
-		  "construtor_params": [20, 15],
-		  "entrada": [],
-		  "saida_esperada": 70
+		  "name": "Perímetro: base=20, altura=15",
+		  "constructor_params": [20, 15],
+		  "input": [],
+		  "expected_output": 70
 		}
 	  ]
 	}

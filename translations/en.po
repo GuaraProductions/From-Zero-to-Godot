@@ -119,5 +119,5 @@ msgid "Escolha um ebook"
 msgstr "Choose an ebook"
 
 #: addons/do_zero_ao_gd_script/do_zero_ao_gd_script.gd
-msgid "From Zero to Godot"
+msgid "Do Zero ao Godot"
 msgstr "From Zero to Godot"

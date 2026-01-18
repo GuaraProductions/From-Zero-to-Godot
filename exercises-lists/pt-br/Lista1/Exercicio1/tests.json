@@ -1,33 +1,33 @@
 {
-	"funcao": "celsius_para_farenheit",
+	"function": "celsius_para_farenheit",
 	"timeout": 5,
-	"comparacao": "aproximado",
-	"tolerancia": 0.01,
-	"casos": [
+	"comparison": "approximate",
+	"tolerance": 0.01,
+	"cases": [
 		{
-			"nome": "Teste 1: Zero graus Celsius",
-			"entrada": [0],
-			"saida_esperada": 32.0
+			"name": "Teste 1: Zero graus Celsius",
+			"input": [0],
+			"expected_output": 32.0
 		},
 		{
-			"nome": "Teste 2: Ponto de ebulição da água",
-			"entrada": [100],
-			"saida_esperada": 212.0
+			"name": "Teste 2: Ponto de ebulição da água",
+			"input": [100],
+			"expected_output": 212.0
 		},
 		{
-			"nome": "Teste 3: Temperatura negativa",
-			"entrada": [-40],
-			"saida_esperada": -40.0
+			"name": "Teste 3: Temperatura negativa",
+			"input": [-40],
+			"expected_output": -40.0
 		},
 		{
-			"nome": "Teste 4: Temperatura ambiente",
-			"entrada": [25],
-			"saida_esperada": 77.0
+			"name": "Teste 4: Temperatura ambiente",
+			"input": [25],
+			"expected_output": 77.0
 		},
 		{
-			"nome": "Teste 5: Corpo humano",
-			"entrada": [37],
-			"saida_esperada": 98.6
+			"name": "Teste 5: Corpo humano",
+			"input": [37],
+			"expected_output": 98.6
 		}
 	]
 }

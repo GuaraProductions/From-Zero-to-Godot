@@ -1,38 +1,38 @@
 {
   "tipo": "funcao",
-  "funcao": "contar_multiplos_3",
+  "function": "contar_multiplos_3",
   "timeout": 1000,
-  "comparacao": "exato",
-  "casos": [
+  "comparison": "exact",
+  "cases": [
     {
-      "nome": "Múltiplos de 3 até 10",
-      "entrada": [10],
-      "saida_esperada": 3
+      "name": "Múltiplos de 3 até 10",
+      "input": [10],
+      "expected_output": 3
     },
     {
-      "nome": "Múltiplos de 3 até 3",
-      "entrada": [3],
-      "saida_esperada": 1
+      "name": "Múltiplos de 3 até 3",
+      "input": [3],
+      "expected_output": 1
     },
     {
-      "nome": "Múltiplos de 3 até 30",
-      "entrada": [30],
-      "saida_esperada": 10
+      "name": "Múltiplos de 3 até 30",
+      "input": [30],
+      "expected_output": 10
     },
     {
-      "nome": "Múltiplos de 3 até 15",
-      "entrada": [15],
-      "saida_esperada": 5
+      "name": "Múltiplos de 3 até 15",
+      "input": [15],
+      "expected_output": 5
     },
     {
-      "nome": "Múltiplos de 3 até 2",
-      "entrada": [2],
-      "saida_esperada": 0
+      "name": "Múltiplos de 3 até 2",
+      "input": [2],
+      "expected_output": 0
     },
     {
-      "nome": "Múltiplos de 3 até 100",
-      "entrada": [100],
-      "saida_esperada": 33
+      "name": "Múltiplos de 3 até 100",
+      "input": [100],
+      "expected_output": 33
     }
   ]
 }

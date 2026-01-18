@@ -1,5 +1,5 @@
 {
   "tipo": "classe_custom",
-  "classe": "OrganizadorDeTarefas",
+  "class": "OrganizadorDeTarefas",
   "arquivo_testes": "res://listas/Lista4/Exercicio1/tests_custom.gd"
 }

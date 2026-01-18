@@ -30,7 +30,7 @@ var markdown_preprocessador : MarkdownPreProcessador = null
 var painel_testes : PainelTestes = null
 var file_dialog : EditorFileDialog = null
 var locale_atual : String = ""
-var plugin_tab_name: String = "From Zero to Godot"
+var plugin_tab_name: String = "Do Zero ao Godot"
 
 func _enter_tree() -> void:
 	
@@ -91,7 +91,7 @@ func _make_visible(visible: bool) -> void:
 		
 func _get_plugin_name() -> String:
 	var locale = get_locale()
-	return TranslationHelper.translate("From Zero to Godot", locale)
+	return TranslationHelper.translate(plugin_tab_name, locale)
 
 func _get_plugin_icon() -> Texture2D:
 	return EditorInterface.get_editor_theme().get_icon("GodotMonochrome", "EditorIcons")
@@ -109,10 +109,9 @@ func _verificar_mudanca_locale() -> void:
 	var novo_locale = get_locale()
 	if novo_locale != locale_atual:
 		locale_atual = novo_locale
-		# Update plugin tab name
-		plugin_tab_name = TranslationHelper.translate("From Zero to Godot", novo_locale)
 		# Force UI update by hiding and showing
 		if painel_editor_instancia:
+			painel_editor_instancia.name = TranslationHelper.translate(plugin_tab_name, novo_locale)
 			var was_visible = painel_editor_instancia.visible
 			_make_visible(false)
 			await get_tree().process_frame

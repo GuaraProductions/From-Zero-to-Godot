@@ -1,0 +1,38 @@
+{
+  "type": "funcao",
+  "function": "somar_pares",
+  "timeout": 1000,
+  "comparison": "exact",
+  "cases": [
+    {
+      "name": "Soma dos pares até 6",
+      "input": [6],
+      "expected_output": 12
+    },
+    {
+      "name": "Soma dos pares até 5",
+      "input": [5],
+      "expected_output": 6
+    },
+    {
+      "name": "Soma dos pares até 10",
+      "input": [10],
+      "expected_output": 30
+    },
+    {
+      "name": "Soma dos pares até 1",
+      "input": [1],
+      "expected_output": 0
+    },
+    {
+      "name": "Soma dos pares até 20",
+      "input": [20],
+      "expected_output": 110
+    },
+    {
+      "name": "Soma dos pares até 100",
+      "input": [100],
+      "expected_output": 2550
+    }
+  ]
+}

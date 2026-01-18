@@ -59,7 +59,7 @@ func _executar_caso_cena(caso: Dictionary, nome_funcao: String) -> Dictionary:
 		if cena_packed:
 			instancia = cena_packed.instantiate()
 		else:
-			resultado.erro = "Erro ao carregar cena: %s" % cena_path
+			resultado.error = "Erro ao carregar cena: %s" % cena_path
 			return resultado
 	else:
 		# Fallback: cria instância do script
@@ -67,7 +67,7 @@ func _executar_caso_cena(caso: Dictionary, nome_funcao: String) -> Dictionary:
 	
 	# Verifica se a função existe
 	if not instancia.has_method(nome_funcao):
-		resultado.erro = "Função '%s()' não encontrada" % nome_funcao
+		resultado.error = "Função '%s()' não encontrada" % nome_funcao
 		instancia.queue_free()
 		return resultado
 	
@@ -99,18 +99,18 @@ func _executar_caso_cena(caso: Dictionary, nome_funcao: String) -> Dictionary:
 	var validacao = caso.get("validacao", {})
 	var validacao_resultado = _validar_cena(instancia, validacao)
 	
-	resultado.passou = validacao_resultado.sucesso
+	resultado.passed = validacao_resultado.sucesso
 	resultado.saida_obtida = validacao_resultado.obtido
-	resultado.erro = validacao_resultado.erro
+	resultado.error = validacao_resultado.error
 	
 	var tempo_fim = Time.get_ticks_msec()
-	resultado.tempo_ms = tempo_fim - tempo_inicio
+	resultado.time_ms = tempo_fim - tempo_inicio
 	
 	# Verifica timeout
 	var timeout_ms = dados_teste.get("timeout", 1000)
-	if resultado.tempo_ms > timeout_ms:
-		resultado.passou = false
-		resultado.erro = "Timeout excedido (%dms > %dms)" % [resultado.tempo_ms, timeout_ms]
+	if resultado.time_ms > timeout_ms:
+		resultado.passed = false
+		resultado.error = "Timeout excedido (%dms > %dms)" % [resultado.time_ms, timeout_ms]
 	
 	# Remove da scene tree e libera
 	var parent_node = instancia.get_parent()

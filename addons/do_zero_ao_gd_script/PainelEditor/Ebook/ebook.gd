@@ -125,8 +125,9 @@ func _carregar_capitulos(nome_ebook: String, container_capitulos: VBoxContainer)
 	config_ebook = _carregar_config_ebook(caminho_ebook)
 	
 	# Adiciona botão de introdução se configurado
-	if config_ebook.has("introducao") and not config_ebook["introducao"].is_empty():
-		_criar_botao_especial(nome_ebook, config_ebook["introducao"], "📖 Introdução", container_capitulos, Color("#A78BFA"))
+	if config_ebook.has("introduction") and not config_ebook["introduction"].is_empty():
+		var intro_label = config_ebook.get("introduction_label", "📖 Introduction")
+		_criar_botao_especial(nome_ebook, config_ebook["introduction"], intro_label, container_capitulos, Color("#A78BFA"))
 	
 	var dir = DirAccess.open(caminho_ebook)
 	
@@ -146,8 +147,9 @@ func _carregar_capitulos(nome_ebook: String, container_capitulos: VBoxContainer)
 	dir.list_dir_end()
 	
 	# Adiciona botão de conclusão se configurado
-	if config_ebook.has("conclusao") and not config_ebook["conclusao"].is_empty():
-		_criar_botao_especial(nome_ebook, config_ebook["conclusao"], "🎓 Conclusão", container_capitulos, Color("#F472B6"))
+	if config_ebook.has("conclusion") and not config_ebook["conclusion"].is_empty():
+		var conclusion_label = config_ebook.get("conclusion_label", "🎓 Conclusion")
+		_criar_botao_especial(nome_ebook, config_ebook["conclusion"], conclusion_label, container_capitulos, Color("#F472B6"))
 
 ## Cria um botão para o capítulo e seus arquivos markdown
 func _criar_botao_capitulo(nome_ebook: String, nome_capitulo: String, container_capitulos: VBoxContainer) -> void:

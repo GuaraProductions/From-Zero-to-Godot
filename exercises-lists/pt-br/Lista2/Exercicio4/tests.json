@@ -1,38 +1,38 @@
 {
   "tipo": "funcao",
-  "funcao": "calcular_fatorial",
+  "function": "calcular_fatorial",
   "timeout": 1000,
-  "comparacao": "exato",
-  "casos": [
+  "comparison": "exact",
+  "cases": [
     {
-      "nome": "Fatorial de 3",
-      "entrada": [3],
-      "saida_esperada": 6
+      "name": "Fatorial de 3",
+      "input": [3],
+      "expected_output": 6
     },
     {
-      "nome": "Fatorial de 5",
-      "entrada": [5],
-      "saida_esperada": 120
+      "name": "Fatorial de 5",
+      "input": [5],
+      "expected_output": 120
     },
     {
-      "nome": "Fatorial de 0",
-      "entrada": [0],
-      "saida_esperada": 1
+      "name": "Fatorial de 0",
+      "input": [0],
+      "expected_output": 1
     },
     {
-      "nome": "Fatorial de 1",
-      "entrada": [1],
-      "saida_esperada": 1
+      "name": "Fatorial de 1",
+      "input": [1],
+      "expected_output": 1
     },
     {
-      "nome": "Fatorial de 7",
-      "entrada": [7],
-      "saida_esperada": 5040
+      "name": "Fatorial de 7",
+      "input": [7],
+      "expected_output": 5040
     },
     {
-      "nome": "Fatorial de 10",
-      "entrada": [10],
-      "saida_esperada": 3628800
+      "name": "Fatorial de 10",
+      "input": [10],
+      "expected_output": 3628800
     }
   ]
 }

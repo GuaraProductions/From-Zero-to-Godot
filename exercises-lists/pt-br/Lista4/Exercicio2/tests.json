@@ -1,71 +1,71 @@
 {
   "tipo": "classe",
-  "classe": "Inventario",
+  "class": "Inventario",
   "timeout": 1000,
-  "metodos": [
+  "methods": [
     {
-      "nome": "vazio",
-      "comparacao": "exato",
-      "casos": [
+      "name": "vazio",
+      "comparison": "exact",
+      "cases": [
         {
-          "nome": "Inventário vazio retorna true",
-          "construtor_params": [],
-          "entrada": [],
-          "saida_esperada": true
+          "name": "Inventário vazio retorna true",
+          "constructor_params": [],
+          "input": [],
+          "expected_output": true
         }
       ]
     },
     {
-      "nome": "adicionar_item",
-      "comparacao": "exato",
-      "casos": [
+      "name": "adicionar_item",
+      "comparison": "exact",
+      "cases": [
         {
-          "nome": "Adicionar 5 poções",
-          "construtor_params": [],
-          "entrada": ["Poção", 5],
-          "saida_esperada": null
+          "name": "Adicionar 5 poções",
+          "constructor_params": [],
+          "input": ["Poção", 5],
+          "expected_output": null
         },
         {
-          "nome": "Adicionar 10 espadas",
-          "construtor_params": [],
-          "entrada": ["Espada", 10],
-          "saida_esperada": null
+          "name": "Adicionar 10 espadas",
+          "constructor_params": [],
+          "input": ["Espada", 10],
+          "expected_output": null
         }
       ]
     },
     {
-      "nome": "remover_item",
-      "comparacao": "exato",
-      "casos": [
+      "name": "remover_item",
+      "comparison": "exact",
+      "cases": [
         {
-          "nome": "Remover 2 poções",
-          "construtor_params": [],
-          "entrada": ["Poção", 2],
-          "saida_esperada": null
+          "name": "Remover 2 poções",
+          "constructor_params": [],
+          "input": ["Poção", 2],
+          "expected_output": null
         }
       ]
     },
     {
-      "nome": "get_item_quantidade",
-      "comparacao": "exato",
-      "casos": [
+      "name": "get_item_quantidade",
+      "comparison": "exact",
+      "cases": [
         {
-          "nome": "Obter quantidade de item inexistente",
-          "construtor_params": [],
-          "entrada": [999],
-          "saida_esperada": -1
+          "name": "Obter quantidade de item inexistente",
+          "constructor_params": [],
+          "input": [999],
+          "expected_output": -1
         }
       ]
     },
     {
-      "nome": "get_item_nome",
-      "comparacao": "exato",
-      "casos": [
+      "name": "get_item_nome",
+      "comparison": "exact",
+      "cases": [
         {
-          "nome": "Obter nome de item inexistente",
-          "construtor_params": [],
-          "entrada": [999],
-          "saida_esperada": ""
+          "name": "Obter nome de item inexistente",
+          "constructor_params": [],
+          "input": [999],
+          "expected_output": ""
         }
       ]
     }

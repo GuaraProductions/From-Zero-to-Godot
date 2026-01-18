@@ -1,0 +1,44 @@
+{
+  "type": "class",
+  "class": "Forma",
+  "timeout": 1000,
+  "methods": [
+    {
+      "name": "area",
+      "comparison": "approximate",
+      "tolerance": 0.1,
+      "cases": [
+        {
+          "name": "Circle with radius 5",
+          "constructor_params": [],
+          "input": [],
+          "expected_output": 78.54
+        },
+        {
+          "name": "Square with side 4",
+          "constructor_params": [],
+          "input": [],
+          "expected_output": 16
+        },
+        {
+          "name": "Triangle with base 6 and height 3",
+          "constructor_params": [],
+          "input": [],
+          "expected_output": 9
+        },
+        {
+          "name": "Circle with radius 10",
+          "constructor_params": [],
+          "input": [],
+          "expected_output": 314.16
+        },
+        {
+          "name": "Square with side 7",
+          "constructor_params": [],
+          "input": [],
+          "expected_output": 49
+        }
+      ]
+    }
+  ]
+}

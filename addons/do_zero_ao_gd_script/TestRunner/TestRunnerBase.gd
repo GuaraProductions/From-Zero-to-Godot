@@ -41,8 +41,8 @@ func _carregar_dados_teste(arquivo_testes: String) -> bool:
 	return true
 
 ## Compara dois valores de acordo com o modo de comparação
-func _comparar_saidas(obtido, esperado, modo: String = "exato", tolerancia: float = 0.01) -> bool:
-	if modo == "aproximado":
+func _comparar_saidas(obtido, esperado, modo: String = "exact", tolerancia: float = 0.01) -> bool:
+	if modo == "approximate":
 		return _comparar_aproximado(obtido, esperado, tolerancia)
 	else:
 		return _comparar_exato(obtido, esperado)
@@ -124,9 +124,9 @@ func _gerar_resumo() -> Dictionary:
 	var tempo_total = 0
 	
 	for resultado in resultados:
-		if resultado.passou:
+		if resultado.passed:
 			passou += 1
-		tempo_total += resultado.tempo_ms
+		tempo_total += resultado.time_ms
 	
 	var falhou = total - passou
 	var percentual = (float(passou) / float(total)) * 100.0 if total > 0 else 0.0
@@ -134,9 +134,9 @@ func _gerar_resumo() -> Dictionary:
 	
 	return {
 		"total": total,
-		"passou": passou,
-		"falhou": falhou,
-		"percentual": percentual,
-		"tempo_total_ms": tempo_total,
-		"tempo_medio_ms": tempo_medio
+		"passed": passou,
+		"failed": falhou,
+		"percentage": percentual,
+		"total_time_ms": tempo_total,
+		"average_time_ms": tempo_medio
 	}

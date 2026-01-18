@@ -79,7 +79,7 @@ func _executar_caso_metodo(caso: Dictionary, nome_metodo: String, config_metodo:
 	var classe_alvo = _obter_classe_inner(script_testado, nome_classe_testada)
 	
 	if not classe_alvo:
-		resultado.erro = "Classe '%s' não encontrada no script" % nome_classe_testada
+		resultado.error = "Classe '%s' não encontrada no script" % nome_classe_testada
 		return resultado
 	
 	if construtor_params.size() > 0:
@@ -89,12 +89,12 @@ func _executar_caso_metodo(caso: Dictionary, nome_metodo: String, config_metodo:
 		instancia = classe_alvo.new()
 	
 	if not instancia:
-		resultado.erro = "Erro ao criar instância da classe '%s'" % nome_classe_testada
+		resultado.error = "Erro ao criar instância da classe '%s'" % nome_classe_testada
 		return resultado
 	
 	# Verifica se o método existe
 	if not instancia.has_method(nome_metodo):
-		resultado.erro = "Método '%s()' não encontrado" % nome_metodo
+		resultado.error = "Método '%s()' não encontrado" % nome_metodo
 		if instancia is RefCounted:
 			pass  # RefCounted se libera automaticamente
 		else:
@@ -128,25 +128,25 @@ func _executar_caso_metodo(caso: Dictionary, nome_metodo: String, config_metodo:
 		)
 		
 		if not props_ok:
-			resultado.erro = "Propriedades não correspondem. Obtido: %s" % str(propriedades_obtidas)
-			resultado.passou = false
+			resultado.error = "Propriedades não correspondem. Obtido: %s" % str(propriedades_obtidas)
+			resultado.passed = false
 		else:
 			# Compara também o retorno se houver saida_esperada
 			if resultado.saida_esperada != null:
-				resultado.passou = _comparar_saidas(
+				resultado.passed = _comparar_saidas(
 					resultado.saida_obtida,
 					resultado.saida_esperada,
 					modo_comparacao,
 					tolerancia
 				)
 			else:
-				resultado.passou = true
+				resultado.passed = true
 	else:
 		# Compara apenas o retorno
 		var modo_comparacao = config_metodo.get("comparacao", "exato")
 		var tolerancia = config_metodo.get("tolerancia", 0.01)
 		
-		resultado.passou = _comparar_saidas(
+		resultado.passed = _comparar_saidas(
 			resultado.saida_obtida,
 			resultado.saida_esperada,
 			modo_comparacao,
@@ -154,13 +154,13 @@ func _executar_caso_metodo(caso: Dictionary, nome_metodo: String, config_metodo:
 		)
 	
 	var tempo_fim = Time.get_ticks_msec()
-	resultado.tempo_ms = tempo_fim - tempo_inicio
+	resultado.time_ms = tempo_fim - tempo_inicio
 	
 	# Verifica timeout
 	var timeout_ms = dados_teste.get("timeout", 1000)
-	if resultado.tempo_ms > timeout_ms:
-		resultado.passou = false
-		resultado.erro = "Timeout excedido (%dms > %dms)" % [resultado.tempo_ms, timeout_ms]
+	if resultado.time_ms > timeout_ms:
+		resultado.passed = false
+		resultado.error = "Timeout excedido (%dms > %dms)" % [resultado.time_ms, timeout_ms]
 	
 	# Libera instância
 	if instancia is RefCounted:

@@ -1,0 +1,8 @@
+{
+	"name": "Programming Fundamentals",
+	"description": "Learn the fundamental concepts of programming with GDScript",
+	"introduction": "Introduction.md",
+	"introduction_label": "📖 Introduction",
+	"conclusion": "Conclusion.md",
+	"conclusion_label": "🎓 Conclusion"
+}

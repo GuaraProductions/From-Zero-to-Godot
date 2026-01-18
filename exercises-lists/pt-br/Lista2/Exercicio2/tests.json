@@ -1,11 +1,11 @@
 {
   "tipo": "cena",
-  "funcao": "gerar_tabuada",
+  "function": "gerar_tabuada",
   "timeout": 2000,
-  "casos": [
+  "cases": [
     {
-      "nome": "Tabuada completa para n=2",
-      "entrada": [2],
+      "name": "Tabuada completa para n=2",
+      "input": [2],
       "validacao": {
         "tipo": "validar_tabuada",
         "n": 2,
@@ -74,8 +74,8 @@
       }
     },
     {
-      "nome": "Tabuada completa para n=5",
-      "entrada": [5],
+      "name": "Tabuada completa para n=5",
+      "input": [5],
       "validacao": {
         "tipo": "validar_tabuada",
         "n": 5,
@@ -100,8 +100,8 @@
       }
     },
     {
-      "nome": "Tabuada para n=3 - Verificação de multiplicação",
-      "entrada": [3],
+      "name": "Tabuada para n=3 - Verificação de multiplicação",
+      "input": [3],
       "validacao": {
         "tipo": "validar_tabuada",
         "n": 3,

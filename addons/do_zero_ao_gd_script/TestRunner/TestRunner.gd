@@ -66,7 +66,7 @@ func _executar_caso(
 	var instancia = script.new()
 	
 	if not instancia.has_method(funcao):
-		resultado.erro = "Função '%s' não encontrada no script" % funcao
+		resultado.error = "Função '%s' não encontrada no script" % funcao
 		instancia.free()
 		return resultado
 	
@@ -76,25 +76,25 @@ func _executar_caso(
 	
 	var saida = callable_func.callv(resultado.entrada)
 	
-	resultado.tempo_ms = Time.get_ticks_msec() - inicio
+	resultado.time_ms = Time.get_ticks_msec() - inicio
 	resultado.saida_obtida = saida
 	
 	# Verifica timeout
-	if resultado.tempo_ms > timeout * 1000:
-		resultado.erro = "Timeout: teste levou %dms (limite: %ds)" % [resultado.tempo_ms, timeout]
+	if resultado.time_ms > timeout * 1000:
+		resultado.error = "Timeout: teste levou %dms (limite: %ds)" % [resultado.time_ms, timeout]
 		instancia.free()
 		return resultado
 	
 	# Compara resultado
-	resultado.passou = _comparar_saidas(
+	resultado.passed = _comparar_saidas(
 		resultado.saida_esperada,
 		resultado.saida_obtida,
 		tipo_comparacao,
 		tolerancia
 	)
 	
-	if not resultado.passou and resultado.erro.is_empty():
-		resultado.erro = "Saída diferente da esperada"
+	if not resultado.passed and resultado.error.is_empty():
+		resultado.error = "Saída diferente da esperada"
 	
 	instancia.free()
 	return resultado
@@ -178,9 +178,9 @@ func _gerar_resumo(resultados: Array[Dictionary]) -> Dictionary:
 	var tempo_total = 0
 	
 	for r in resultados:
-		if r.passou:
+		if r.passed:
 			passou_count += 1
-		tempo_total += r.tempo_ms
+		tempo_total += r.time_ms
 	
 	return {
 		"total": resultados.size(),
