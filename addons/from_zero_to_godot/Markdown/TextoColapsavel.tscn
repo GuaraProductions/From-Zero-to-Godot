@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bg7t0ta4e1m4b"]
 
-[ext_resource type="Script" uid="uid://b521pmp1ih3ne" path="res://addons/do_zero_ao_gd_script/Markdown/texto_colapsavel.gd" id="1_vh176"]
+[ext_resource type="Script" uid="uid://b521pmp1ih3ne" path="res://addons/from_zero_to_godot/Markdown/texto_colapsavel.gd" id="1_vh176"]
 
 [node name="TextoColapsavel" type="VBoxContainer"]
 script = ExtResource("1_vh176")

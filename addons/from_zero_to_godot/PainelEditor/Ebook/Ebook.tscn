@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bktgv1b0gfrwb"]
 
-[ext_resource type="PackedScene" uid="uid://cj3stl1gx6rq8" path="res://addons/do_zero_ao_gd_script/Markdown/MarkdownPreProcessador.tscn" id="1_hqtbe"]
-[ext_resource type="Script" uid="uid://dsuqmqil008m3" path="res://addons/do_zero_ao_gd_script/PainelEditor/Ebook/ebook.gd" id="1_y53gh"]
-[ext_resource type="CodeHighlighter" uid="uid://cbqojgnbnehb8" path="res://addons/do_zero_ao_gd_script/PainelEditor/Ebook/GDScriptHighlighter.tres" id="3_4brg3"]
+[ext_resource type="PackedScene" uid="uid://cj3stl1gx6rq8" path="res://addons/from_zero_to_godot/Markdown/MarkdownPreProcessador.tscn" id="1_hqtbe"]
+[ext_resource type="Script" uid="uid://dsuqmqil008m3" path="res://addons/from_zero_to_godot/PainelEditor/Ebook/ebook.gd" id="1_y53gh"]
+[ext_resource type="CodeHighlighter" uid="uid://cbqojgnbnehb8" path="res://addons/from_zero_to_godot/PainelEditor/Ebook/GDScriptHighlighter.tres" id="3_4brg3"]
 
 [node name="Ebook" type="MarginContainer"]
 anchors_preset = 15

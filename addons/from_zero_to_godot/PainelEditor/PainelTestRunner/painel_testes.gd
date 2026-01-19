@@ -14,11 +14,11 @@ extends Control
 
 var plugin_reference: FromZeroToGodot = null
 
-# FileDialog - pode ser EditorFileDialog (no editor) ou FileDialog (fora do editor)
+# FileDialog - can be EditorFileDialog (in editor) or FileDialog (outside editor)
 var file_dialog: Window = null
 
-# Dados
-var runner: RefCounted  # Será TestRunnerFuncao, TestRunnerClasse ou TestRunnerCena
+# Data
+var runner: RefCounted  # Will be TestRunnerFuncao, TestRunnerClasse or TestRunnerCena
 var todos_exercicios: Array[Dictionary] = []  # {nome, caminho_tests, lista, exercicio, funcao, tipo}
 var exercicios_filtrados: Array[Dictionary] = []
 var exercicio_selecionado: Dictionary = {}
@@ -28,14 +28,14 @@ var diretorio_listas : String = ""
 
 func _ready():
 	diretorio_listas = FromZeroToGodot.get_localized_exercises_path()
-	# Runner será criado dinamicamente baseado no tipo do teste
+	# Runner will be created dynamically based on test type
 	runner = null
 	
-	# Se não estiver no editor, cria FileDialog nativo
+	# If not in editor, create native FileDialog
 	if not Engine.is_editor_hint():
 		_criar_file_dialog_nativo()
 	
-	# Conecta sinais da UI
+	# Connect UI signals
 	if escolha_exercicio_button:
 		escolha_exercicio_button.pressed.connect(_on_escolha_exercicio_pressed)
 	if executar_teste_atual:
@@ -45,10 +45,10 @@ func _ready():
 	if achar_questao:
 		achar_questao.text_changed.connect(_on_filtro_texto_mudado)
 	
-	# Atualiza traduções
+	# Update translations
 	_atualizar_traducoes()
 	
-	# Carrega todos os exercícios
+	# Load all exercises
 	_carregar_todos_exercicios()
 
 func conectar_signal_locale(plugin: FromZeroToGodot) -> void:
@@ -86,7 +86,7 @@ func recarregar_todos_exercicios() -> void:
 func _carregar_todos_exercicios() -> void:
 	todos_exercicios.clear()
 
-	# Verifica se o diretório existe
+	# Check if directory exists
 	if not DirAccess.dir_exists_absolute(diretorio_listas):
 		push_warning("Exercises directory not available for this language: %s" % diretorio_listas)
 		_atualizar_lista_ui()
@@ -108,7 +108,7 @@ func _carregar_todos_exercicios() -> void:
 	
 	dir.list_dir_end()
 	
-	# Inicializa lista filtrada
+	# Initialize filtered list
 	exercicios_filtrados = todos_exercicios.duplicate()
 	_atualizar_lista_ui()
 
@@ -128,7 +128,7 @@ func _carregar_exercicios_da_lista(caminho_lista: String, nome_lista: String) ->
 			var caminho_usar = caminho_config if FileAccess.file_exists(caminho_config) else caminho_tests
 			
 			if FileAccess.file_exists(caminho_usar):
-				# Lê o arquivo de configuração
+				# Read configuration file
 				var file = FileAccess.open(caminho_usar, FileAccess.READ)
 				if file:
 					var json_string = file.get_as_text()
@@ -139,10 +139,11 @@ func _carregar_exercicios_da_lista(caminho_lista: String, nome_lista: String) ->
 					
 					if parse_result == OK:
 						var dados = json.data
-					var nome_funcao = dados.get("function", dados.get("class", "unknown"))
-					var tipo_teste = dados.get("type", "function")  # Default: function
-					var arquivo_testes_custom = dados.get("test_file", "")
-							"nome": "%s - %s" % [nome_lista, nome_pasta],
+						# Support both English and Portuguese keys
+						var nome_funcao = dados.get("function", dados.get("funcao", dados.get("class", dados.get("classe", "unknown"))))
+						var tipo_teste = dados.get("type", dados.get("tipo", "function"))  # Default: function
+						var arquivo_testes_custom = dados.get("test_file", dados.get("arquivo_testes", ""))
+						var exercicio_info =	{"nome": "%s - %s" % [nome_lista, nome_pasta],
 							"caminho_tests": arquivo_testes_custom if not arquivo_testes_custom.is_empty() else caminho_usar,
 							"lista": nome_lista,
 							"exercicio": nome_pasta,
@@ -192,7 +193,7 @@ func _atualizar_detalhes_exercicio() -> void:
 	var tipo_teste = exercicio_selecionado.get("tipo", "funcao")
 	var dados
 	
-	# Para classe_custom, carrega o script e obtém casos
+	# For classe_custom, load script and get cases
 	if tipo_teste == "classe_custom":
 		var script_testes = load(exercicio_selecionado.caminho_tests)
 		if not script_testes:
@@ -208,7 +209,7 @@ func _atualizar_detalhes_exercicio() -> void:
 		var casos = instancia_testes.get_test_cases()
 		instancia_testes.free()
 		
-		# Monta dados no formato esperado
+		# Build data in expected format
 		dados = {
 			"tipo": "classe_custom",
 			"classe": exercicio_selecionado.funcao,
@@ -216,7 +217,7 @@ func _atualizar_detalhes_exercicio() -> void:
 			"casos": casos
 		}
 	else:
-		# Para outros tipos, lê JSON normalmente
+		# For other types, read JSON normally
 		var file = FileAccess.open(exercicio_selecionado.caminho_tests, FileAccess.READ)
 		if not file:
 			detalhes_exercicio_atual.text = "[color=red]Error reading test file[/color]"
@@ -236,24 +237,30 @@ func _atualizar_detalhes_exercicio() -> void:
 	
 	var locale = FromZeroToGodot.get_locale()
 	
-	# Formata informações
+	# Format information
 	var texto = "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Exercício:", locale), exercicio_selecionado.nome]
 	
-	# Exibe nome da função ou classe
+	# Display function or class name (support both English and Portuguese keys)
 	if tipo_teste == "classe" or tipo_teste == "classe_custom":
-		texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Classe:", locale), dados.get("class", "?")]
+		texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Classe:", locale), dados.get("class", dados.get("classe", "?"))]
 		if tipo_teste == "classe_custom":
 			texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Tipo:", locale), TranslationHelper.translate("Testes customizados (por código)", locale)]
 	else:
-		texto += "[b]%s[/b] %s()\n\n" % [TranslationHelper.translate("Função:", locale), dados.get("function", "?")]
+		texto += "[b]%s[/b] %s()\n\n" % [TranslationHelper.translate("Função:", locale), dados.get("function", dados.get("funcao", "?"))]
 	
 	texto += "[b]%s[/b] %dms\n\n" % [TranslationHelper.translate("Timeout:", locale), dados.get("timeout", 1000)]
 	
-	# Comparison information (if applicable)
-	if dados.has("comparison"):
-		texto += "[b]Comparação:[/b] %s" % dados.get("comparison", "exact")
-		if dados.get("comparison", "") == "approximate":
-			texto += " (tolerância: %.4f)" % dados.get("tolerance", 0.01)
+	# Comparison information (if applicable) - support both English and Portuguese keys
+	if dados.has("comparison") or dados.has("comparacao"):
+		var comparison_value = dados.get("comparison", dados.get("comparacao", "exact"))
+		# Map Portuguese values to display
+		if comparison_value == "aproximado":
+			comparison_value = "approximate"
+		elif comparison_value == "exato":
+			comparison_value = "exact"
+		texto += "[b]Comparação:[/b] %s" % comparison_value
+		if comparison_value == "approximate":
+			texto += " (tolerância: %.4f)" % dados.get("tolerance", dados.get("tolerancia", 0.01))
 		texto += "\n\n"
 	
 	# Conta casos de teste baseado no tipo
@@ -261,23 +268,23 @@ func _atualizar_detalhes_exercicio() -> void:
 	var casos_para_exibir = []
 	
 	if tipo_teste == "classe":
-		# For class, sum cases from all methods
-		var metodos = dados.get("methods", [])
+		# For class, sum cases from all methods (support both English and Portuguese keys)
+		var metodos = dados.get("methods", dados.get("metodos", []))
 		for metodo in metodos:
-			var casos = metodo.get("cases", [])
+			var casos = metodo.get("cases", metodo.get("casos", []))
 			total_casos += casos.size()
 			for caso in casos:
-				casos_para_exibir.append(caso.get("name", "Test without name"))
+				casos_para_exibir.append(caso.get("name", caso.get("nome", "Test without name")))
 	else:
-		# For function and scene, direct cases
-		var casos = dados.get("cases", [])
+		# For function and scene, direct cases (support both English and Portuguese keys)
+		var casos = dados.get("cases", dados.get("casos", []))
 		total_casos = casos.size()
 		for caso in casos:
-			casos_para_exibir.append(caso.get("name", "Test without name"))
+			casos_para_exibir.append(caso.get("name", caso.get("nome", "Test without name")))
 	
 	texto += "[b]Casos de teste:[/b] %d\n\n" % total_casos
 	
-	# Lista alguns casos
+	# List some test cases
 	var max_casos = min(3, casos_para_exibir.size())
 	for i in range(max_casos):
 		texto += "• %s\n" % casos_para_exibir[i]
@@ -299,7 +306,7 @@ func configurar_file_dialog(dialog: EditorFileDialog) -> void:
 	file_dialog.file_selected.connect(_on_arquivo_selecionado)
 
 func _criar_file_dialog_nativo() -> void:
-	# Cria FileDialog para uso fora do editor
+	# Create FileDialog for use outside editor
 	var dialog = FileDialog.new()
 	dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
 	dialog.access = FileDialog.ACCESS_RESOURCES
@@ -314,24 +321,24 @@ func _on_arquivo_selecionado(caminho: String) -> void:
 		push_error("No exercise selected")
 		return
 	
-	# Carrega o script
+	# Load the script
 	var script = load(caminho)
 	if not script or not script is GDScript:
 		_exibir_erro("Selected file is not a valid GDScript")
 		return
 	
-	# Valida baseado no tipo de teste
+	# Validate based on test type (support both English and Portuguese values)
 	var tipo_teste = exercicio_selecionado.get("tipo", "funcao")
 	var nome_alvo = exercicio_selecionado.funcao
 	
-	if tipo_teste == "classe":
-		# Para testes de classe, verifica se a classe existe
+	if tipo_teste == "classe" or tipo_teste == "class":
+		# For class tests, verify if class exists
 		var classe_encontrada = false
 		
-		# Tenta acessar como classe direta
+		# Try to access as direct class
 		if script.has_method("new"):
 			var instancia_temp = script.new()
-			# Verifica se é a classe ou se tem a classe interna
+			# Check if it's the class or has inner class
 			if instancia_temp.get_class() == nome_alvo:
 				classe_encontrada = true
 			elif nome_alvo in script:
@@ -345,7 +352,7 @@ func _on_arquivo_selecionado(caminho: String) -> void:
 		if not classe_encontrada:
 			_exibir_erro("Script does not contain class '%s'" % nome_alvo)
 			return
-	elif tipo_teste == "funcao":
+	elif tipo_teste == "funcao" or tipo_teste == "function":
 		# For function tests, check if function exists
 		var instancia_temp = script.new()
 		if not instancia_temp.has_method(nome_alvo):
@@ -353,9 +360,9 @@ func _on_arquivo_selecionado(caminho: String) -> void:
 			_exibir_erro("Script does not contain function '%s()'" % nome_alvo)
 			return
 		instancia_temp.free()
-	# Para tipo "cena" e "classe_custom", não validamos aqui
+	# For "cena" and "classe_custom" types, we don't validate here
 	
-	# Script válido!
+	# Valid script!
 	script_carregado = script
 	exercicio_escolhido_line_edit.text = caminho
 	exercicio_escolhido_line_edit.add_theme_color_override("font_color", Color.GREEN)
@@ -378,13 +385,13 @@ func _on_executar_teste_pressed() -> void:
 		_exibir_resultado_erro("Select a valid script first")
 		return
 	
-	# Limpa resultado anterior
+	# Clear previous result
 	_limpar_resultado()
 	
-	# Cria o runner apropriado baseado no tipo do teste
+	# Create appropriate runner based on test type
 	var tipo_teste = exercicio_selecionado.get("tipo", "funcao")
 	
-	# Libera runner anterior se existir
+	# Free previous runner if it exists
 	if runner:
 		if runner.teste_iniciado.is_connected(_on_teste_iniciado):
 			runner.teste_iniciado.disconnect(_on_teste_iniciado)
@@ -394,21 +401,21 @@ func _on_executar_teste_pressed() -> void:
 			runner.todos_testes_concluidos.disconnect(_on_todos_testes_concluidos)
 		runner = null
 	
-	# Cria novo runner do tipo apropriado
+	# Create new runner of appropriate type
 	match tipo_teste:
 		"funcao":
-			var script_runner = load("res://addons/do_zero_ao_gd_script/TestRunner/TestRunnerFuncao.gd")
+			var script_runner = load("res://addons/from_zero_to_godot/TestRunner/TestRunnerFuncao.gd")
 			runner = script_runner.new()
 		"classe":
-			var script_runner = load("res://addons/do_zero_ao_gd_script/TestRunner/TestRunnerClasse.gd")
+			var script_runner = load("res://addons/from_zero_to_godot/TestRunner/TestRunnerClasse.gd")
 			runner = script_runner.new()
 		"classe_custom":
-			var script_runner = load("res://addons/do_zero_ao_gd_script/TestRunner/TestRunnerClasseCustom.gd")
+			var script_runner = load("res://addons/from_zero_to_godot/TestRunner/TestRunnerClasseCustom.gd")
 			runner = script_runner.new()
 		"cena":
-			var script_runner = load("res://addons/do_zero_ao_gd_script/TestRunner/TestRunnerCena.gd")
+			var script_runner = load("res://addons/from_zero_to_godot/TestRunner/TestRunnerCena.gd")
 			runner = script_runner.new()
-			# Para testes de cena, tenta carregar a .tscn em vez do script
+			# For scene tests, try to load .tscn instead of script
 			var caminho_cena = exercicio_escolhido_line_edit.text.replace(".gd", ".tscn")
 			if FileAccess.file_exists(caminho_cena):
 				runner.cena_path = caminho_cena
@@ -416,16 +423,16 @@ func _on_executar_teste_pressed() -> void:
 			_exibir_resultado_erro("Unknown test type: %s" % tipo_teste)
 			return
 	
-	# Conecta sinais
+	# Connect signals
 	runner.teste_iniciado.connect(_on_teste_iniciado)
 	runner.teste_concluido.connect(_on_teste_concluido)
 	runner.todos_testes_concluidos.connect(_on_todos_testes_concluidos)
 	
-	# Desabilita botão durante execução
+	# Disable button during execution
 	if executar_teste_atual:
 		executar_teste_atual.disabled = true
 	
-	# Executa testes
+	# Execute tests
 	runner.executar_testes(script_carregado, exercicio_selecionado.caminho_tests)
 
 func _limpar_resultado() -> void:
@@ -437,7 +444,7 @@ func _limpar_resultado() -> void:
 
 func _exibir_resultado_erro(mensagem: String) -> void:
 	if resultado_teste:
-		resultado_teste.text = "[color=red][b]Erro:[/b] %s[/color]" % mensagem
+		resultado_teste.text = "[color=red][b]Error:[/b] %s[/color]" % mensagem
 
 func _on_teste_iniciado(index: int, total: int) -> void:
 	if progresso_testes:
@@ -451,11 +458,11 @@ func _on_teste_concluido(resultado: Dictionary) -> void:
 		progresso_testes.value += 1
 
 func _on_todos_testes_concluidos(resumo: Dictionary) -> void:
-	# Reabilita botão
+	# Re-enable button
 	if executar_teste_atual:
 		executar_teste_atual.disabled = false
 	
-	# Adiciona resumo ao resultado
+	# Add summary to result
 	if resultado_teste:
 		var cor = Color.GREEN if resumo.percentual >= 70 else Color.ORANGE if resumo.percentual >= 50 else Color.RED
 		var cor_hex = cor.to_html(false)
@@ -489,13 +496,13 @@ func _adicionar_resultado_ao_texto(resultado: Dictionary) -> void:
 	resultado_teste.text += "\n"
 
 func selecionar_exercicio(lista: String, exercicio: String) -> void:
-	# Busca o exercício correspondente na lista filtrada
+	# Search for corresponding exercise in filtered list
 	var nome_busca = lista + " - " + exercicio
 	
 	for i in range(exercicios_filtrados.size()):
 		var ex = exercicios_filtrados[i]
 		if ex.nome == nome_busca:
-			# Seleciona o item no ItemList
+			# Select item in ItemList
 			if lista_de_exercicios:
 				lista_de_exercicios.select(i)
 				lista_de_exercicios.ensure_current_is_visible()

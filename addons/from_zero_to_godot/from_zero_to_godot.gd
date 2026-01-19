@@ -23,7 +23,7 @@ const SETTING_INTRODUCTION_PATH = "from_zero_to_godot/introduction_path"
 ## Default path for introduction folder
 const INTRODUCTION_PATH_DEFAULT = "res://introduction"
 
-const painel_editor_cena = preload("res://addons/do_zero_ao_gd_script/PainelEditor/PainelEditor.tscn")
+const painel_editor_cena = preload("res://addons/from_zero_to_godot/PainelEditor/PainelEditor.tscn")
 
 var painel_editor_instancia : PanelContainer = null
 var markdown_preprocessador : MarkdownPreProcessador = null
@@ -98,11 +98,14 @@ func _get_plugin_icon() -> Texture2D:
 
 func _conectar_markdown_preprocessador() -> void:
 	# Procura o MarkdownPreProcessador na árvore
-	var preprocessadores = painel_editor_instancia.find_children("*", "MarkdownPreProcessador", true, false)
-	if preprocessadores.size() > 0:
-		markdown_preprocessador = preprocessadores[0]
-		if not markdown_preprocessador.abrir_cena_solicitada.is_connected(_on_abrir_cena_solicitada):
-			markdown_preprocessador.abrir_cena_solicitada.connect(_on_abrir_cena_solicitada)
+	var preprocessadores = get_tree().get_nodes_in_group(MarkdownPreProcessador.GROUP_NAME)
+	if preprocessadores.size() <= 0:
+		return
+		
+	for markdown_p in preprocessadores:
+		
+		if not markdown_p.abrir_cena_solicitada.is_connected(_on_abrir_cena_solicitada):
+			markdown_p.abrir_cena_solicitada.connect(_on_abrir_cena_solicitada)
 
 func _verificar_mudanca_locale() -> void:
 	"""Verifica se o locale mudou e emite signal"""

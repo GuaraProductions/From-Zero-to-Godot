@@ -16,6 +16,7 @@ func _ready():
 		diretorio_listas = FromZeroToGodot.get_localized_exercises_path()
 	else:
 		diretorio_listas = FromZeroToGodot.get_localized_exercises_path()
+		
 	
 	# Atualiza traduções
 	_atualizar_traducoes()

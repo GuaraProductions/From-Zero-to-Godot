@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dfkg1dp0vyqqi"]
 
-[ext_resource type="Script" uid="uid://nv1wqumyv1y1" path="res://addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/painel_testes.gd" id="1_ol3ft"]
+[ext_resource type="Script" uid="uid://nv1wqumyv1y1" path="res://addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd" id="1_ol3ft"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ol3ft"]
 content_margin_left = 10.0

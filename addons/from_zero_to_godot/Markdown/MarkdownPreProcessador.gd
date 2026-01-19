@@ -1,7 +1,9 @@
-@icon("res://addons/do_zero_ao_gd_script/icons/markdown.svg")
+@icon("res://addons/from_zero_to_godot/icons/markdown.svg")
 @tool
 extends Control
 class_name MarkdownPreProcessador
+
+const GROUP_NAME : String = "MarkdownPreProcessor"
 
 # --- Propriedades exportadas para personalização ---
 @export_range(10,60) var title_font_size: int = 36
@@ -20,7 +22,10 @@ class_name MarkdownPreProcessador
 signal abrir_cena_solicitada(caminho_cena: String)
 signal abrir_teste_solicitado(lista: String, exercicio: String)
 
-const TextoColapasavelScene = preload("res://addons/do_zero_ao_gd_script/Markdown/TextoColapsavel.tscn")
+const TextoColapasavelScene = preload("res://addons/from_zero_to_godot/Markdown/TextoColapsavel.tscn")
+
+func _ready() -> void:
+	add_to_group(GROUP_NAME)
 
 func _debug_print(mensagem: String) -> void:
 	if debug_mode:

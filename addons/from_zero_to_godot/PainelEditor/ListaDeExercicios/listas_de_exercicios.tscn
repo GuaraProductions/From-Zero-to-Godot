@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://jttguxauudsl"]
 
-[ext_resource type="Script" uid="uid://cq0qjas5fhkb" path="res://addons/do_zero_ao_gd_script/PainelEditor/ListaDeExercicios/listas_de_exercicios.gd" id="1_mnuk5"]
-[ext_resource type="PackedScene" uid="uid://cj3stl1gx6rq8" path="res://addons/do_zero_ao_gd_script/Markdown/MarkdownPreProcessador.tscn" id="1_o5k2c"]
+[ext_resource type="Script" uid="uid://cq0qjas5fhkb" path="res://addons/from_zero_to_godot/PainelEditor/ListaDeExercicios/listas_de_exercicios.gd" id="1_mnuk5"]
+[ext_resource type="PackedScene" uid="uid://cj3stl1gx6rq8" path="res://addons/from_zero_to_godot/Markdown/MarkdownPreProcessador.tscn" id="1_o5k2c"]
 
 [node name="Listas De Exercicios" type="VBoxContainer"]
 visible = false
@@ -26,6 +26,3 @@ size_flags_vertical = 3
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-paragraph_spacing = null
-line_spacing = null
-syntax_highlighters = null

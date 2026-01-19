@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://c18vt2dx5s86b"]
 
-[ext_resource type="Script" uid="uid://bv18c6git5fp6" path="res://addons/do_zero_ao_gd_script/PainelEditor/painel_editor.gd" id="1_pqrcs"]
-[ext_resource type="Script" uid="uid://cd3cgpudec55o" path="res://addons/do_zero_ao_gd_script/Markdown/MarkdownPreProcessador.gd" id="2_33yy4"]
-[ext_resource type="PackedScene" uid="uid://jttguxauudsl" path="res://addons/do_zero_ao_gd_script/PainelEditor/ListaDeExercicios/listas_de_exercicios.tscn" id="2_44xd1"]
-[ext_resource type="PackedScene" uid="uid://dfkg1dp0vyqqi" path="res://addons/do_zero_ao_gd_script/PainelEditor/PainelTestRunner/PainelTestRunner.tscn" id="3_wlh6l"]
-[ext_resource type="PackedScene" uid="uid://bktgv1b0gfrwb" path="res://addons/do_zero_ao_gd_script/PainelEditor/Ebook/Ebook.tscn" id="4_44xd1"]
+[ext_resource type="Script" uid="uid://bv18c6git5fp6" path="res://addons/from_zero_to_godot/PainelEditor/painel_editor.gd" id="1_pqrcs"]
+[ext_resource type="Script" uid="uid://cd3cgpudec55o" path="res://addons/from_zero_to_godot/Markdown/MarkdownPreProcessador.gd" id="2_33yy4"]
+[ext_resource type="PackedScene" uid="uid://jttguxauudsl" path="res://addons/from_zero_to_godot/PainelEditor/ListaDeExercicios/listas_de_exercicios.tscn" id="2_44xd1"]
+[ext_resource type="PackedScene" uid="uid://dfkg1dp0vyqqi" path="res://addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn" id="3_wlh6l"]
+[ext_resource type="PackedScene" uid="uid://bktgv1b0gfrwb" path="res://addons/from_zero_to_godot/PainelEditor/Ebook/Ebook.tscn" id="4_44xd1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0hrhp"]
 content_margin_left = 15.0

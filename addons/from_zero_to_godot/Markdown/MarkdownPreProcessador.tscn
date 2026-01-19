@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cj3stl1gx6rq8"]
 
-[ext_resource type="Script" uid="uid://cd3cgpudec55o" path="res://addons/do_zero_ao_gd_script/Markdown/MarkdownPreProcessador.gd" id="1_0jerb"]
+[ext_resource type="Script" uid="uid://cd3cgpudec55o" path="res://addons/from_zero_to_godot/Markdown/MarkdownPreProcessador.gd" id="1_0jerb"]
 
 [node name="MarkdownPreProcessador" type="Control"]
 layout_mode = 3
