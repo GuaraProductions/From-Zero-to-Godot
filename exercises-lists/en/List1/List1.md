@@ -110,25 +110,20 @@ Calculate and display:
 ---
 ---
 
-## **5️⃣ Question 5 - Age Group Classifier**
+## **5️⃣ Question 5 - Leap Year Verification**
 [open_scene](Exercise5/Exercise5.tscn) 
 [open_test](List1/Exercise5)
 
-Complete a function that receives a person's age and returns a classification:
+Complete a function that receives a year from the user and checks whether it is a leap year or not.  
+For a year to be a leap year, it must:
 
-- `"Child"` for ages 0 to 12
-- `"Teenager"` for ages 13 to 17
-- `"Adult"` for ages 18 to 59
-- `"Senior"` for ages 60 and above
+- Be divisible by 4
+- Not be divisible by 100, unless it is also divisible by 400
 
 ### Example
 
-- Input: 5 → Expected output: Child
-- Input: 15 → Expected output: Teenager
-- Input: 30 → Expected output: Adult
-- Input: 65 → Expected output: Senior
-
-<details> <summary>Hint 1</b></font></summary>Use conditional structures to check which range the age falls into. </details>
-
-
-<details> <summary>Hint 2</b></font></summary>Check the conditions in order from smallest to largest to avoid logic errors. </details>
+- Input: 2024 → Expected Output: It is a leap year
+- Input: 1900 → Expected Output: It is not a leap year
+- Input: 2000 → Expected Output: It is a leap year
+    
+<details> <summary>Hint 1</summary>Use the `%` operator to check if a number is divisible by another.</details>
