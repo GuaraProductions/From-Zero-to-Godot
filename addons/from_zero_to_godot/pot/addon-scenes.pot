@@ -1,0 +1,561 @@
+# LANGUAGE translation for ExerciciosDeProgramacao for the following files:
+# res://addons/from_zero_to_godot/PainelEditor/PainelEditor.tscn
+# res://addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+# res://addons/from_zero_to_godot/PainelEditor/ListaDeExercicios/listas_de_exercicios.tscn
+# res://addons/from_zero_to_godot/PainelEditor/Ebook/Ebook.tscn
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: ExerciciosDeProgramacao\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+#: addons/from_zero_to_godot/PainelEditor/PainelEditor.tscn
+msgid "Seja Bem Vindo"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelEditor.tscn
+msgid "Ebook"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelEditor.tscn
+msgid "Listas De Exercicios"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelEditor.tscn
+msgid "Testador de Exercicios"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Digite qual questão você quer testar"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista1 - Exercicio1"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista1 - Exercicio2"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista1 - Exercicio3"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista1 - Exercicio4"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista1 - Exercicio5"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista2 - Exercicio1"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista2 - Exercicio2"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista2 - Exercicio3"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista2 - Exercicio4"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista2 - Exercicio5"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista3 - Exercicio1"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista3 - Exercicio2"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista3 - Exercicio3"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista3 - Exercicio4"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista3 - Exercicio5"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista4 - Exercicio1"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Lista4 - Exercicio2"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Escolha o script"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Resultado dos Testes"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
+msgid "Executar testes"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/ListaDeExercicios/listas_de_exercicios.tscn
+msgid "Escolha uma lista"
+msgstr ""
+
+#: addons/from_zero_to_godot/PainelEditor/Ebook/Ebook.tscn
+msgid "Escolha um ebook"
+msgstr ""
+
+msgid "All Recognized"
+msgstr ""
+
+msgid "New Code Region"
+msgstr ""
+
+msgid "Linear"
+msgstr ""
+
+msgid "Pick a color from the screen."
+msgstr ""
+
+msgid "Pick a color from the application window."
+msgstr ""
+
+msgid "Alpha"
+msgstr ""
+
+msgid "Intensity"
+msgstr ""
+
+msgid "Expr"
+msgstr ""
+
+msgid "Hex"
+msgstr ""
+
+msgid "Enter a hex code (\"#ff0000\") or named color (\"red\")."
+msgstr ""
+
+msgid "Load Color Palette"
+msgstr ""
+
+msgid "Save Color Palette"
+msgstr ""
+
+msgid "The changes to this palette have not been saved to a file."
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Save the current color palette to reuse later."
+msgstr ""
+
+msgid "Save As"
+msgstr ""
+
+msgid "Save the current color palette as a new to reuse later."
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Load existing color palette."
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
+msgid "Clear the currently loaded color palettes in the picker."
+msgstr ""
+
+msgid "Pick"
+msgstr ""
+
+msgid "Select a picker shape."
+msgstr ""
+
+msgid "Select a picker mode."
+msgstr ""
+
+msgid "Colorized Sliders"
+msgstr ""
+
+msgid "Hexadecimal Values"
+msgstr ""
+
+msgid "Hex code or named color"
+msgstr ""
+
+msgid "Swatches"
+msgstr ""
+
+msgid "Show all options available."
+msgstr ""
+
+msgid "Recent Colors"
+msgstr ""
+
+msgid "Add current color as a preset."
+msgstr ""
+
+msgid "Screen Recording permission missing!"
+msgstr ""
+
+msgid ""
+"Screen Recording permission is required to pick colors from the other application windows.\n"
+"Click here to request access..."
+msgstr ""
+
+msgid ""
+"Color: %s\n"
+"LMB: Apply color"
+msgstr ""
+
+msgid ""
+"Color: %s\n"
+"LMB: Apply color\n"
+"RMB: Remove preset"
+msgstr ""
+
+msgid "Color: %s"
+msgstr ""
+
+msgid "HSV Rectangle"
+msgstr ""
+
+msgid "OK HS Rectangle"
+msgstr ""
+
+msgid "OK HL Rectangle"
+msgstr ""
+
+msgid "HSV Wheel"
+msgstr ""
+
+msgid "VHS Circle"
+msgstr ""
+
+msgid "OKHSL Circle"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "OK"
+msgstr ""
+
+msgid "Alert!"
+msgstr ""
+
+msgid "Please Confirm..."
+msgstr ""
+
+msgid "Network"
+msgstr ""
+
+msgid ""
+"File \"%s\" already exists.\n"
+"Do you want to overwrite it?"
+msgstr ""
+
+msgid "Open"
+msgstr ""
+
+msgid "Select Current Folder"
+msgstr ""
+
+msgid "Select This Folder"
+msgstr ""
+
+msgid "Open in File Manager"
+msgstr ""
+
+msgid "Show Package Contents"
+msgstr ""
+
+msgid "You don't have permission to access contents of this folder."
+msgstr ""
+
+msgid "All Files"
+msgstr ""
+
+msgid "Open a File"
+msgstr ""
+
+msgid "Open File(s)"
+msgstr ""
+
+msgid "Open a Directory"
+msgstr ""
+
+msgid "Open a File or Directory"
+msgstr ""
+
+msgid "Save a File"
+msgstr ""
+
+msgid "Go to previous folder."
+msgstr ""
+
+msgid "Go to next folder."
+msgstr ""
+
+msgid "Go to parent folder."
+msgstr ""
+
+msgid "Path:"
+msgstr ""
+
+msgid "Drive"
+msgstr ""
+
+msgid "Refresh files."
+msgstr ""
+
+msgid "(Un)favorite current folder."
+msgstr ""
+
+msgid "Create a new folder."
+msgstr ""
+
+msgid "Favorites:"
+msgstr ""
+
+msgid "Recent:"
+msgstr ""
+
+msgid "Directories & Files:"
+msgstr ""
+
+msgid "Toggle the visibility of hidden files."
+msgstr ""
+
+msgid "View items as a grid of thumbnails."
+msgstr ""
+
+msgid "View items as a list."
+msgstr ""
+
+msgid "Toggle the visibility of the filter for file names."
+msgstr ""
+
+msgid "Sort files"
+msgstr ""
+
+msgid "Sort by Name (Ascending)"
+msgstr ""
+
+msgid "Sort by Name (Descending)"
+msgstr ""
+
+msgid "Sort by Type (Ascending)"
+msgstr ""
+
+msgid "Sort by Type (Descending)"
+msgstr ""
+
+msgid "Sort by Modified Time (Newest First)"
+msgstr ""
+
+msgid "Sort by Modified Time (Oldest First)"
+msgstr ""
+
+msgid "Filter:"
+msgstr ""
+
+msgid "Filename Filter:"
+msgstr ""
+
+msgid "File:"
+msgstr ""
+
+msgid "Create Folder"
+msgstr ""
+
+msgid "Name:"
+msgstr ""
+
+msgid "Could not create folder."
+msgstr ""
+
+msgid "Invalid extension, or empty filename."
+msgstr ""
+
+msgid "connection to %s (%s) port %d"
+msgstr ""
+
+msgid "connection from %s (%s) port %d"
+msgstr ""
+
+msgid "Zoom Out"
+msgstr ""
+
+msgid "Zoom Reset"
+msgstr ""
+
+msgid "Zoom In"
+msgstr ""
+
+msgid "Toggle the visual grid."
+msgstr ""
+
+msgid "Toggle snapping to the grid."
+msgstr ""
+
+msgid "Change the snapping distance."
+msgstr ""
+
+msgid "Toggle the graph minimap."
+msgstr ""
+
+msgid "Automatically arrange selected nodes."
+msgstr ""
+
+msgid "graph node %s (%s)"
+msgstr ""
+
+msgid "slot %d of %d"
+msgstr ""
+
+msgid "input port, type: %s"
+msgstr ""
+
+msgid "input port, type: %d"
+msgstr ""
+
+msgid "no connections"
+msgstr ""
+
+msgid "output port, type: %s"
+msgstr ""
+
+msgid "output port, type: %d"
+msgstr ""
+
+msgid "currently selecting target port"
+msgstr ""
+
+msgid "has %d slots"
+msgstr ""
+
+msgid "Edit Input Port Connection"
+msgstr ""
+
+msgid "Edit Output Port Connection"
+msgstr ""
+
+msgid "Follow Input Port Connection"
+msgstr ""
+
+msgid "Follow Output Port Connection"
+msgstr ""
+
+msgid ", in slot %d of graph node %s (%s)"
+msgstr ""
+
+msgid "Same as Layout Direction"
+msgstr ""
+
+msgid "Auto-Detect Direction"
+msgstr ""
+
+msgid "Left-to-Right"
+msgstr ""
+
+msgid "Right-to-Left"
+msgstr ""
+
+msgid "Left-to-Right Mark (LRM)"
+msgstr ""
+
+msgid "Right-to-Left Mark (RLM)"
+msgstr ""
+
+msgid "Start of Left-to-Right Embedding (LRE)"
+msgstr ""
+
+msgid "Start of Right-to-Left Embedding (RLE)"
+msgstr ""
+
+msgid "Start of Left-to-Right Override (LRO)"
+msgstr ""
+
+msgid "Start of Right-to-Left Override (RLO)"
+msgstr ""
+
+msgid "Pop Direction Formatting (PDF)"
+msgstr ""
+
+msgid "Arabic Letter Mark (ALM)"
+msgstr ""
+
+msgid "Left-to-Right Isolate (LRI)"
+msgstr ""
+
+msgid "Right-to-Left Isolate (RLI)"
+msgstr ""
+
+msgid "First Strong Isolate (FSI)"
+msgstr ""
+
+msgid "Pop Direction Isolate (PDI)"
+msgstr ""
+
+msgid "Zero-Width Joiner (ZWJ)"
+msgstr ""
+
+msgid "Zero-Width Non-Joiner (ZWNJ)"
+msgstr ""
+
+msgid "Word Joiner (WJ)"
+msgstr ""
+
+msgid "Soft Hyphen (SHY)"
+msgstr ""
+
+msgid "Emoji & Symbols"
+msgstr ""
+
+msgid "Cut"
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
+msgid "Paste"
+msgstr ""
+
+msgid "Select All"
+msgstr ""
+
+msgid "Undo"
+msgstr ""
+
+msgid "Redo"
+msgstr ""
+
+msgid "Text Writing Direction"
+msgstr ""
+
+msgid "Display Control Characters"
+msgstr ""
+
+msgid "Insert Control Character"
+msgstr ""

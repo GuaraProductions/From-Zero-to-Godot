@@ -1,0 +1,9 @@
+# Programming Logic
+
+Programming logic is what really makes the magic happen, being the heart of any development project. While syntax is just the way of writing language commands, logic is the ability to organize these instructions intelligently to solve a real problem within your game. Imagine that you know how to speak English and Portuguese (the syntax), but need to decide how to tell an exciting story to a friend; the way you organize the events so they make sense and achieve the goal is what we call logic.
+
+For a programmer, logic works as the act of breaking down a common action into tiny tasks that the computer can understand. If you want your character in the game to pick up an item, programming logic involves translating this desire into technical steps: first check if the player is near the item, then detect if the action button was pressed, and only then, move the item to inventory and update the points on screen. It's as if you were "teaching" the computer to think, using the resources that the language offers to build the path to the final result.
+
+Breaking down tasks in this way is what we call thinking computationally. You take an objective, understand the starting point and end point of that task, and transform it into a list of small checks and commands that the machine can process one by one.
+
+The secret to becoming a good programmer isn't memorizing all the commands of a language, since the writing is usually very similar between them and you can always consult a manual. The difference lies in training your brain to know how to use these tools to create solutions. That's why understanding logic is the most important step: once you master the reasoning behind the code, you can apply this knowledge in GDScript for Godot or in any other language you decide to learn in the future.

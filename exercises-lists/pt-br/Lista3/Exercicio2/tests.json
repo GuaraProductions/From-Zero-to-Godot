@@ -1,0 +1,19 @@
+{
+  "tipo": "classe",
+  "class": "Animal",
+  "timeout": 1000,
+  "methods": [
+    {
+      "name": "falar",
+      "comparison": "exact",
+      "cases": [
+        {
+          "name": "Cachorro fala 'Au au!'",
+          "constructor_params": [],
+          "input": [],
+          "expected_output": "Au au!"
+        }
+      ]
+    }
+  ]
+}

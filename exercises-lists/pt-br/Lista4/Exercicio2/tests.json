@@ -1,0 +1,73 @@
+{
+  "tipo": "classe",
+  "class": "Inventario",
+  "timeout": 1000,
+  "methods": [
+    {
+      "name": "vazio",
+      "comparison": "exact",
+      "cases": [
+        {
+          "name": "Inventário vazio retorna true",
+          "constructor_params": [],
+          "input": [],
+          "expected_output": true
+        }
+      ]
+    },
+    {
+      "name": "adicionar_item",
+      "comparison": "exact",
+      "cases": [
+        {
+          "name": "Adicionar 5 poções",
+          "constructor_params": [],
+          "input": ["Poção", 5],
+          "expected_output": null
+        },
+        {
+          "name": "Adicionar 10 espadas",
+          "constructor_params": [],
+          "input": ["Espada", 10],
+          "expected_output": null
+        }
+      ]
+    },
+    {
+      "name": "remover_item",
+      "comparison": "exact",
+      "cases": [
+        {
+          "name": "Remover 2 poções",
+          "constructor_params": [],
+          "input": ["Poção", 2],
+          "expected_output": null
+        }
+      ]
+    },
+    {
+      "name": "get_item_quantidade",
+      "comparison": "exact",
+      "cases": [
+        {
+          "name": "Obter quantidade de item inexistente",
+          "constructor_params": [],
+          "input": [999],
+          "expected_output": -1
+        }
+      ]
+    },
+    {
+      "name": "get_item_nome",
+      "comparison": "exact",
+      "cases": [
+        {
+          "name": "Obter nome de item inexistente",
+          "constructor_params": [],
+          "input": [999],
+          "expected_output": ""
+        }
+      ]
+    }
+  ]
+}

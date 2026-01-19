@@ -1,0 +1,33 @@
+{
+	"function": "calcular_montante",
+	"timeout": 5,
+	"comparison": "approximate",
+	"tolerance": 0.01,
+	"cases": [
+		{
+			"name": "Teste 1: Capital 1000, taxa 5%, 12 meses",
+			"input": [1000, 5, 12],
+			"expected_output": 1600.0
+		},
+		{
+			"name": "Teste 2: Capital 500, taxa 10%, 6 meses",
+			"input": [500, 10, 6],
+			"expected_output": 800.0
+		},
+		{
+			"name": "Teste 3: Capital 2000, taxa 2.5%, 10 meses",
+			"input": [2000, 2.5, 10],
+			"expected_output": 2500.0
+		},
+		{
+			"name": "Teste 4: Capital baixo",
+			"input": [100, 15, 24],
+			"expected_output": 460.0
+		},
+		{
+			"name": "Teste 5: Taxa decimal",
+			"input": [1500, 3.75, 8],
+			"expected_output": 1950.0
+		}
+	]
+}

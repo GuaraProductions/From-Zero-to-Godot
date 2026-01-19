@@ -1,0 +1,113 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfkg1dp0vyqqi"]
+
+[ext_resource type="Script" uid="uid://nv1wqumyv1y1" path="res://addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd" id="1_ol3ft"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ol3ft"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.09803922, 0.11372549, 0.13725491, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6vt5x"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.09803922, 0.11372549, 0.13725491, 1)
+
+[node name="Teste" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ol3ft")
+metadata/_tab_index = 2
+
+[node name="_" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="__" type="VBoxContainer" parent="_"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AcharQuestao" type="LineEdit" parent="_/__"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Digite qual questão você quer testar"
+
+[node name="ListaDeExercicios" type="ItemList" parent="_/__"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+item_count = 17
+item_0/text = "Lista1 - Exercicio1"
+item_1/text = "Lista1 - Exercicio2"
+item_2/text = "Lista1 - Exercicio3"
+item_3/text = "Lista1 - Exercicio4"
+item_4/text = "Lista1 - Exercicio5"
+item_5/text = "Lista2 - Exercicio1"
+item_6/text = "Lista2 - Exercicio2"
+item_7/text = "Lista2 - Exercicio3"
+item_8/text = "Lista2 - Exercicio4"
+item_9/text = "Lista2 - Exercicio5"
+item_10/text = "Lista3 - Exercicio1"
+item_11/text = "Lista3 - Exercicio2"
+item_12/text = "Lista3 - Exercicio3"
+item_13/text = "Lista3 - Exercicio4"
+item_14/text = "Lista3 - Exercicio5"
+item_15/text = "Lista4 - Exercicio1"
+item_16/text = "Lista4 - Exercicio2"
+
+[node name="_" type="VBoxContainer" parent="_"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="_" type="HBoxContainer" parent="_/_"]
+layout_mode = 2
+
+[node name="EscolhaExercicioButton" type="Button" parent="_/_/_"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Escolha o script"
+
+[node name="ExercicioEscolhidoLineEdit" type="LineEdit" parent="_/_/_"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DetalhesExercicioAtual" type="RichTextLabel" parent="_/_"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_ol3ft")
+bbcode_enabled = true
+
+[node name="__" type="HBoxContainer" parent="_/_"]
+layout_mode = 2
+
+[node name="ResultadosTestes" type="Label" parent="_/_/__"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Resultado dos Testes"
+
+[node name="ExecutarTesteAtual" type="Button" parent="_/_/__"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Executar testes"
+
+[node name="ResultadoTeste" type="RichTextLabel" parent="_/_"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_6vt5x")
+bbcode_enabled = true
+
+[node name="ProgressoTestes" type="ProgressBar" parent="_/_"]
+unique_name_in_owner = true
+layout_mode = 2

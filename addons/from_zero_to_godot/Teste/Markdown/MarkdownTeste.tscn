@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://ciingyjvu2ar6"]
+
+[ext_resource type="PackedScene" uid="uid://cj3stl1gx6rq8" path="res://addons/from_zero_to_godot/Markdown/MarkdownPreProcessador.tscn" id="1_8ufuj"]
+[ext_resource type="Script" uid="uid://cvor46ks44cvn" path="res://addons/from_zero_to_godot/Teste/Markdown/MarkdownTeste.gd" id="1_gobie"]
+
+[node name="MarkdownTeste" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gobie")
+
+[node name="MarkdownPreProcessador" parent="." instance=ExtResource("1_8ufuj")]
+layout_mode = 1
+paragraph_spacing = 15
+line_spacing = 5
+debug_mode = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

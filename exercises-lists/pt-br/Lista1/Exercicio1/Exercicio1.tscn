@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://pe5allervble"]
+
+[ext_resource type="Script" uid="uid://wrkskde5gp47" path="res://exercises-lists/pt-br/Lista1/Exercicio1/Exercicio1.gd" id="1_e0lnp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_07jpv"]
+font_size = 38
+
+[sub_resource type="LabelSettings" id="LabelSettings_e0lnp"]
+font_size = 18
+
+[node name="Exercicio1" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+script = ExtResource("1_e0lnp")
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Titulo" type="Label" parent="Center/VBox"]
+layout_mode = 2
+text = "Conversor:
+Celsius para Fahrenheit"
+label_settings = SubResource("LabelSettings_07jpv")
+horizontal_alignment = 1
+
+[node name="HBox" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Entrada" type="LineEdit" parent="Center/VBox/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+
+[node name="Converter" type="Button" parent="Center/VBox/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Converter"
+
+[node name="Resultado" type="Label" parent="Center/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+label_settings = SubResource("LabelSettings_e0lnp")
+vertical_alignment = 1
+
+[connection signal="pressed" from="Center/VBox/HBox/Converter" to="." method="_on_converter_pressed"]

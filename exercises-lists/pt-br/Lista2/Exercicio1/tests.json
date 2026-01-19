@@ -1,0 +1,33 @@
+{
+  "tipo": "funcao",
+  "function": "somar_ate_n",
+  "timeout": 1000,
+  "comparison": "exact",
+  "cases": [
+    {
+      "name": "Soma até 5",
+      "input": [5],
+      "expected_output": 15
+    },
+    {
+      "name": "Soma até 1",
+      "input": [1],
+      "expected_output": 1
+    },
+    {
+      "name": "Soma até 10",
+      "input": [10],
+      "expected_output": 55
+    },
+    {
+      "name": "Soma até 100",
+      "input": [100],
+      "expected_output": 5050
+    },
+    {
+      "name": "Soma até 20",
+      "input": [20],
+      "expected_output": 210
+    }
+  ]
+}

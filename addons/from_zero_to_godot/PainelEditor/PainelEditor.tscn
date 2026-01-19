@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://c18vt2dx5s86b"]
+
+[ext_resource type="Script" uid="uid://bv18c6git5fp6" path="res://addons/from_zero_to_godot/PainelEditor/painel_editor.gd" id="1_pqrcs"]
+[ext_resource type="Script" uid="uid://cd3cgpudec55o" path="res://addons/from_zero_to_godot/Markdown/MarkdownPreProcessador.gd" id="2_33yy4"]
+[ext_resource type="PackedScene" uid="uid://jttguxauudsl" path="res://addons/from_zero_to_godot/PainelEditor/ListaDeExercicios/listas_de_exercicios.tscn" id="2_44xd1"]
+[ext_resource type="PackedScene" uid="uid://dfkg1dp0vyqqi" path="res://addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn" id="3_wlh6l"]
+[ext_resource type="PackedScene" uid="uid://bktgv1b0gfrwb" path="res://addons/from_zero_to_godot/PainelEditor/Ebook/Ebook.tscn" id="4_44xd1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0hrhp"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.15686275, 0.18039216, 0.22352941, 1)
+
+[node name="PainelEditor" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_0hrhp")
+script = ExtResource("1_pqrcs")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 2
+current_tab = 0
+
+[node name="Seja Bem Vindo" type="VBoxContainer" parent="TabContainer"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+metadata/_tab_index = 0
+metadata/_tab_name = "Welcome"
+
+[node name="TelaInicial" type="Control" parent="TabContainer/Seja Bem Vindo"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_33yy4")
+metadata/_custom_type_script = "uid://cd3cgpudec55o"
+
+[node name="Ebook" parent="TabContainer" instance=ExtResource("4_44xd1")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Listas De Exercicios" parent="TabContainer" instance=ExtResource("2_44xd1")]
+unique_name_in_owner = true
+layout_mode = 2
+metadata/_tab_index = 2
+metadata/_tab_name = "Exercise Lists"
+
+[node name="Testador de Exercicios" parent="TabContainer" instance=ExtResource("3_wlh6l")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+metadata/_tab_name = "Exercise Tester"

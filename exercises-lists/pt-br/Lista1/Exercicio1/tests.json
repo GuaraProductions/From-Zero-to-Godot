@@ -1,0 +1,33 @@
+{
+	"function": "celsius_para_farenheit",
+	"timeout": 5,
+	"comparison": "approximate",
+	"tolerance": 0.01,
+	"cases": [
+		{
+			"name": "Teste 1: Zero graus Celsius",
+			"input": [0],
+			"expected_output": 32.0
+		},
+		{
+			"name": "Teste 2: Ponto de ebulição da água",
+			"input": [100],
+			"expected_output": 212.0
+		},
+		{
+			"name": "Teste 3: Temperatura negativa",
+			"input": [-40],
+			"expected_output": -40.0
+		},
+		{
+			"name": "Teste 4: Temperatura ambiente",
+			"input": [25],
+			"expected_output": 77.0
+		},
+		{
+			"name": "Teste 5: Corpo humano",
+			"input": [37],
+			"expected_output": 98.6
+		}
+	]
+}

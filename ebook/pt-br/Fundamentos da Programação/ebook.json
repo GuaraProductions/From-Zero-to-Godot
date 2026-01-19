@@ -1,0 +1,8 @@
+{
+	"name": "Fundamentos da Programação",
+	"description": "Aprenda os conceitos fundamentais de programação com GDScript",
+	"introduction": "Introducao.md",
+	"introduction_label": "📖 Introdução",
+	"conclusion": "Conclusao.md",
+	"conclusion_label": "🎓 Conclusão"
+}

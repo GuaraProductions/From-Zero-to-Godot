@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cj3stl1gx6rq8"]
+
+[ext_resource type="Script" uid="uid://cd3cgpudec55o" path="res://addons/from_zero_to_godot/Markdown/MarkdownPreProcessador.gd" id="1_0jerb"]
+
+[node name="MarkdownPreProcessador" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0jerb")

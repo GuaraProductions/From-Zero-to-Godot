@@ -1,0 +1,55 @@
+{
+  "tipo": "classe",
+  "class": "Retangulo",
+  "timeout": 1000,
+  "methods": [
+	{
+	  "name": "calcular_area",
+	  "comparison": "exact",
+	  "cases": [
+		{
+		  "name": "Área: base=10, altura=5",
+		  "constructor_params": [10, 5],
+		  "input": [],
+		  "expected_output": 50
+		},
+		{
+		  "name": "Área: base=7, altura=3",
+		  "constructor_params": [7, 3],
+		  "input": [],
+		  "expected_output": 21
+		},
+		{
+		  "name": "Área: base=20, altura=15",
+		  "constructor_params": [20, 15],
+		  "input": [],
+		  "expected_output": 300
+		}
+	  ]
+	},
+	{
+	  "name": "calcular_perimetro",
+	  "comparison": "exact",
+	  "cases": [
+		{
+		  "name": "Perímetro: base=10, altura=5",
+		  "constructor_params": [10, 5],
+		  "input": [],
+		  "expected_output": 30
+		},
+		{
+		  "name": "Perímetro: base=7, altura=3",
+		  "constructor_params": [7, 3],
+		  "input": [],
+		  "expected_output": 20
+		},
+		{
+		  "name": "Perímetro: base=20, altura=15",
+		  "constructor_params": [20, 15],
+		  "input": [],
+		  "expected_output": 70
+		}
+	  ]
+	}
+  ]
+}

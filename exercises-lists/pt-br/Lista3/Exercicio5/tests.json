@@ -1,0 +1,44 @@
+{
+  "tipo": "classe",
+  "class": "Forma",
+  "timeout": 1000,
+  "methods": [
+    {
+      "name": "area",
+      "comparison": "approximate",
+      "tolerance": 0.1,
+      "cases": [
+        {
+          "name": "Círculo com raio 5",
+          "constructor_params": [],
+          "input": [],
+          "expected_output": 78.54
+        },
+        {
+          "name": "Quadrado com lado 4",
+          "constructor_params": [],
+          "input": [],
+          "expected_output": 16
+        },
+        {
+          "name": "Triângulo com base 6 e altura 3",
+          "constructor_params": [],
+          "input": [],
+          "expected_output": 9
+        },
+        {
+          "name": "Círculo com raio 10",
+          "constructor_params": [],
+          "input": [],
+          "expected_output": 314.16
+        },
+        {
+          "name": "Quadrado com lado 7",
+          "constructor_params": [],
+          "input": [],
+          "expected_output": 49
+        }
+      ]
+    }
+  ]
+}
