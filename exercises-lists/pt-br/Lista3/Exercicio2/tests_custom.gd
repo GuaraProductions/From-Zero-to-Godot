@@ -1,6 +1,6 @@
 extends Node
 
-func get_casos_teste() -> Array[Dictionary]:
+func get_test_cases() -> Array[Dictionary]:
 	return [
 		{
 			"class": "Cachorro",

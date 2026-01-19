@@ -1,6 +1,6 @@
 extends Node
 
-func get_casos_teste() -> Array[Dictionary]:
+func get_test_cases() -> Array[Dictionary]:
 	return [
 		{
 			"class": "PiggyBank",
@@ -8,7 +8,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": ["Maria", 100.0],
 			"input": [],
-			"validate": "validar_construtor"
+			"validate": "validate_constructor"
 		},
 		{
 			"class": "PiggyBank",
@@ -16,7 +16,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": ["João", 50.0],
 			"input": [],
-			"validate": "validar_add"
+			"validate": "validate_add"
 		},
 		{
 			"class": "PiggyBank",
@@ -24,7 +24,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": ["Ana", 100.0],
 			"input": [],
-			"validate": "validar_withdraw_sucesso"
+			"validate": "validate_withdraw_sucesso"
 		},
 		{
 			"class": "PiggyBank",
@@ -32,7 +32,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": ["Pedro", 50.0],
 			"input": [],
-			"validate": "validar_withdraw_falha"
+			"validate": "validate_withdraw_falha"
 		},
 		{
 			"class": "PiggyBank",
@@ -40,7 +40,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": ["Carlos", 75.0],
 			"input": [],
-			"validate": "validar_get_balance"
+			"validate": "validate_get_balance"
 		},
 		{
 			"class": "PiggyBank",
@@ -48,7 +48,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": ["Lucia", 0.0],
 			"input": [],
-			"validate": "validar_set_balance"
+			"validate": "validate_set_balance"
 		},
 		{
 			"class": "PiggyBank",
@@ -56,7 +56,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": ["Roberto", 0.0],
 			"input": [],
-			"validate": "validar_get_nome"
+			"validate": "validate_get_nome"
 		},
 		{
 			"class": "PiggyBank",
@@ -64,7 +64,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": ["Antônio", 0.0],
 			"input": [],
-			"validate": "validar_set_nome"
+			"validate": "validate_set_nome"
 		},
 		{
 			"class": "PiggyBank",
@@ -72,7 +72,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": ["Usuario", 0.0],
 			"input": [],
-			"validate": "validar_encapsulamento"
+			"validate": "validate_encapsulamento"
 		},
 		{
 			"class": "PiggyBank",
@@ -80,13 +80,13 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": ["Usuario", 0.0],
 			"input": [],
-			"validate": "validar_operacoes_multiplas"
+			"validate": "validate_operacoes_multiplas"
 		}
 	]
 
 # ===== FUNÇÕES DE VALIDAÇÃO =====
 
-func validar_construtor(resultado, instancia) -> Dictionary:
+func validate_constructor(resultado, instancia) -> Dictionary:
 	var nome = instancia.get_nome()
 	var saldo = instancia.get_balance()
 	
@@ -108,7 +108,7 @@ func validar_construtor(resultado, instancia) -> Dictionary:
 	
 	return {"success": true, "error": ""}
 
-func validar_add(resultado, instancia) -> Dictionary:
+func validate_add(resultado, instancia) -> Dictionary:
 	if not instancia.has_method("add"):
 		return {
 			"success": false,
@@ -132,7 +132,7 @@ func validar_add(resultado, instancia) -> Dictionary:
 	
 	return {"success": true, "error": ""}
 
-func validar_withdraw_sucesso(resultado, instancia) -> Dictionary:
+func validate_withdraw_sucesso(resultado, instancia) -> Dictionary:
 	if not instancia.has_method("withdraw"):
 		return {
 			"success": false,
@@ -173,7 +173,7 @@ func validar_withdraw_sucesso(resultado, instancia) -> Dictionary:
 	
 	return {"success": true, "error": ""}
 
-func validar_withdraw_falha(resultado, instancia) -> Dictionary:
+func validate_withdraw_falha(resultado, instancia) -> Dictionary:
 	var saldo_inicial = instancia.get_balance()
 	var sucesso = instancia.withdraw(100.0)  # Tenta withdraw mais que tem
 	
@@ -197,7 +197,7 @@ func validar_withdraw_falha(resultado, instancia) -> Dictionary:
 	
 	return {"success": true, "error": ""}
 
-func validar_get_balance(resultado, instancia) -> Dictionary:
+func validate_get_balance(resultado, instancia) -> Dictionary:
 	if not instancia.has_method("get_balance"):
 		return {
 			"success": false,
@@ -226,7 +226,7 @@ func validar_get_balance(resultado, instancia) -> Dictionary:
 	
 	return {"success": true, "error": ""}
 
-func validar_set_balance(resultado, instancia) -> Dictionary:
+func validate_set_balance(resultado, instancia) -> Dictionary:
 	if not instancia.has_method("set_balance"):
 		return {
 			"success": false,
@@ -248,7 +248,7 @@ func validar_set_balance(resultado, instancia) -> Dictionary:
 	
 	return {"success": true, "error": ""}
 
-func validar_get_nome(resultado, instancia) -> Dictionary:
+func validate_get_nome(resultado, instancia) -> Dictionary:
 	if not instancia.has_method("get_nome"):
 		return {
 			"success": false,
@@ -262,7 +262,7 @@ func validar_get_nome(resultado, instancia) -> Dictionary:
 	if not nome is String:
 		return {
 			"success": false,
-			"error": "get_nome() deve retornar String",
+			"error": "get_nome() must return a String",
 			"expected_output": "String",
 			"actual_output": type_string(typeof(nome))
 		}
@@ -277,7 +277,7 @@ func validar_get_nome(resultado, instancia) -> Dictionary:
 	
 	return {"success": true, "error": ""}
 
-func validar_set_nome(resultado, instancia) -> Dictionary:
+func validate_set_nome(resultado, instancia) -> Dictionary:
 	if not instancia.has_method("set_nome"):
 		return {
 			"success": false,
@@ -299,7 +299,7 @@ func validar_set_nome(resultado, instancia) -> Dictionary:
 	
 	return {"success": true, "error": ""}
 
-func validar_encapsulamento(resultado, instancia) -> Dictionary:
+func validate_encapsulamento(resultado, instancia) -> Dictionary:
 	# Verifica se saldo é privado (não pode ser acessado diretamente)
 	# Nota: GDScript permite acesso a propriedades públicas, mas a convenção
 	# é usar _ para privado e métodos get/set
@@ -315,7 +315,7 @@ func validar_encapsulamento(resultado, instancia) -> Dictionary:
 	
 	return {"success": true, "error": ""}
 
-func validar_operacoes_multiplas(resultado, instancia) -> Dictionary:
+func validate_operacoes_multiplas(resultado, instancia) -> Dictionary:
 	# Adiciona 50
 	instancia.add(50.0)
 	var saldo1 = instancia.get_balance()

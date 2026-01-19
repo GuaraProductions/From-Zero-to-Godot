@@ -1,6 +1,6 @@
 extends Node
 
-func get_casos_teste() -> Array[Dictionary]:
+func get_test_cases() -> Array[Dictionary]:
 	return [
 		{
 			"class": "Engine",
@@ -8,7 +8,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": [100],
 			"input": [],
-			"validate": "validar_motor_construtor"
+			"validate": "validate_motor_construtor"
 		},
 		{
 			"class": "Engine",
@@ -16,7 +16,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": [150],
 			"input": [],
-			"validate": "validar_motor_ligar"
+			"validate": "validate_motor_ligar"
 		},
 		{
 			"class": "Engine",
@@ -24,7 +24,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": [200],
 			"input": [],
-			"validate": "validar_motor_get_power"
+			"validate": "validate_motor_get_power"
 		},
 		{
 			"class": "Car",
@@ -32,7 +32,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": [120],
 			"input": [],
-			"validate": "validar_carro_tem_motor"
+			"validate": "validate_carro_tem_motor"
 		},
 		{
 			"class": "Car",
@@ -40,15 +40,15 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": [100],
 			"input": [],
-			"validate": "validar_carro_ligar"
+			"validate": "validate_carro_ligar"
 		},
 		{
 			"class": "Car",
-			"name": "🔑 Car.start_car() liga o motor interno",
+			"name": "🔑 Car.start_car() starts the engine interno",
 			"method": "",
 			"constructor_params": [150],
 			"input": [],
-			"validate": "validar_carro_liga_motor"
+			"validate": "validate_carro_liga_motor"
 		},
 		{
 			"class": "Car",
@@ -56,13 +56,13 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": [180],
 			"input": [],
-			"validate": "validar_carro_acessar_potencia"
+			"validate": "validate_carro_acessar_potencia"
 		}
 	]
 
 # ===== FUNÇÕES DE VALIDAÇÃO =====
 
-func validar_motor_construtor(resultado, instancia) -> Dictionary:
+func validate_motor_construtor(resultado, instancia) -> Dictionary:
 	if not "potencia" in instancia:
 		return {
 			"success": false,
@@ -81,7 +81,7 @@ func validar_motor_construtor(resultado, instancia) -> Dictionary:
 	
 	return {"success": true, "error": ""}
 
-func validar_motor_ligar(resultado, instancia) -> Dictionary:
+func validate_motor_ligar(resultado, instancia) -> Dictionary:
 	if not instancia.has_method("ligar"):
 		return {
 			"success": false,
@@ -121,7 +121,7 @@ func validar_motor_ligar(resultado, instancia) -> Dictionary:
 	
 	return {"success": true, "error": ""}
 
-func validar_motor_get_power(resultado, instancia) -> Dictionary:
+func validate_motor_get_power(resultado, instancia) -> Dictionary:
 	if not instancia.has_method("get_power"):
 		return {
 			"success": false,
@@ -150,7 +150,7 @@ func validar_motor_get_power(resultado, instancia) -> Dictionary:
 	
 	return {"success": true, "error": ""}
 
-func validar_carro_tem_motor(resultado, instancia) -> Dictionary:
+func validate_carro_tem_motor(resultado, instancia) -> Dictionary:
 	if not "motor" in instancia:
 		return {
 			"success": false,
@@ -172,7 +172,7 @@ func validar_carro_tem_motor(resultado, instancia) -> Dictionary:
 	
 	return {"success": true, "error": ""}
 
-func validar_carro_ligar(resultado, instancia) -> Dictionary:
+func validate_carro_ligar(resultado, instancia) -> Dictionary:
 	if not instancia.has_method("start_car"):
 		return {
 			"success": false,
@@ -186,7 +186,7 @@ func validar_carro_ligar(resultado, instancia) -> Dictionary:
 	if not mensagem is String:
 		return {
 			"success": false,
-			"error": "start_car() deve retornar String",
+			"error": "start_car() must return a String",
 			"expected_output": "String",
 			"actual_output": type_string(typeof(mensagem))
 		}
@@ -202,7 +202,7 @@ func validar_carro_ligar(resultado, instancia) -> Dictionary:
 	
 	return {"success": true, "error": ""}
 
-func validar_carro_liga_motor(resultado, instancia) -> Dictionary:
+func validate_carro_liga_motor(resultado, instancia) -> Dictionary:
 	# Verifica se motor está desligado antes
 	if instancia.motor.ligado:
 		return {
@@ -226,7 +226,7 @@ func validar_carro_liga_motor(resultado, instancia) -> Dictionary:
 	
 	return {"success": true, "error": ""}
 
-func validar_carro_acessar_potencia(resultado, instancia) -> Dictionary:
+func validate_carro_acessar_potencia(resultado, instancia) -> Dictionary:
 	if not instancia.has_method("acessar_potencia"):
 		return {
 			"success": false,

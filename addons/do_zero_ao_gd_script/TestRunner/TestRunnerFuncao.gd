@@ -49,7 +49,7 @@ func _executar_caso(caso: Dictionary, nome_funcao: String) -> Dictionary:
 	
 	# Verifica se a função existe
 	if not instancia.has_method(nome_funcao):
-		resultado.errorr = "Função '%s()' não encontrada" % nome_funcao
+		resultado.errorr = "Function '%s()' not found" % nome_funcao
 		instancia.free()
 		return resultado
 	
@@ -81,7 +81,7 @@ func _executar_caso(caso: Dictionary, nome_funcao: String) -> Dictionary:
 	# Verifica timeout
 	if resultado.time_ms > timeout_ms:
 		resultado.passed = false
-		resultado.errorr = "Timeout excedido (%dms > %dms)\" % [resultado.time_ms, timeout_ms]
+		resultado.errorr = "Timeout excedido (%dms > %dms)\" % [resultado.time_ms, timeout_ms]"
 	
 	instancia.free()
 	return resultado

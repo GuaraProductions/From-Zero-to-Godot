@@ -1,6 +1,6 @@
 extends Node
 
-func get_casos_teste() -> Array[Dictionary]:
+func get_test_cases() -> Array[Dictionary]:
 	return [
 		{
 			"class": "Dog",
@@ -8,7 +8,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": [null],
 			"input": [],
-			"validate": "validar_cachorro_speak"
+			"validate": "validate_cachorro_speak"
 		},
 		{
 			"class": "Cat",
@@ -16,7 +16,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": [null],
 			"input": [],
-			"validate": "validar_gato_speak"
+			"validate": "validate_gato_speak"
 		},
 		{
 			"class": "Sheep",
@@ -24,7 +24,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": [null],
 			"input": [],
-			"validate": "validar_ovelha_speak"
+			"validate": "validate_ovelha_speak"
 		},
 		{
 			"class": "Dog",
@@ -32,7 +32,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": [null],
 			"input": [],
-			"validate": "validar_cachorro_heranca"
+			"validate": "validate_cachorro_heranca"
 		},
 		{
 			"class": "Cat",
@@ -40,7 +40,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": [null],
 			"input": [],
-			"validate": "validar_gato_heranca"
+			"validate": "validate_gato_heranca"
 		},
 		{
 			"class": "Sheep",
@@ -48,7 +48,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": [null],
 			"input": [],
-			"validate": "validar_ovelha_heranca"
+			"validate": "validate_ovelha_heranca"
 		},
 		{
 			"class": "Dog",
@@ -56,7 +56,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": [null],
 			"input": [],
-			"validate": "validar_cachorro_efeito_sonoro"
+			"validate": "validate_cachorro_efeito_sonoro"
 		},
 		{
 			"class": "Cat",
@@ -64,7 +64,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": [null],
 			"input": [],
-			"validate": "validar_gato_efeito_sonoro"
+			"validate": "validate_gato_efeito_sonoro"
 		},
 		{
 			"class": "Sheep",
@@ -72,19 +72,19 @@ func get_casos_teste() -> Array[Dictionary]:
 			"method": "",
 			"constructor_params": [null],
 			"input": [],
-			"validate": "validar_ovelha_efeito_sonoro"
+			"validate": "validate_ovelha_efeito_sonoro"
 		}
 	]
 
 # ===== FUNÇÕES DE VALIDAÇÃO =====
 
-func validar_cachorro_speak(resultado, instancia) -> Dictionary:
+func validate_cachorro_speak(resultado, instancia) -> Dictionary:
 	var fala = instancia.speak()
 	
 	if not fala is String:
 		return {
 			"success": false,
-			"error": "speak() deve retornar String",
+			"error": "speak() must return a String",
 			"expected_output": "String",
 			"actual_output": type_string(typeof(fala))
 		}
@@ -99,13 +99,13 @@ func validar_cachorro_speak(resultado, instancia) -> Dictionary:
 	
 	return {"success": true, "error": ""}
 
-func validar_gato_speak(resultado, instancia) -> Dictionary:
+func validate_gato_speak(resultado, instancia) -> Dictionary:
 	var fala = instancia.speak()
 	
 	if not fala is String:
 		return {
 			"success": false,
-			"error": "speak() deve retornar String",
+			"error": "speak() must return a String",
 			"expected_output": "String",
 			"actual_output": type_string(typeof(fala))
 		}
@@ -120,13 +120,13 @@ func validar_gato_speak(resultado, instancia) -> Dictionary:
 	
 	return {"success": true, "error": ""}
 
-func validar_ovelha_speak(resultado, instancia) -> Dictionary:
+func validate_ovelha_speak(resultado, instancia) -> Dictionary:
 	var fala = instancia.speak()
 	
 	if not fala is String:
 		return {
 			"success": false,
-			"error": "speak() deve retornar String",
+			"error": "speak() must return a String",
 			"expected_output": "String",
 			"actual_output": type_string(typeof(fala))
 		}
@@ -141,7 +141,7 @@ func validar_ovelha_speak(resultado, instancia) -> Dictionary:
 	
 	return {"success": true, "error": ""}
 
-func validar_cachorro_heranca(resultado, instancia) -> Dictionary:
+func validate_cachorro_heranca(resultado, instancia) -> Dictionary:
 	# Carrega a classe Animal do script
 	var script_exercicio = load("res://listas/Lista3/Exercicio2/Exercicio2.gd")
 	var classe_animal = script_exercicio.get("Animal")
@@ -156,7 +156,7 @@ func validar_cachorro_heranca(resultado, instancia) -> Dictionary:
 	
 	return {"success": true, "error": ""}
 
-func validar_gato_heranca(resultado, instancia) -> Dictionary:
+func validate_gato_heranca(resultado, instancia) -> Dictionary:
 	var script_exercicio = load("res://listas/Lista3/Exercicio2/Exercicio2.gd")
 	var classe_animal = script_exercicio.Animal
 	
@@ -170,7 +170,7 @@ func validar_gato_heranca(resultado, instancia) -> Dictionary:
 	
 	return {"success": true, "error": ""}
 
-func validar_ovelha_heranca(resultado, instancia) -> Dictionary:
+func validate_ovelha_heranca(resultado, instancia) -> Dictionary:
 	var script_exercicio = load("res://listas/Lista3/Exercicio2/Exercicio2.gd")
 	var classe_animal = script_exercicio.Animal
 	
@@ -184,7 +184,7 @@ func validar_ovelha_heranca(resultado, instancia) -> Dictionary:
 	
 	return {"success": true, "error": ""}
 
-func validar_cachorro_efeito_sonoro(resultado, instancia) -> Dictionary:
+func validate_cachorro_efeito_sonoro(resultado, instancia) -> Dictionary:
 	if not instancia.has_method("get_efeito_sonoro"):
 		return {
 			"success": false,
@@ -206,7 +206,7 @@ func validar_cachorro_efeito_sonoro(resultado, instancia) -> Dictionary:
 	
 	return {"success": true, "error": ""}
 
-func validar_gato_efeito_sonoro(resultado, instancia) -> Dictionary:
+func validate_gato_efeito_sonoro(resultado, instancia) -> Dictionary:
 	if not instancia.has_method("get_efeito_sonoro"):
 		return {
 			"success": false,
@@ -227,7 +227,7 @@ func validar_gato_efeito_sonoro(resultado, instancia) -> Dictionary:
 	
 	return {"success": true, "error": ""}
 
-func validar_ovelha_efeito_sonoro(resultado, instancia) -> Dictionary:
+func validate_ovelha_efeito_sonoro(resultado, instancia) -> Dictionary:
 	if not instancia.has_method("get_efeito_sonoro"):
 		return {
 			"success": false,

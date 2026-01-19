@@ -4,7 +4,7 @@ extends Node
 ## Este arquivo define testes por código em vez de JSON,
 ## permitindo validações complexas de objetos
 
-func get_casos_teste() -> Array[Dictionary]:
+func get_test_cases() -> Array[Dictionary]:
 	return [
 		{
 			"name": "Adicionar 1 tarefa e verificar retorno",
@@ -12,7 +12,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"constructor_params": [],
 			"method": "add_task",
 			"input": ["Fazer compras"],
-			"validate": _validar_add_task
+			"validate": _validate_add_task
 		},
 		{
 			"name": "Adicionar múltiplas tarefas com IDs incrementais",
@@ -20,7 +20,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"constructor_params": [],
 			"method": "add_task",
 			"input": ["Estudar GDScript"],
-			"validate": _validar_ids_incrementais
+			"validate": _validate_ids_incrementais
 		},
 		{
 			"name": "Obter tarefas is_empty no início",
@@ -28,7 +28,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"constructor_params": [],
 			"method": "get_tasks",
 			"input": [],
-			"validate": _validar_tasks_is_empty
+			"validate": _validate_tasks_is_empty
 		},
 		{
 			"name": "Obter tarefas após adicionar",
@@ -36,7 +36,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"constructor_params": [],
 			"method": "get_tasks",
 			"input": [],
-			"validate": _validar_obter_tasks
+			"validate": _validate_obter_tasks
 		},
 		{
 			"name": "Concluir tarefa por ID",
@@ -44,7 +44,7 @@ func get_casos_teste() -> Array[Dictionary]:
 			"constructor_params": [],
 			"method": "complete_task",
 		"input": [0],
-		"validate": _validar_complete_task
+		"validate": _validate_complete_task
 		},
 		{
 		"name": "Deletar tarefa por ID",
@@ -52,11 +52,11 @@ func get_casos_teste() -> Array[Dictionary]:
 		"constructor_params": [],
 		"method": "delete_task",
 		"input": [0],
-			"validate": _validar_delete_task
+			"validate": _validate_delete_task
 		}
 	]
 
-func _validar_add_task(resultado, instancia):
+func _validate_add_task(resultado, instancia):
 	if resultado == null:
 		return {"success": false, "error": "add_task() retornou null"}
 	
@@ -101,7 +101,7 @@ func _validar_add_task(resultado, instancia):
 		"actual_output": "Task(id=%d, description='%s', completed=%s)" % [resultado.id, resultado.description, resultado.completed]
 	}
 
-func _validar_ids_incrementais(resultado, instancia):
+func _validate_ids_incrementais(resultado, instancia):
 	# resultado é a tarefa da entrada "Estudar GDScript" com ID 0
 	var tarefa1 = instancia.add_task("Primeira tarefa")
 	var tarefa2 = instancia.add_task("Segunda tarefa")
@@ -122,7 +122,7 @@ func _validar_ids_incrementais(resultado, instancia):
 		"actual_output": "IDs: 1, 2, 3"
 	}
 
-func _validar_tasks_is_empty(resultado, instancia):
+func _validate_tasks_is_empty(resultado, instancia):
 	if resultado == null:
 		return {"success": false, "error": "get_tasks() retornou null"}
 	
@@ -144,7 +144,7 @@ func _validar_tasks_is_empty(resultado, instancia):
 		"actual_output": "Array is_empty"
 	}
 
-func _validar_obter_tasks(resultado, instancia):
+func _validate_obter_tasks(resultado, instancia):
 	instancia.add_task("Task 1")
 	instancia.add_task("Task 2")
 	
@@ -153,7 +153,7 @@ func _validar_obter_tasks(resultado, instancia):
 	if tarefas.size() != 2:
 		return {
 			"success": false,
-			"error": "Número de tarefas incorreto",
+			"error": "Número de tarefas incorrect",
 			"expected_output": "2 tarefas",
 			"actual_output": "%d tarefas" % tarefas.size()
 		}
@@ -171,7 +171,7 @@ func _validar_obter_tasks(resultado, instancia):
 		"actual_output": "2 tarefas corretas"
 	}
 
-func _validar_complete_task(resultado, instancia):
+func _validate_complete_task(resultado, instancia):
 	instancia.add_task("Fazer exercícios")
 	var sucesso = instancia.complete_task(0)
 	
@@ -203,7 +203,7 @@ func _validar_complete_task(resultado, instancia):
 		"actual_output": "true (tarefa concluída)"
 	}
 
-func _validar_delete_task(resultado, instancia):
+func _validate_delete_task(resultado, instancia):
 	instancia.add_task("Task para deletar")
 	instancia.add_task("Task para manter")
 	

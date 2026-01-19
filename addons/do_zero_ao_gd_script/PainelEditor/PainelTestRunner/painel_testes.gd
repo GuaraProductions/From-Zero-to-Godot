@@ -95,14 +95,14 @@ func _carregar_todos_exercicios() -> void:
 	var dir = DirAccess.open(diretorio_listas)
 	
 	if not dir:
-		push_error("Não foi possível abrir o diretório: %s" % diretorio_listas)
+		push_error("Could not open directory: %s" % diretorio_listas)
 		return
 	
 	dir.list_dir_begin()
 	var nome_pasta = dir.get_next()
 	
 	while nome_pasta != "":
-		if dir.current_is_dir() and nome_pasta.begins_with("Lista"):
+		if dir.current_is_dir() and (nome_pasta.begins_with("List") or nome_pasta.begins_with("Lista")):
 			_carregar_exercicios_da_lista(diretorio_listas.path_join(nome_pasta), nome_pasta)
 		nome_pasta = dir.get_next()
 	
@@ -121,8 +121,8 @@ func _carregar_exercicios_da_lista(caminho_lista: String, nome_lista: String) ->
 	var nome_pasta = dir.get_next()
 	
 	while nome_pasta != "":
-		if dir.current_is_dir() and nome_pasta.begins_with("Exercicio"):
-			# Preferir tests_config.json se existir, senão usar tests.json
+		if dir.current_is_dir() and (nome_pasta.begins_with("Exercise") or nome_pasta.begins_with("Exercicio")):
+			# Prefer tests_config.json if it exists, otherwise use tests.json
 			var caminho_config = caminho_lista.path_join(nome_pasta).path_join("tests_config.json")
 			var caminho_tests = caminho_lista.path_join(nome_pasta).path_join("tests.json")
 			var caminho_usar = caminho_config if FileAccess.file_exists(caminho_config) else caminho_tests
@@ -139,11 +139,9 @@ func _carregar_exercicios_da_lista(caminho_lista: String, nome_lista: String) ->
 					
 					if parse_result == OK:
 						var dados = json.data
-						var nome_funcao = dados.get("funcao", dados.get("classe", "desconhecido"))
-						var tipo_teste = dados.get("tipo", "funcao")  # Padrão: funcao
-						var arquivo_testes_custom = dados.get("arquivo_testes", "")
-						
-						var exercicio_info = {
+					var nome_funcao = dados.get("function", dados.get("class", "unknown"))
+					var tipo_teste = dados.get("type", "function")  # Default: function
+					var arquivo_testes_custom = dados.get("test_file", "")
 							"nome": "%s - %s" % [nome_lista, nome_pasta],
 							"caminho_tests": arquivo_testes_custom if not arquivo_testes_custom.is_empty() else caminho_usar,
 							"lista": nome_lista,
@@ -198,16 +196,16 @@ func _atualizar_detalhes_exercicio() -> void:
 	if tipo_teste == "classe_custom":
 		var script_testes = load(exercicio_selecionado.caminho_tests)
 		if not script_testes:
-			detalhes_exercicio_atual.text = "[color=red]Erro ao carregar script de testes[/color]"
+			detalhes_exercicio_atual.text = "[color=red]Error loading test script[/color]"
 			return
 		
 		var instancia_testes = script_testes.new()
-		if not instancia_testes.has_method("get_casos_teste"):
-			detalhes_exercicio_atual.text = "[color=red]Script não tem método get_casos_teste()[/color]"
+		if not instancia_testes.has_method("get_test_cases"):
+			detalhes_exercicio_atual.text = "[color=red]Script does not have method get_test_cases()[/color]"
 			instancia_testes.free()
 			return
 		
-		var casos = instancia_testes.get_casos_teste()
+		var casos = instancia_testes.get_test_cases()
 		instancia_testes.free()
 		
 		# Monta dados no formato esperado
@@ -221,7 +219,7 @@ func _atualizar_detalhes_exercicio() -> void:
 		# Para outros tipos, lê JSON normalmente
 		var file = FileAccess.open(exercicio_selecionado.caminho_tests, FileAccess.READ)
 		if not file:
-			detalhes_exercicio_atual.text = "[color=red]Erro ao ler arquivo de testes[/color]"
+			detalhes_exercicio_atual.text = "[color=red]Error reading test file[/color]"
 			return
 		
 		var json_string = file.get_as_text()
@@ -231,7 +229,7 @@ func _atualizar_detalhes_exercicio() -> void:
 		var parse_result = json.parse(json_string)
 		
 		if parse_result != OK:
-			detalhes_exercicio_atual.text = "[color=red]Erro ao parsear JSON[/color]"
+			detalhes_exercicio_atual.text = "[color=red]Error parsing JSON[/color]"
 			return
 		
 		dados = json.data
@@ -243,19 +241,19 @@ func _atualizar_detalhes_exercicio() -> void:
 	
 	# Exibe nome da função ou classe
 	if tipo_teste == "classe" or tipo_teste == "classe_custom":
-		texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Classe:", locale), dados.get("classe", "?")]
+		texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Classe:", locale), dados.get("class", "?")]
 		if tipo_teste == "classe_custom":
 			texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Tipo:", locale), TranslationHelper.translate("Testes customizados (por código)", locale)]
 	else:
-		texto += "[b]%s[/b] %s()\n\n" % [TranslationHelper.translate("Função:", locale), dados.get("funcao", "?")]
+		texto += "[b]%s[/b] %s()\n\n" % [TranslationHelper.translate("Função:", locale), dados.get("function", "?")]
 	
 	texto += "[b]%s[/b] %dms\n\n" % [TranslationHelper.translate("Timeout:", locale), dados.get("timeout", 1000)]
 	
-	# Informação de comparação (se aplicável)
-	if dados.has("comparacao"):
-		texto += "[b]Comparação:[/b] %s" % dados.get("comparacao", "exato")
-		if dados.get("comparacao", "") == "aproximado":
-			texto += " (tolerância: %.4f)" % dados.get("tolerancia", 0.01)
+	# Comparison information (if applicable)
+	if dados.has("comparison"):
+		texto += "[b]Comparação:[/b] %s" % dados.get("comparison", "exact")
+		if dados.get("comparison", "") == "approximate":
+			texto += " (tolerância: %.4f)" % dados.get("tolerance", 0.01)
 		texto += "\n\n"
 	
 	# Conta casos de teste baseado no tipo
@@ -263,19 +261,19 @@ func _atualizar_detalhes_exercicio() -> void:
 	var casos_para_exibir = []
 	
 	if tipo_teste == "classe":
-		# Para classe, soma casos de todos os métodos
-		var metodos = dados.get("metodos", [])
+		# For class, sum cases from all methods
+		var metodos = dados.get("methods", [])
 		for metodo in metodos:
-			var casos = metodo.get("casos", [])
+			var casos = metodo.get("cases", [])
 			total_casos += casos.size()
 			for caso in casos:
-				casos_para_exibir.append(caso.get("nome", "Teste sem nome"))
+				casos_para_exibir.append(caso.get("name", "Test without name"))
 	else:
-		# Para função e cena, casos diretos
-		var casos = dados.get("casos", [])
+		# For function and scene, direct cases
+		var casos = dados.get("cases", [])
 		total_casos = casos.size()
 		for caso in casos:
-			casos_para_exibir.append(caso.get("nome", "Teste sem nome"))
+			casos_para_exibir.append(caso.get("name", "Test without name"))
 	
 	texto += "[b]Casos de teste:[/b] %d\n\n" % total_casos
 	
@@ -313,13 +311,13 @@ func _criar_file_dialog_nativo() -> void:
 
 func _on_arquivo_selecionado(caminho: String) -> void:
 	if exercicio_selecionado.is_empty():
-		push_error("Nenhum exercício selecionado")
+		push_error("No exercise selected")
 		return
 	
 	# Carrega o script
 	var script = load(caminho)
 	if not script or not script is GDScript:
-		_exibir_erro("Arquivo selecionado não é um GDScript válido")
+		_exibir_erro("Selected file is not a valid GDScript")
 		return
 	
 	# Valida baseado no tipo de teste
@@ -345,14 +343,14 @@ func _on_arquivo_selecionado(caminho: String) -> void:
 			instancia_temp.free()
 		
 		if not classe_encontrada:
-			_exibir_erro("O script não contém a classe '%s'" % nome_alvo)
+			_exibir_erro("Script does not contain class '%s'" % nome_alvo)
 			return
 	elif tipo_teste == "funcao":
-		# Para testes de função, verifica se a função existe
+		# For function tests, check if function exists
 		var instancia_temp = script.new()
 		if not instancia_temp.has_method(nome_alvo):
 			instancia_temp.free()
-			_exibir_erro("O script não contém a função '%s()'" % nome_alvo)
+			_exibir_erro("Script does not contain function '%s()'" % nome_alvo)
 			return
 		instancia_temp.free()
 	# Para tipo "cena" e "classe_custom", não validamos aqui
@@ -373,11 +371,11 @@ func _exibir_erro(mensagem: String) -> void:
 
 func _on_executar_teste_pressed() -> void:
 	if exercicio_selecionado.is_empty():
-		_exibir_resultado_erro("Selecione um exercício primeiro")
+		_exibir_resultado_erro("Select an exercise first")
 		return
 	
 	if not script_carregado:
-		_exibir_resultado_erro("Selecione um script válido primeiro")
+		_exibir_resultado_erro("Select a valid script first")
 		return
 	
 	# Limpa resultado anterior
@@ -415,7 +413,7 @@ func _on_executar_teste_pressed() -> void:
 			if FileAccess.file_exists(caminho_cena):
 				runner.cena_path = caminho_cena
 		_:
-			_exibir_resultado_erro("Tipo de teste desconhecido: %s" % tipo_teste)
+			_exibir_resultado_erro("Unknown test type: %s" % tipo_teste)
 			return
 	
 	# Conecta sinais
@@ -504,4 +502,4 @@ func selecionar_exercicio(lista: String, exercicio: String) -> void:
 				_on_exercicio_item_selecionado(i)
 			return
 	
-	print("Exercício não encontrado: %s" % nome_busca)
+	print("Exercise not found: %s" % nome_busca)

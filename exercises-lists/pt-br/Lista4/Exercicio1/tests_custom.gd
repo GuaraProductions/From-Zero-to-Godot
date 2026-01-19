@@ -4,7 +4,7 @@ extends Node
 ## Este arquivo define testes por código em vez de JSON,
 ## permitindo validações complexas de objetos
 
-func get_casos_teste() -> Array[Dictionary]:
+func get_test_cases() -> Array[Dictionary]:
 	return [
 		{
 			"name": "Adicionar 1 tarefa e verificar retorno",
