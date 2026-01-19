@@ -10,7 +10,11 @@ config_version=5
 
 [application]
 
-config/name="ExerciciosDeProgramacao"
+config/name="From Zero To Godot"
+config/name_localized={
+"en_US": "From Zero To Godot",
+"pt_BR": "Do Zero ao Godot"
+}
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 

@@ -1,40 +1,38 @@
-# Do Zero ao GDScript
+# From Zero to Godot
 
-![icone](icon.svg)
+## Purpose
 
-## Propósito
+This repository contains a series of **practical exercises in GDScript**, designed to help you learn and master the language used in the Godot Engine.
 
-Este repositório contém uma série de **listas de exercícios práticos em GDScript**, projetadas para auxiliar no aprendizado e domínio da linguagem utilizada no Godot Engine.
+The exercises focus on developing programming logic within the context of ready-made graphical user interfaces (UI). Students interact with scene components (such as buttons, text boxes, and labels), with the sole objective of **completing the logical function** responsible for calculations or validations.
 
-As listas são focadas no desenvolvimento de lógica de programação dentro do contexto de interfaces gráficas (UI) já prontas. O aluno interage com componentes da cena (como botões, caixas de texto e rótulos), e seu único objetivo é **completar a função lógica** responsável pelo cálculo ou verificação.
+The activities cover the following topics:
 
-As atividades cobrem os seguintes conteúdos:
+* Basic mathematical operations
+* Conditionals (`if`, `elif`, `else`)
+* Loop structures (`for`, `while`)
+* Creating and calling functions
+* Using arrays and dictionaries
+* Interacting with Classes and OOP principles
 
-* Operações matemáticas básicas
-* Condicionais (`if`, `elif`, `else`)
-* Estruturas de repetição (`for`, `while`)
-* Criação e chamada de funções
-* Uso de listas e dicionários. 
-* Interação com Classes e os princípios do POO
+Each exercise includes:
 
-Cada exercício possui:
+* A **clear description of the task**
+* A **ready-made graphical interface**
+* A script with a **complete initial structure**, with only the exercise logic missing
+* **Hints** to guide student reasoning
 
-* Uma **descrição clara da tarefa**
-* Uma **interface gráfica pronta**
-* Um script com **estrutura inicial completa**, faltando apenas a lógica do exercício.
-* **Dicas** para orientar o raciocínio do aluno
+## How to Use
 
-## Como Usar
+1. Clone or download the repository
+2. Open with [Godot Engine](https://godotengine.org/)
+3. Access the desired list folder (e.g., `Lista2/`)
+4. Edit the script attached to the scene, completing the `TODO` function
 
-1. Clone ou baixe o repositório
-2. Abra com o [Godot Engine](https://godotengine.org/)
-3. Acesse a pasta da lista desejada (por exemplo, `Lista2/`)
-4. Edite o script anexado à cena, completando a função `TODO`
+## License
 
-## Licença
-
-Este projeto está licenciado sob a licença MIT. Consulte o arquivo `LICENSE` para mais detalhes.
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
 
 ---
 
-🎓 Aprenda praticando, não tenha medo de cometer erros, e evolua com cada linha de código!
+🎓 Learn by doing, don't be afraid to make mistakes, and grow with every line of code!
