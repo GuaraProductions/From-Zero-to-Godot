@@ -38,7 +38,7 @@ func _atualizar_traducoes() -> void:
 	var locale = FromZeroToGodot.get_locale()
 	
 	if titulo_label:
-		titulo_label.text = TranslationHelper.translate("Escolha um ebook", locale)
+		titulo_label.text = TranslationHelper.translate("Choose an ebook", locale)
 
 func recarregar_ebooks() -> void:
 	"""Recarrega ebooks após mudança de locale"""
@@ -47,8 +47,10 @@ func recarregar_ebooks() -> void:
 
 ## Carrega todos os ebooks disponíveis e cria a interface de navegação
 func _carregar_ebooks() -> void:
+	var locale = FromZeroToGodot.get_locale()
+
 	if diretorio_ebooks.is_empty():
-		push_warning("Diretório de ebooks não configurado")
+		push_warning(TranslationHelper.translate("Ebook directory is not configured", locale))
 		return
 	
 	# Limpa interface existente
@@ -58,14 +60,14 @@ func _carregar_ebooks() -> void:
 	# Verifica se o diretório existe
 	if not DirAccess.dir_exists_absolute(diretorio_ebooks):
 		var label = Label.new()
-		label.text = "Ebooks not available for this language yet.\nDirectory: %s" % diretorio_ebooks
+		label.text = TranslationHelper.translate("Ebooks not available for this language yet.\nDirectory: %s", locale) % diretorio_ebooks
 		label.add_theme_color_override("font_color", Color.ORANGE)
 		ebooks_disponiveis.add_child(label)
 		return
 	
 	var dir = DirAccess.open(diretorio_ebooks)
 	if not dir:
-		push_error("Não foi possível abrir o diretório: %s" % diretorio_ebooks)
+		push_error(TranslationHelper.translate("Could not open directory: %s", locale) % diretorio_ebooks)
 		return
 	
 	# Lista todos os ebooks (pastas)
@@ -126,13 +128,13 @@ func _carregar_capitulos(nome_ebook: String, container_capitulos: VBoxContainer)
 	
 	# Adiciona botão de introdução se configurado
 	if config_ebook.has("introduction") and not config_ebook["introduction"].is_empty():
-		var intro_label = config_ebook.get("introduction_label", "📖 Introduction")
+		var intro_label = config_ebook.get("introduction_label", TranslationHelper.translate("📖 Introduction", FromZeroToGodot.get_locale()))
 		_criar_botao_especial(nome_ebook, config_ebook["introduction"], intro_label, container_capitulos, Color("#A78BFA"))
 	
 	var dir = DirAccess.open(caminho_ebook)
 	
 	if not dir:
-		push_error("Não foi possível abrir o diretório do ebook: %s" % caminho_ebook)
+		push_error(TranslationHelper.translate("Could not open ebook directory: %s", FromZeroToGodot.get_locale()) % caminho_ebook)
 		return
 	
 	# Lista todos os capítulos (subpastas)
@@ -148,7 +150,7 @@ func _carregar_capitulos(nome_ebook: String, container_capitulos: VBoxContainer)
 	
 	# Adiciona botão de conclusão se configurado
 	if config_ebook.has("conclusion") and not config_ebook["conclusion"].is_empty():
-		var conclusion_label = config_ebook.get("conclusion_label", "🎓 Conclusion")
+		var conclusion_label = config_ebook.get("conclusion_label", TranslationHelper.translate("🎓 Conclusion", FromZeroToGodot.get_locale()))
 		_criar_botao_especial(nome_ebook, config_ebook["conclusion"], conclusion_label, container_capitulos, Color("#F472B6"))
 
 ## Cria um botão para o capítulo e seus arquivos markdown
@@ -187,6 +189,8 @@ func _on_capitulo_toggled(expandido: bool, nome_ebook: String, nome_capitulo: St
 
 ## Carrega todos os arquivos markdown de um capítulo
 func _carregar_arquivos_markdown(nome_ebook: String, nome_capitulo: String, container_arquivos: VBoxContainer) -> void:
+	var locale = FromZeroToGodot.get_locale()
+
 	# Limpa arquivos existentes
 	for child in container_arquivos.get_children():
 		child.queue_free()
@@ -195,7 +199,7 @@ func _carregar_arquivos_markdown(nome_ebook: String, nome_capitulo: String, cont
 	var dir = DirAccess.open(caminho_capitulo)
 	
 	if not dir:
-		push_error("Não foi possível abrir o diretório do capítulo: %s" % caminho_capitulo)
+		push_error(TranslationHelper.translate("Could not open chapter directory: %s", locale) % caminho_capitulo)
 		return
 	
 	# Lista todos os arquivos markdown
@@ -226,9 +230,10 @@ func _criar_botao_arquivo(nome_ebook: String, nome_capitulo: String, nome_arquiv
 ## Carrega e exibe um arquivo markdown no pré-visualizador
 func _carregar_markdown(nome_ebook: String, nome_capitulo: String, nome_arquivo: String) -> void:
 	var caminho_md = diretorio_ebooks.path_join(nome_ebook).path_join(nome_capitulo).path_join(nome_arquivo)
+	var locale = FromZeroToGodot.get_locale()
 	
 	if not FileAccess.file_exists(caminho_md):
-		push_error("Arquivo não encontrado: %s" % caminho_md)
+		push_error(TranslationHelper.translate("File not found: %s", locale) % caminho_md)
 		return
 	
 	# Limpa conteúdo anterior
@@ -241,13 +246,14 @@ func _carregar_markdown(nome_ebook: String, nome_capitulo: String, nome_arquivo:
 ## Carrega a configuração JSON do ebook
 func _carregar_config_ebook(caminho_ebook: String) -> Dictionary:
 	var caminho_config = caminho_ebook.path_join("ebook.json")
+	var locale = FromZeroToGodot.get_locale()
 	
 	if not FileAccess.file_exists(caminho_config):
 		return {}
 	
 	var file = FileAccess.open(caminho_config, FileAccess.READ)
 	if not file:
-		push_warning("Não foi possível abrir o arquivo de configuração: %s" % caminho_config)
+		push_warning(TranslationHelper.translate("Could not open config file: %s", locale) % caminho_config)
 		return {}
 	
 	var json_string = file.get_as_text()
@@ -257,7 +263,7 @@ func _carregar_config_ebook(caminho_ebook: String) -> Dictionary:
 	var error = json.parse(json_string)
 	
 	if error != OK:
-		push_error("Erro ao parsear JSON em %s: %s" % [caminho_config, json.get_error_message()])
+		push_error(TranslationHelper.translate("Error parsing JSON in %s: %s", locale) % [caminho_config, json.get_error_message()])
 		return {}
 	
 	return json.data
@@ -276,9 +282,10 @@ func _criar_botao_especial(nome_ebook: String, caminho_relativo: String, texto_b
 ## Carrega um markdown da raiz do ebook (introdução/conclusão)
 func _carregar_markdown_raiz(nome_ebook: String, caminho_relativo: String) -> void:
 	var caminho_md = diretorio_ebooks.path_join(nome_ebook).path_join(caminho_relativo)
+	var locale = FromZeroToGodot.get_locale()
 	
 	if not FileAccess.file_exists(caminho_md):
-		push_error("Arquivo não encontrado: %s" % caminho_md)
+		push_error(TranslationHelper.translate("File not found: %s", locale) % caminho_md)
 		return
 	
 	# Limpa conteúdo anterior

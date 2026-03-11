@@ -29,10 +29,10 @@ func _atualizar_nomes_abas() -> void:
 	var locale = FromZeroToGodot.get_locale()
 	
 	# Translate tab names using TranslationHelper
-	tab_container.set_tab_title(0, TranslationHelper.translate("Seja Bem Vindo", locale))
+	tab_container.set_tab_title(0, TranslationHelper.translate("Welcome", locale))
 	tab_container.set_tab_title(1, TranslationHelper.translate("Ebook", locale))
-	tab_container.set_tab_title(2, TranslationHelper.translate("Listas De Exercicios", locale))
-	tab_container.set_tab_title(3, TranslationHelper.translate("Testador de Exercicios", locale))
+	tab_container.set_tab_title(2, TranslationHelper.translate("Exercise Lists", locale))
+	tab_container.set_tab_title(3, TranslationHelper.translate("Exercise Tester", locale))
 
 func conectar_signal_locale(plugin: FromZeroToGodot) -> void:
 	"""Conecta ao signal de mudança de locale do plugin e propaga para componentes"""
@@ -58,11 +58,13 @@ func _carregar_introducao() -> void:
 	"""Carrega o arquivo README.md da pasta introduction localizada"""
 	if not tela_inicial:
 		return
+
+	var locale = FromZeroToGodot.get_locale()
 	
 	var caminho_readme = FromZeroToGodot.get_localized_readme_path()
 	
 	if not FileAccess.file_exists(caminho_readme):
-		push_warning("README.md não encontrado em: %s" % caminho_readme)
+		push_warning(TranslationHelper.translate("README.md not found at: %s", locale) % caminho_readme)
 		return
 	
 	# Limpa conteúdo anterior
