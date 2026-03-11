@@ -1,25 +1,60 @@
 {
-  "type": "class",
-  "class": "Carro",
-  "timeout": 1000,
-  "methods": [
-    {
-      "name": "ligar_carro",
-      "comparison": "exact",
-      "cases": [
-        {
-          "name": "Ligar carro com motor de potência 100",
-          "constructor_params": [],
-          "input": [],
-          "expected_output": "Motor ligado! Potência: 100"
-        },
-        {
-          "name": "Ligar carro com motor de potência 200",
-          "constructor_params": [],
-          "input": [],
-          "expected_output": "Motor ligado! Potência: 200"
-        }
-      ]
-    }
-  ]
+	"type": "class",
+	"class": "Motor",
+	"timeout": 1000.0,
+	"methods": [
+		{
+			"name": "get_potencia",
+			"cases": [
+				{
+					"name": "Motor retorna a potencia configurada",
+					"constructor_params": [
+						200.0
+					],
+					"expected_output": 200.0
+				}
+			]
+		},
+		{
+			"name": "ligar",
+			"cases": [
+				{
+					"name": "Motor liga e retorna mensagem adequada",
+					"constructor_params": [
+						150.0
+					],
+					"expected_output": "Motor ligado! Potência: 150",
+					"properties": {
+						"ligado": true
+					}
+				}
+			]
+		},
+		{
+			"name": "ligar_carro",
+			"cases": [
+				{
+					"name": "Carro liga o motor interno",
+					"class": "Carro",
+					"constructor_params": [
+						100.0
+					],
+					"expected_output": "Motor ligado! Potência: 100"
+				}
+			]
+		},
+		{
+			"name": "acessar_potencia",
+			"cases": [
+				{
+					"name": "Carro expoe a potencia do motor",
+					"class": "Carro",
+					"constructor_params": [
+						180.0
+					],
+					"expected_output": 180.0
+				}
+			]
+		}
+	]
 }

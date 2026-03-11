@@ -1,53 +1,89 @@
 {
-	"function": "calcular_desconto",
+	"type": "function_group",
 	"timeout": 5,
-	"comparison": "approximate",
-	"tolerance": 0.01,
-	"cases": [
+	"functions": [
 		{
-			"name": "Teste 1: Valor 1000, desconto 10% - Com brinde",
-			"input": [1000, 10],
-			"expected_output": {
-				"desconto": 100.0,
-				"valor_final": 900.0,
-				"ganhou_brinde": true
-			}
+			"function": "calculate_discounted_value",
+			"comparison": "approximate",
+			"tolerance": 0.01,
+			"cases": [
+				{
+					"name": "1000 with 10 percent discount",
+					"input": [1000, 10],
+					"expected_output": 900.0
+				},
+				{
+					"name": "600 with 5 percent discount",
+					"input": [600, 5],
+					"expected_output": 570.0
+				},
+				{
+					"name": "400 with 20 percent discount",
+					"input": [400, 20],
+					"expected_output": 320.0
+				},
+				{
+					"name": "625 with 20 percent discount reaches exact boundary",
+					"input": [625, 20],
+					"expected_output": 500.0
+				},
+				{
+					"name": "626.25 with 20 percent discount stays above boundary",
+					"input": [626.25, 20],
+					"expected_output": 501.0
+				},
+				{
+					"name": "250 with zero discount keeps original value",
+					"input": [250, 0],
+					"expected_output": 250.0
+				},
+				{
+					"name": "800 with 100 percent discount becomes zero",
+					"input": [800, 100],
+					"expected_output": 0.0
+				},
+				{
+					"name": "99.90 with 12.5 percent discount",
+					"input": [99.9, 12.5],
+					"expected_output": 87.4125
+				}
+			]
 		},
 		{
-			"name": "Teste 2: Valor 600, desconto 5% - Com brinde",
-			"input": [600, 5],
-			"expected_output": {
-				"desconto": 30.0,
-				"valor_final": 570.0,
-				"ganhou_brinde": true
-			}
-		},
-		{
-			"name": "Teste 3: Valor 400, desconto 20% - Sem brinde",
-			"input": [400, 20],
-			"expected_output": {
-				"desconto": 80.0,
-				"valor_final": 320.0,
-				"ganhou_brinde": false
-			}
-		},
-		{
-			"name": "Teste 4: Valor exato 500 após desconto - Com brinde",
-			"input": [625, 20],
-			"expected_output": {
-				"desconto": 125.0,
-				"valor_final": 500.0,
-				"ganhou_brinde": false
-			}
-		},
-		{
-			"name": "Teste 5: Valor 501 após desconto - Com brinde",
-			"input": [626.25, 20],
-			"expected_output": {
-				"desconto": 125.25,
-				"valor_final": 501.0,
-				"ganhou_brinde": true
-			}
+			"function": "calculate_if_customer_gets_gift",
+			"comparison": "exact",
+			"cases": [
+				{
+					"name": "900 gets gift",
+					"input": [900.0],
+					"expected_output": true
+				},
+				{
+					"name": "500 does not get gift",
+					"input": [500.0],
+					"expected_output": false
+				},
+				{
+					"name": "501 gets gift",
+					"input": [501.0],
+					"expected_output": true
+				},
+				{
+					"name": "499.99 does not get gift",
+					"input": [499.99],
+					"expected_output": false
+				},
+				{
+					"name": "zero does not get gift",
+					"input": [0.0],
+					"expected_output": false
+				},
+				{
+					"name": "very high value gets gift",
+					"input": [1500.0],
+					"expected_output": true
+				}
+			]
 		}
 	]
 }

@@ -1,0 +1,58 @@
+﻿{
+	"cases": [
+		{
+			"expected_output": true,
+			"input": [
+				2024.0
+			],
+			"name": "Test 1: 2024 - Leap year"
+		},
+		{
+			"expected_output": false,
+			"input": [
+				1900.0
+			],
+			"name": "Test 2: 1900 - Not a leap year"
+		},
+		{
+			"expected_output": true,
+			"input": [
+				2000.0
+			],
+			"name": "Test 3: 2000 - Leap year"
+		},
+		{
+			"expected_output": false,
+			"input": [
+				2023.0
+			],
+			"name": "Test 4: 2023 - Not a leap year"
+		},
+		{
+			"expected_output": true,
+			"input": [
+				2020.0
+			],
+			"name": "Test 5: 2020 - Leap year"
+		},
+		{
+			"expected_output": false,
+			"input": [
+				1800.0
+			],
+			"name": "Test 6: 1800 - Not a leap year"
+		},
+		{
+			"expected_output": true,
+			"input": [
+				2400.0
+			],
+			"name": "Test 7: 2400 - Leap year"
+		}
+	],
+	"comparison": "exact",
+	"function": "is_leap_year",
+	"timeout": 5.0
+}
+
+

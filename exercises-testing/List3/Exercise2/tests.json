@@ -1,0 +1,38 @@
+﻿{
+	"class": "Animal",
+	"methods": [
+		{
+			"cases": [
+				{
+					"class": "Dog",
+					"constructor_params": [
+						null
+					],
+					"expected_output": "Woof woof!",
+					"name": "Dog speaks correctly"
+				},
+				{
+					"class": "Cat",
+					"constructor_params": [
+						null
+					],
+					"expected_output": "Meow!",
+					"name": "Cat speaks correctly"
+				},
+				{
+					"class": "Sheep",
+					"constructor_params": [
+						null
+					],
+					"expected_output": "Baaah!",
+					"name": "Sheep speaks correctly"
+				}
+			],
+			"name": "speak"
+		}
+	],
+	"timeout": 1000.0,
+	"type": "class"
+}
+
+

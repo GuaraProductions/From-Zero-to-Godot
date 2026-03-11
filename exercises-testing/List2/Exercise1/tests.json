@@ -1,0 +1,45 @@
+﻿{
+	"cases": [
+		{
+			"expected_output": 15.0,
+			"input": [
+				5.0
+			],
+			"name": "Sum up to 5"
+		},
+		{
+			"expected_output": 1.0,
+			"input": [
+				1.0
+			],
+			"name": "Sum up to 1"
+		},
+		{
+			"expected_output": 55.0,
+			"input": [
+				10.0
+			],
+			"name": "Sum up to 10"
+		},
+		{
+			"expected_output": 5050.0,
+			"input": [
+				100.0
+			],
+			"name": "Sum up to 100"
+		},
+		{
+			"expected_output": 210.0,
+			"input": [
+				20.0
+			],
+			"name": "Sum up to 20"
+		}
+	],
+	"comparison": "exact",
+	"function": "sum_up_to_n",
+	"timeout": 1000.0,
+	"type": "funcao"
+}
+
+

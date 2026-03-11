@@ -1,0 +1,125 @@
+﻿{
+	"class": "Rectangle",
+	"methods": [
+		{
+			"cases": [
+				{
+					"constructor_params": [
+						10.0,
+						5.0
+					],
+					"expected_output": 10.0,
+					"name": "Constructor initializes the base correctly"
+				}
+			],
+			"comparison": "approximate",
+			"name": "get_width",
+			"tolerance": 0.001
+		},
+		{
+			"cases": [
+				{
+					"constructor_params": [
+						10.0,
+						5.0
+					],
+					"expected_output": 5.0,
+					"name": "Constructor initializes the height correctly"
+				}
+			],
+			"comparison": "approximate",
+			"name": "get_height",
+			"tolerance": 0.001
+		},
+		{
+			"cases": [
+				{
+					"constructor_params": [
+						5.0,
+						3.0
+					],
+					"input": [
+						15.0
+					],
+					"name": "set_width updates the private attribute",
+					"properties": {
+						"_width": 15.0
+					}
+				}
+			],
+			"comparison": "approximate",
+			"name": "set_width",
+			"tolerance": 0.001
+		},
+		{
+			"cases": [
+				{
+					"constructor_params": [
+						5.0,
+						3.0
+					],
+					"input": [
+						12.0
+					],
+					"name": "set_height updates the private attribute",
+					"properties": {
+						"_height": 12.0
+					}
+				}
+			],
+			"comparison": "approximate",
+			"name": "set_height",
+			"tolerance": 0.001
+		},
+		{
+			"cases": [
+				{
+					"constructor_params": [
+						10.0,
+						5.0
+					],
+					"expected_output": 50.0,
+					"name": "Calculates area for base 10 and height 5"
+				},
+				{
+					"constructor_params": [
+						7.0,
+						3.0
+					],
+					"expected_output": 21.0,
+					"name": "Calculates area for base 7 and height 3"
+				}
+			],
+			"comparison": "approximate",
+			"name": "calculate_area",
+			"tolerance": 0.001
+		},
+		{
+			"cases": [
+				{
+					"constructor_params": [
+						10.0,
+						5.0
+					],
+					"expected_output": 30.0,
+					"name": "Calculates perimeter for base 10 and height 5"
+				},
+				{
+					"constructor_params": [
+						7.0,
+						3.0
+					],
+					"expected_output": 20.0,
+					"name": "Calculates perimeter for base 7 and height 3"
+				}
+			],
+			"comparison": "approximate",
+			"name": "calculate_perimeter",
+			"tolerance": 0.001
+		}
+	],
+	"timeout": 1000.0,
+	"type": "class"
+}
+
+

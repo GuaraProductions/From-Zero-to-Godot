@@ -1,0 +1,72 @@
+﻿{
+	"class": "CarEngine",
+	"methods": [
+		{
+			"cases": [
+				{
+					"constructor_params": [
+						200.0
+					],
+					"expected_output": 200.0,
+					"name": "Engine returns the configured power"
+				}
+			],
+			"name": "get_power"
+		},
+		{
+			"cases": [
+				{
+					"constructor_params": [
+						150.0
+					],
+					"expected_output": "Engine started! Power: 150",
+					"name": "Engine starts and returns the expected message",
+					"properties": {
+						"running": true
+					}
+				}
+			],
+			"name": "start"
+		},
+		{
+			"cases": [
+				{
+					"class": "Car",
+					"constructor_params": [
+						{
+							"__class__": "CarEngine",
+							"constructor_params": [
+								100.0
+							]
+						}
+					],
+					"expected_output": "Engine started! Power: 100",
+					"name": "Car starts the internal engine"
+				}
+			],
+			"name": "start_car"
+		},
+		{
+			"cases": [
+				{
+					"class": "Car",
+					"constructor_params": [
+						{
+							"__class__": "CarEngine",
+							"constructor_params": [
+								180.0
+							]
+						}
+					],
+					"expected_output": 180.0,
+					"name": "Car exposes the engine power"
+				}
+			],
+			"name": "get_power"
+		}
+	],
+	"timeout": 1000.0,
+	"type": "class"
+}
+
+

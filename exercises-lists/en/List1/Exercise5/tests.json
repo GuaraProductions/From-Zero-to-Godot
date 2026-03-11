@@ -1,5 +1,5 @@
 {
-	"function": "verificar_ano_bissexto",
+	"function": "is_leap_year",
 	"timeout": 5,
 	"comparison": "exact",
 	"cases": [

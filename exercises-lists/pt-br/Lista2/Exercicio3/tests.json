@@ -1,6 +1,6 @@
 {
   "tipo": "funcao",
-  "function": "contar_multiplos_3",
+  "function": "count_multiples_of_3",
   "timeout": 1000,
   "comparison": "exact",
   "cases": [

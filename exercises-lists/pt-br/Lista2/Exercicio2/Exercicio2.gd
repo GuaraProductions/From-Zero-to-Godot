@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 #region JahImplementado
@@ -49,7 +50,7 @@ func calcular():
 	
 	tabuada_panel.visible = true
 	erro.visible = false
-	gerar_tabuada(n)
+	generate_times_table(n)
 	
 func _remover_nodes(node: Control) -> void:
 	for crianca in node.get_children():
@@ -104,7 +105,7 @@ func adicionar_tabuada(numero1: int,
 
 #endregion
 
-func gerar_tabuada(n: int) -> void:
+func generate_times_table(n: int) -> void:
 	# TODO: Retorne uma string com a tabuada de n (1 a 10)
 	"""
 	Representações das operações

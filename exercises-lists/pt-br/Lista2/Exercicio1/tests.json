@@ -1,6 +1,6 @@
 {
   "tipo": "funcao",
-  "function": "somar_ate_n",
+  "function": "sum_up_to_n",
   "timeout": 1000,
   "comparison": "exact",
   "cases": [

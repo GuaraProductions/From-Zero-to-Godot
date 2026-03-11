@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://xjo8a2y26c2b"]
+[gd_scene format=3 uid="uid://xjo8a2y26c2b"]
 
-[ext_resource type="Script" uid="uid://dow1to0301mre" path="res://exercises-lists/pt-br/Lista2/Exercicio2/Exercicio2.gd" id="1_5ovto"]
+[ext_resource type="Script" uid="uid://calj35bpfsd3m" path="res://solutions/List2/Exercise2_List2_Solution.gd" id="1_vwpti"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_07jpv"]
 font_size = 38
@@ -15,7 +15,7 @@ content_margin_right = 15.0
 content_margin_bottom = 15.0
 bg_color = Color(0.144063, 0.144063, 0.144062, 1)
 
-[node name="Exercicio2" type="MarginContainer"]
+[node name="Exercicio2" type="MarginContainer" unique_id=942726732]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -25,24 +25,24 @@ theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
-script = ExtResource("1_5ovto")
+script = ExtResource("1_vwpti")
 
-[node name="VBox" type="VBoxContainer" parent="."]
+[node name="VBox" type="VBoxContainer" parent="." unique_id=1211125661]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="Titulo" type="Label" parent="VBox"]
+[node name="Titulo" type="Label" parent="VBox" unique_id=1032890101]
 layout_mode = 2
 text = "Calculadora:
 Tabuada de um Número"
 label_settings = SubResource("LabelSettings_07jpv")
 horizontal_alignment = 1
 
-[node name="HBox" type="HBoxContainer" parent="VBox"]
+[node name="HBox" type="HBoxContainer" parent="VBox" unique_id=1032502182]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Entrada" type="LineEdit" parent="VBox/HBox"]
+[node name="Entrada" type="LineEdit" parent="VBox/HBox" unique_id=1008965352]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
@@ -50,73 +50,74 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 24
 placeholder_text = "Insira um número"
 
-[node name="Calcular" type="Button" parent="VBox/HBox"]
+[node name="Calcular" type="Button" parent="VBox/HBox" unique_id=180029601]
 layout_mode = 2
 text = "Calcular"
 
-[node name="ErroTexto" type="Label" parent="VBox"]
+[node name="ErroTexto" type="Label" parent="VBox" unique_id=1002987911]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 label_settings = SubResource("LabelSettings_e0lnp")
 vertical_alignment = 1
 
-[node name="TabuadaPanel" type="PanelContainer" parent="VBox"]
+[node name="TabuadaPanel" type="PanelContainer" parent="VBox" unique_id=886275919]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_5ovto")
 
-[node name="Scroll" type="ScrollContainer" parent="VBox/TabuadaPanel"]
+[node name="Scroll" type="ScrollContainer" parent="VBox/TabuadaPanel" unique_id=1509012485]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TabuadaGrid" type="VBoxContainer" parent="VBox/TabuadaPanel/Scroll"]
+[node name="TabuadaGrid" type="VBoxContainer" parent="VBox/TabuadaPanel/Scroll" unique_id=1240419929]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 
-[node name="AdicaoLabel" type="Label" parent="VBox/TabuadaPanel/Scroll/TabuadaGrid"]
+[node name="AdicaoLabel" type="Label" parent="VBox/TabuadaPanel/Scroll/TabuadaGrid" unique_id=1818735126]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Adição"
 
-[node name="AdicaoFlowContainer" type="HFlowContainer" parent="VBox/TabuadaPanel/Scroll/TabuadaGrid"]
+[node name="AdicaoFlowContainer" type="HFlowContainer" parent="VBox/TabuadaPanel/Scroll/TabuadaGrid" unique_id=1880481047]
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
 last_wrap_alignment = 2
 
-[node name="SubtracaoLabel" type="Label" parent="VBox/TabuadaPanel/Scroll/TabuadaGrid"]
+[node name="SubtracaoLabel" type="Label" parent="VBox/TabuadaPanel/Scroll/TabuadaGrid" unique_id=10838287]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Subtração"
 
-[node name="SubtracaoFlowContainer" type="HFlowContainer" parent="VBox/TabuadaPanel/Scroll/TabuadaGrid"]
+[node name="SubtracaoFlowContainer" type="HFlowContainer" parent="VBox/TabuadaPanel/Scroll/TabuadaGrid" unique_id=2052273388]
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
 last_wrap_alignment = 2
 
-[node name="MultiplicacaoLabel" type="Label" parent="VBox/TabuadaPanel/Scroll/TabuadaGrid"]
+[node name="MultiplicacaoLabel" type="Label" parent="VBox/TabuadaPanel/Scroll/TabuadaGrid" unique_id=1397272737]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Multiplicação"
 
-[node name="MultiplicacaoFlowContainer" type="HFlowContainer" parent="VBox/TabuadaPanel/Scroll/TabuadaGrid"]
+[node name="MultiplicacaoFlowContainer" type="HFlowContainer" parent="VBox/TabuadaPanel/Scroll/TabuadaGrid" unique_id=71701114]
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
 last_wrap_alignment = 2
 
-[node name="DivisaoLabel" type="Label" parent="VBox/TabuadaPanel/Scroll/TabuadaGrid"]
+[node name="DivisaoLabel" type="Label" parent="VBox/TabuadaPanel/Scroll/TabuadaGrid" unique_id=441064562]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Divisao"
 
-[node name="DivisaoFlowContainer" type="HFlowContainer" parent="VBox/TabuadaPanel/Scroll/TabuadaGrid"]
+[node name="DivisaoFlowContainer" type="HFlowContainer" parent="VBox/TabuadaPanel/Scroll/TabuadaGrid" unique_id=1584338960]
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1

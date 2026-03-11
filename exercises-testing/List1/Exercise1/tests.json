@@ -1,0 +1,45 @@
+﻿{
+	"cases": [
+		{
+			"expected_output": 32.0,
+			"input": [
+				0.0
+			],
+			"name": "Test 1: Zero degrees Celsius"
+		},
+		{
+			"expected_output": 212.0,
+			"input": [
+				100.0
+			],
+			"name": "Test 2: Water boiling point"
+		},
+		{
+			"expected_output": -40.0,
+			"input": [
+				-40.0
+			],
+			"name": "Test 3: Negative temperature"
+		},
+		{
+			"expected_output": 77.0,
+			"input": [
+				25.0
+			],
+			"name": "Test 4: Room temperature"
+		},
+		{
+			"expected_output": 98.6,
+			"input": [
+				37.0
+			],
+			"name": "Test 5: Human body temperature"
+		}
+	],
+	"comparison": "approximate",
+	"function": "celsius_to_fahrenheit",
+	"timeout": 5.0,
+	"tolerance": 0.01
+}
+
+

@@ -1,0 +1,251 @@
+﻿{
+	"class": "Inventory",
+	"methods": [
+		{
+			"cases": [
+				{
+					"expected_output": true,
+					"name": "Inventory starts empty"
+				},
+				{
+					"expected_output": false,
+					"name": "Inventory is not empty after adding an item",
+					"setup_calls": [
+						{
+							"input": [
+								"Potion",
+								"Restores HP",
+								null,
+								5.0
+							],
+							"method": "add_item"
+						}
+					]
+				}
+			],
+			"name": "is_empty"
+		},
+		{
+			"cases": [
+				{
+					"expected_output": 0.0,
+					"input": [
+						"Potion",
+						"Restores HP",
+						null,
+						5.0
+					],
+					"name": "Adding an item returns the first valid id"
+				}
+			],
+			"name": "add_item"
+		},
+		{
+			"cases": [
+				{
+					"expected_output": "Shield",
+					"input": [
+						0.0
+					],
+					"name": "Returns the item name by id",
+					"setup_calls": [
+						{
+							"input": [
+								"Shield",
+								"Defense +10",
+								null,
+								2.0
+							],
+							"method": "add_item"
+						}
+					]
+				},
+				{
+					"expected_output": "",
+					"input": [
+						999.0
+					],
+					"name": "Missing id returns an empty string"
+				},
+				{
+					"expected_output": "",
+					"input": [
+						0.0
+					],
+					"name": "Completely removed item no longer has a name",
+					"setup_calls": [
+						{
+							"input": [
+								"Stone",
+								"Common material",
+								null,
+								5.0
+							],
+							"method": "add_item"
+						},
+						{
+							"input": [
+								0.0,
+								5.0
+							],
+							"method": "remove_item"
+						}
+					]
+				}
+			],
+			"name": "get_item_name"
+		},
+		{
+			"cases": [
+				{
+					"expected_output": "Long-range weapon",
+					"input": [
+						0.0
+					],
+					"name": "Returns the item description by id",
+					"setup_calls": [
+						{
+							"input": [
+								"Bow",
+								"Long-range weapon",
+								null,
+								1.0
+							],
+							"method": "add_item"
+						}
+					]
+				}
+			],
+			"name": "get_item_description"
+		},
+		{
+			"cases": [
+				{
+					"expected_output": 30.0,
+					"input": [
+						0.0
+					],
+					"name": "Returns the added quantity",
+					"setup_calls": [
+						{
+							"input": [
+								"Arrow",
+								"Arrow ammunition",
+								null,
+								30.0
+							],
+							"method": "add_item"
+						}
+					]
+				},
+				{
+					"expected_output": 7.0,
+					"input": [
+						0.0
+					],
+					"name": "Returns the quantity after partial removal",
+					"setup_calls": [
+						{
+							"input": [
+								"Bomb",
+								"Explosive",
+								null,
+								10.0
+							],
+							"method": "add_item"
+						},
+						{
+							"input": [
+								0.0,
+								3.0
+							],
+							"method": "remove_item"
+						}
+					]
+				},
+				{
+					"expected_output": -1.0,
+					"input": [
+						999.0
+					],
+					"name": "Missing id returns minus one"
+				}
+			],
+			"name": "get_item_quantity"
+		},
+		{
+			"cases": [
+				{
+					"expected_output": "Mana Potion (8)",
+					"input": [
+						0.0
+					],
+					"name": "Combines name and quantity in the expected format",
+					"setup_calls": [
+						{
+							"input": [
+								"Mana Potion",
+								"Restores MP",
+								null,
+								8.0
+							],
+							"method": "add_item"
+						}
+					]
+				}
+			],
+			"name": "get_item_name_with_quantity"
+		},
+		{
+			"cases": [
+				{
+					"expected_output": true,
+					"input": [
+						0.0,
+						3.0
+					],
+					"name": "Removing an existing quantity returns true",
+					"setup_calls": [
+						{
+							"input": [
+								"Bomb",
+								"Explosive",
+								null,
+								10.0
+							],
+							"method": "add_item"
+						}
+					]
+				}
+			],
+			"name": "remove_item"
+		},
+		{
+			"cases": [
+				{
+					"class": "Item",
+					"constructor_params": [
+						3.0,
+						8.0,
+						"Potion",
+						"Restores HP",
+						null
+					],
+					"expected_output": {
+						"description": "Restores HP",
+						"id": 3.0,
+						"name": "Potion",
+						"quantity": 8.0,
+						"texture": null
+					},
+					"name": "Item converts its data to a dictionary"
+				}
+			],
+			"name": "to_dict"
+		}
+	],
+	"timeout": 1000.0,
+	"type": "class"
+}
+
+

@@ -1,6 +1,6 @@
 {
   "tipo": "funcao",
-  "function": "somar_pares",
+  "function": "sum_even_numbers",
   "timeout": 1000,
   "comparison": "exact",
   "cases": [

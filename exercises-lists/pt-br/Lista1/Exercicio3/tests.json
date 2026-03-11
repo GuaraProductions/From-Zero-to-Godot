@@ -1,42 +1,42 @@
 {
-	"function": "calcular_situacao_escolar",
+	"function": "calculate_school_status",
 	"timeout": 5,
 	"comparison": "exact",
 	"cases": [
 		{
 			"name": "Teste 1: Média 70 - Aprovado",
 			"input": [60, 70, 80],
-			"expected_output": "Aprovado"
+			"expected_output": "Passed"
 		},
 		{
 			"name": "Teste 2: Média 48.33 - Recuperação",
 			"input": [40, 55, 50],
-			"expected_output": "Recuperação"
+			"expected_output": "Recovery"
 		},
 		{
 			"name": "Teste 3: Média 30 - Reprovado",
 			"input": [30, 20, 40],
-			"expected_output": "Reprovado"
+			"expected_output": "Failed"
 		},
 		{
 			"name": "Teste 4: Média exata 60 - Aprovado",
 			"input": [60, 60, 60],
-			"expected_output": "Aprovado"
+			"expected_output": "Passed"
 		},
 		{
 			"name": "Teste 5: Média exata 40 - Recuperação",
 			"input": [40, 40, 40],
-			"expected_output": "Recuperação"
+			"expected_output": "Recovery"
 		},
 		{
 			"name": "Teste 6: Média 39.99 - Reprovado",
 			"input": [39, 40, 40],
-			"expected_output": "Reprovado"
+			"expected_output": "Failed"
 		},
 		{
 			"name": "Teste 7: Notas variadas - Aprovado",
 			"input": [90, 85, 95],
-			"expected_output": "Aprovado"
+			"expected_output": "Passed"
 		}
 	]
 }

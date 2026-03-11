@@ -4,7 +4,7 @@
 
 ## **1️⃣ Questão 1 - Conversor de Temperatura**
 [open_scene](Exercicio1/Exercicio1.tscn) 
-[open_test](Lista1/Exercicio1)
+[open_test](List1/Exercise1)
 
 Complete uma função que converta uma temperatura em Celsius para Fahrenheit.  
 A fórmula de conversão é:
@@ -26,7 +26,7 @@ $$
 
 ## **2️⃣ Questão 2 - Calculadora de Juros Simples**
 [open_scene](Exercicio2/Exercicio2.tscn) 
-[open_test](Lista1/Exercicio2)
+[open_test](List1/Exercise2)
 
 Complete uma função que receba três informações do usuário:
 
@@ -62,7 +62,7 @@ Onde:
 
 ## **3️⃣ Questão 3 - Calculadora de Média e Situação Escolar**
 [open_scene](Exercicio3/Exercicio3.tscn) 
-[open_test](Lista1/Exercicio3)
+[open_test](List1/Exercise3)
 
 Complete uma função que receba as 3 notas de um aluno e calcule a média final.  
 Com a média em mãos, retorne da função:
@@ -87,7 +87,7 @@ Com a média em mãos, retorne da função:
 
 ## **4️⃣ Questão 4 - Calculadora de Desconto em Compras**
 [open_scene](Exercicio4/Exercicio4.tscn) 
-[open_test](Lista1/Exercicio4)
+[open_test](List1/Exercise4)
 
 Calcule e exiba:
 
@@ -114,7 +114,7 @@ Calcule e exiba:
 
 ## **5️⃣ Questão 5 - Verificação de Ano Bissexto**
 [open_scene](Exercicio5/Exercicio5.tscn) 
-[open_test](Lista1/Exercicio5)
+[open_test](List1/Exercise5)
 
 Complete uma função que receba um ano do usuário e verifique se ele é bissexto ou não.  
 Para um ano ser bissexto, ele deve:

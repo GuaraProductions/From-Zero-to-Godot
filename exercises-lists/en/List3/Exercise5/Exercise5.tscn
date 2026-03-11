@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://bxnhana3my473"]
+
+[ext_resource type="Script" uid="uid://2mpu5h2nktfr" path="res://exercises-lists/en/List3/Exercise5/Exercise5.gd" id="1_ptqgc"]
+[ext_resource type="Texture2D" uid="uid://rwyjcs56pgly" path="res://assets/Lista3/Exercicio5/circulo.png" id="2_fdh6p"]
+[ext_resource type="Texture2D" uid="uid://nqbydespxaa3" path="res://assets/Lista3/Exercicio5/quadrado.png" id="3_f16yo"]
+[ext_resource type="Texture2D" uid="uid://em00vkj68raf" path="res://assets/Lista3/Exercicio5/triangulo.png" id="4_cb64m"]
+
+[node name="Exercicio5" type="MarginContainer" unique_id=18870118]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+script = ExtResource("1_ptqgc")
+
+[node name="Center" type="CenterContainer" parent="." unique_id=1791692594]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Center" unique_id=1209749740]
+layout_mode = 2
+theme_override_constants/h_separation = 105
+theme_override_constants/v_separation = 15
+columns = 3
+
+[node name="CirculoLabel" type="Label" parent="Center/GridContainer" unique_id=2035520621]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Círculo"
+horizontal_alignment = 1
+
+[node name="QuadradoLabel" type="Label" parent="Center/GridContainer" unique_id=1689863807]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Quadrado"
+horizontal_alignment = 1
+
+[node name="TrianguloPressed" type="Label" parent="Center/GridContainer" unique_id=574025149]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Triângulo"
+horizontal_alignment = 1
+
+[node name="CirculoIcon" type="TextureRect" parent="Center/GridContainer" unique_id=1615027810]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+texture = ExtResource("2_fdh6p")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="QuadradoIcon" type="TextureRect" parent="Center/GridContainer" unique_id=1188234095]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+texture = ExtResource("3_f16yo")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="TrianguloIcon" type="TextureRect" parent="Center/GridContainer" unique_id=1360532661]
+custom_minimum_size = Vector2(155, 0)
+layout_mode = 2
+texture = ExtResource("4_cb64m")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="CirculoButton" type="Button" parent="Center/GridContainer" unique_id=1471685181]
+layout_mode = 2
+text = "Calcular área"
+
+[node name="QuadradoButton" type="Button" parent="Center/GridContainer" unique_id=1480005111]
+layout_mode = 2
+text = "Calcular área"
+
+[node name="TrianguloButton" type="Button" parent="Center/GridContainer" unique_id=2118104893]
+layout_mode = 2
+text = "Calcular área"
+
+[node name="CirculoLineEdit" type="LineEdit" parent="Center/GridContainer" unique_id=711828500]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+placeholder_text = "Insira raio aqui"
+
+[node name="QuadradoLineEdit" type="LineEdit" parent="Center/GridContainer" unique_id=503581715]
+layout_mode = 2
+placeholder_text = "Insira lado aqui"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Center/GridContainer" unique_id=1266925361]
+layout_mode = 2
+
+[node name="TrianguloAlturaLineEdit" type="LineEdit" parent="Center/GridContainer/VBoxContainer" unique_id=103336475]
+layout_mode = 2
+placeholder_text = "Altura aqui"
+
+[node name="TrianguloBaseLineEdit" type="LineEdit" parent="Center/GridContainer/VBoxContainer" unique_id=209590690]
+layout_mode = 2
+placeholder_text = "Base aqui"
+
+[node name="CirculoResultado" type="Label" parent="Center/GridContainer" unique_id=749950401]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="QuadradoResultado" type="Label" parent="Center/GridContainer" unique_id=1417633785]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="TrianguloResultado" type="Label" parent="Center/GridContainer" unique_id=1249945900]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Center/GridContainer/CirculoButton" to="." method="_on_circulo_pressed"]
+[connection signal="pressed" from="Center/GridContainer/QuadradoButton" to="." method="_on_quadrado_pressed"]
+[connection signal="pressed" from="Center/GridContainer/TrianguloButton" to="." method="_on_triangulo_pressed"]

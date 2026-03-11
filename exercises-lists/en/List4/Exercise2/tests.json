@@ -1,73 +1,249 @@
 {
-  "type": "class",
-  "class": "Inventario",
-  "timeout": 1000,
-  "methods": [
-    {
-      "name": "vazio",
-      "comparison": "exact",
-      "cases": [
-        {
-          "name": "Empty inventory returns true",
-          "constructor_params": [],
-          "input": [],
-          "expected_output": true
-        }
-      ]
-    },
-    {
-      "name": "adicionar_item",
-      "comparison": "exact",
-      "cases": [
-        {
-          "name": "Add 5 potions",
-          "constructor_params": [],
-          "input": ["Poção", 5],
-          "expected_output": null
-        },
-        {
-          "name": "Add 10 swords",
-          "constructor_params": [],
-          "input": ["Espada", 10],
-          "expected_output": null
-        }
-      ]
-    },
-    {
-      "name": "remover_item",
-      "comparison": "exact",
-      "cases": [
-        {
-          "name": "Remove 2 potions",
-          "constructor_params": [],
-          "input": ["Poção", 2],
-          "expected_output": null
-        }
-      ]
-    },
-    {
-      "name": "get_item_quantidade",
-      "comparison": "exact",
-      "cases": [
-        {
-          "name": "Get quantity of non-existent item",
-          "constructor_params": [],
-          "input": [999],
-          "expected_output": -1
-        }
-      ]
-    },
-    {
-      "name": "get_item_nome",
-      "comparison": "exact",
-      "cases": [
-        {
-          "name": "Get name of non-existent item",
-          "constructor_params": [],
-          "input": [999],
-          "expected_output": ""
-        }
-      ]
-    }
-  ]
+	"type": "class",
+	"class": "Inventario",
+	"timeout": 1000.0,
+	"methods": [
+		{
+			"name": "vazio",
+			"cases": [
+				{
+					"name": "Inventario novo inicia vazio",
+					"expected_output": true
+				},
+				{
+					"name": "Inventario com item nao fica vazio",
+					"setup_calls": [
+						{
+							"method": "adicionar_item",
+							"input": [
+								"Poção",
+								"Restaura HP",
+								null,
+								5.0
+							]
+						}
+					],
+					"expected_output": false
+				}
+			]
+		},
+		{
+			"name": "adicionar_item",
+			"cases": [
+				{
+					"name": "Adicionar item retorna o primeiro id valido",
+					"input": [
+						"Poção",
+						"Restaura HP",
+						null,
+						5.0
+					],
+					"expected_output": 0.0
+				}
+			]
+		},
+		{
+			"name": "get_item_nome",
+			"cases": [
+				{
+					"name": "Retorna nome do item pelo id",
+					"setup_calls": [
+						{
+							"method": "adicionar_item",
+							"input": [
+								"Escudo",
+								"Defesa +10",
+								null,
+								2.0
+							]
+						}
+					],
+					"input": [
+						0.0
+					],
+					"expected_output": "Escudo"
+				},
+				{
+					"name": "Id inexistente retorna string vazia",
+					"input": [
+						999.0
+					],
+					"expected_output": ""
+				},
+				{
+					"name": "Item removido completamente deixa de ter nome",
+					"setup_calls": [
+						{
+							"method": "adicionar_item",
+							"input": [
+								"Pedra",
+								"Material comum",
+								null,
+								5.0
+							]
+						},
+						{
+							"method": "remover_item",
+							"input": [
+								0.0,
+								5.0
+							]
+						}
+					],
+					"input": [
+						0.0
+					],
+					"expected_output": ""
+				}
+			]
+		},
+		{
+			"name": "get_item_descricao",
+			"cases": [
+				{
+					"name": "Retorna descricao do item pelo id",
+					"setup_calls": [
+						{
+							"method": "adicionar_item",
+							"input": [
+								"Arco",
+								"Arma de longo alcance",
+								null,
+								1.0
+							]
+						}
+					],
+					"input": [
+						0.0
+					],
+					"expected_output": "Arma de longo alcance"
+				}
+			]
+		},
+		{
+			"name": "get_item_quantidade",
+			"cases": [
+				{
+					"name": "Retorna quantidade adicionada",
+					"setup_calls": [
+						{
+							"method": "adicionar_item",
+							"input": [
+								"Flecha",
+								"Munição para arco",
+								null,
+								30.0
+							]
+						}
+					],
+					"input": [
+						0.0
+					],
+					"expected_output": 30.0
+				},
+				{
+					"name": "Retorna quantidade apos remocao parcial",
+					"setup_calls": [
+						{
+							"method": "adicionar_item",
+							"input": [
+								"Bomba",
+								"Explosivo",
+								null,
+								10.0
+							]
+						},
+						{
+							"method": "remover_item",
+							"input": [
+								0.0,
+								3.0
+							]
+						}
+					],
+					"input": [
+						0.0
+					],
+					"expected_output": 7.0
+				},
+				{
+					"name": "Id inexistente retorna menos um",
+					"input": [
+						999.0
+					],
+					"expected_output": -1.0
+				}
+			]
+		},
+		{
+			"name": "get_item_nome_com_quantidade",
+			"cases": [
+				{
+					"name": "Combina nome e quantidade no formato esperado",
+					"setup_calls": [
+						{
+							"method": "adicionar_item",
+							"input": [
+								"Poção de Mana",
+								"Restaura MP",
+								null,
+								8.0
+							]
+						}
+					],
+					"input": [
+						0.0
+					],
+					"expected_output": "Poção de Mana (8)"
+				}
+			]
+		},
+		{
+			"name": "remover_item",
+			"cases": [
+				{
+					"name": "Remover quantidade existente retorna true",
+					"setup_calls": [
+						{
+							"method": "adicionar_item",
+							"input": [
+								"Bomba",
+								"Explosivo",
+								null,
+								10.0
+							]
+						}
+					],
+					"input": [
+						0.0,
+						3.0
+					],
+					"expected_output": true
+				}
+			]
+		},
+		{
+			"name": "to_dict",
+			"cases": [
+				{
+					"name": "Item converte seus dados para dicionario",
+					"class": "Item",
+					"constructor_params": [
+						3.0,
+						8.0,
+						"Poção",
+						"Restaura HP",
+						null
+					],
+					"expected_output": {
+						"id": 3.0,
+						"quantidade": 8.0,
+						"nome": "Poção",
+						"descricao": "Restaura HP",
+						"textura": null
+					}
+				}
+			]
+		}
+	]
 }

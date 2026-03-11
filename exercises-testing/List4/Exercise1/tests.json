@@ -1,0 +1,96 @@
+﻿{
+	"class": "TaskOrganizer",
+	"methods": [
+		{
+			"cases": [
+				{
+					"expected_output": [],
+					"name": "Organizer starts with no tasks"
+				}
+			],
+			"name": "get_tasks"
+		},
+		{
+			"cases": [
+				{
+					"expected_output": true,
+					"input": [
+						0.0
+					],
+					"name": "Completing an existing task returns true",
+					"setup_calls": [
+						{
+							"input": [
+								"Buy groceries"
+							],
+							"method": "add_task"
+						}
+					]
+				},
+				{
+					"expected_output": false,
+					"input": [
+						0.0
+					],
+					"name": "Completing an invalid index returns false"
+				}
+			],
+			"name": "complete_task"
+		},
+		{
+			"cases": [
+				{
+					"expected_output": true,
+					"input": [
+						0.0
+					],
+					"name": "Deleting an existing task returns true",
+					"setup_calls": [
+						{
+							"input": [
+								"First task"
+							],
+							"method": "add_task"
+						},
+						{
+							"input": [
+								"Second task"
+							],
+							"method": "add_task"
+						}
+					]
+				},
+				{
+					"expected_output": false,
+					"input": [
+						0.0
+					],
+					"name": "Deleting an invalid index returns false"
+				}
+			],
+			"name": "delete_task"
+		},
+		{
+			"cases": [
+				{
+					"class": "Task",
+					"constructor_params": [
+						0.0,
+						"Study GDScript"
+					],
+					"name": "Task marks itself as completed and preserves basic data",
+					"properties": {
+						"completed": true,
+						"description": "Study GDScript",
+						"id": 0.0
+					}
+				}
+			],
+			"name": "mark_completed"
+		}
+	],
+	"timeout": 1000.0,
+	"type": "class"
+}
+
+

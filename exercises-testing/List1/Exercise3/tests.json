@@ -1,0 +1,72 @@
+﻿{
+	"cases": [
+		{
+			"expected_output": "Passed",
+			"input": [
+				60.0,
+				70.0,
+				80.0
+			],
+			"name": "Test 1: Average 70 - Passed"
+		},
+		{
+			"expected_output": "Recovery",
+			"input": [
+				40.0,
+				55.0,
+				50.0
+			],
+			"name": "Test 2: Average 48.33 - Recovery"
+		},
+		{
+			"expected_output": "Failed",
+			"input": [
+				30.0,
+				20.0,
+				40.0
+			],
+			"name": "Test 3: Average 30 - Failed"
+		},
+		{
+			"expected_output": "Passed",
+			"input": [
+				60.0,
+				60.0,
+				60.0
+			],
+			"name": "Test 4: Exact average 60 - Passed"
+		},
+		{
+			"expected_output": "Recovery",
+			"input": [
+				40.0,
+				40.0,
+				40.0
+			],
+			"name": "Test 5: Exact average 40 - Recovery"
+		},
+		{
+			"expected_output": "Failed",
+			"input": [
+				39.0,
+				40.0,
+				40.0
+			],
+			"name": "Test 6: Average 39.99 - Failed"
+		},
+		{
+			"expected_output": "Passed",
+			"input": [
+				90.0,
+				85.0,
+				95.0
+			],
+			"name": "Test 7: Varied grades - Passed"
+		}
+	],
+	"comparison": "exact",
+	"function": "calculate_school_status",
+	"timeout": 5.0
+}
+
+

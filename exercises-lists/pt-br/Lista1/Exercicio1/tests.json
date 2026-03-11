@@ -1,5 +1,5 @@
 {
-	"function": "celsius_para_farenheit",
+	"function": "celsius_to_fahrenheit",
 	"timeout": 5,
 	"comparison": "approximate",
 	"tolerance": 0.01,

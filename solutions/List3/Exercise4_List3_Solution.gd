@@ -17,7 +17,7 @@ func _ready() -> void:
 func _is_valid(text: String) -> bool:
 	return text.is_valid_float()
 
-func adicionar():
+func add():
 	var text = add_balance_field.text.strip_edges()
 	if not _is_valid(text):
 		result.text = "Error: Invalid value."
@@ -29,7 +29,7 @@ func adicionar():
 	 "Money added successfully!:\nUpdated balance: %s" % \
 	 [Numeros.formatar(piggy_bank.balance)]
 
-func sacar():
+func withdraw():
 	var text = withdraw_money_field.text.strip_edges()
 	if not _is_valid(text):
 		result.text = "Error: Invalid value."

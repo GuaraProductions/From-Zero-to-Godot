@@ -1,44 +1,39 @@
 {
-  "type": "class",
-  "class": "Forma",
-  "timeout": 1000,
-  "methods": [
-    {
-      "name": "area",
-      "comparison": "approximate",
-      "tolerance": 0.1,
-      "cases": [
-        {
-          "name": "Circle with radius 5",
-          "constructor_params": [],
-          "input": [],
-          "expected_output": 78.54
-        },
-        {
-          "name": "Square with side 4",
-          "constructor_params": [],
-          "input": [],
-          "expected_output": 16
-        },
-        {
-          "name": "Triangle with base 6 and height 3",
-          "constructor_params": [],
-          "input": [],
-          "expected_output": 9
-        },
-        {
-          "name": "Circle with radius 10",
-          "constructor_params": [],
-          "input": [],
-          "expected_output": 314.16
-        },
-        {
-          "name": "Square with side 7",
-          "constructor_params": [],
-          "input": [],
-          "expected_output": 49
-        }
-      ]
-    }
-  ]
+	"type": "class",
+	"class": "Forma",
+	"timeout": 1000.0,
+	"methods": [
+		{
+			"name": "area",
+			"comparison": "approximate",
+			"tolerance": 0.01,
+			"cases": [
+				{
+					"name": "Circulo calcula area com raio 5",
+					"class": "Circulo",
+					"constructor_params": [
+						5.0
+					],
+					"expected_output": 78.53981633974483
+				},
+				{
+					"name": "Quadrado calcula area com lado 4",
+					"class": "Quadrado",
+					"constructor_params": [
+						4.0
+					],
+					"expected_output": 16.0
+				},
+				{
+					"name": "Triangulo calcula area com base 6 e altura 3",
+					"class": "Triangulo",
+					"constructor_params": [
+						6.0,
+						3.0
+					],
+					"expected_output": 9.0
+				}
+			]
+		}
+	]
 }

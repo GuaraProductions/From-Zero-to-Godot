@@ -1,0 +1,55 @@
+﻿{
+	"cases": [
+		{
+			"expected_output": 1600.0,
+			"input": [
+				1000.0,
+				5.0,
+				12.0
+			],
+			"name": "Test 1: Principal 1000, rate 5%, 12 months"
+		},
+		{
+			"expected_output": 800.0,
+			"input": [
+				500.0,
+				10.0,
+				6.0
+			],
+			"name": "Test 2: Principal 500, rate 10%, 6 months"
+		},
+		{
+			"expected_output": 2500.0,
+			"input": [
+				2000.0,
+				2.5,
+				10.0
+			],
+			"name": "Test 3: Principal 2000, rate 2.5%, 10 months"
+		},
+		{
+			"expected_output": 460.0,
+			"input": [
+				100.0,
+				15.0,
+				24.0
+			],
+			"name": "Test 4: Low principal"
+		},
+		{
+			"expected_output": 1950.0,
+			"input": [
+				1500.0,
+				3.75,
+				8.0
+			],
+			"name": "Test 5: Decimal rate"
+		}
+	],
+	"comparison": "approximate",
+	"function": "calculate_amount",
+	"timeout": 5.0,
+	"tolerance": 0.01
+}
+
+

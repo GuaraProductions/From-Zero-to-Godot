@@ -1,0 +1,131 @@
+﻿{
+	"class": "PiggyBank",
+	"methods": [
+		{
+			"cases": [
+				{
+					"constructor_params": [
+						"Joao",
+						50.0
+					],
+					"input": [
+						25.0
+					],
+					"name": "Add increases the balance",
+					"properties": {
+						"balance": 75.0
+					}
+				}
+			],
+			"comparison": "approximate",
+			"name": "add",
+			"tolerance": 0.001
+		},
+		{
+			"cases": [
+				{
+					"constructor_params": [
+						"Ana",
+						100.0
+					],
+					"expected_output": true,
+					"input": [
+						30.0
+					],
+					"name": "Withdraw with sufficient balance returns true",
+					"properties": {
+						"balance": 70.0
+					}
+				},
+				{
+					"constructor_params": [
+						"Pedro",
+						50.0
+					],
+					"expected_output": false,
+					"input": [
+						100.0
+					],
+					"name": "Withdraw without sufficient balance returns false",
+					"properties": {
+						"balance": 50.0
+					}
+				}
+			],
+			"comparison": "approximate",
+			"name": "withdraw",
+			"tolerance": 0.001
+		},
+		{
+			"cases": [
+				{
+					"constructor_params": [
+						"Carlos",
+						75.0
+					],
+					"expected_output": 75.0,
+					"name": "get_saldo returns the current balance"
+				}
+			],
+			"comparison": "approximate",
+			"name": "get_balance",
+			"tolerance": 0.001
+		},
+		{
+			"cases": [
+				{
+					"constructor_params": [
+						"Lucia",
+						0.0
+					],
+					"expected_output": 200.0,
+					"input": [
+						200.0
+					],
+					"name": "set_saldo updates the balance",
+					"properties": {
+						"balance": 200.0
+					}
+				}
+			],
+			"comparison": "approximate",
+			"name": "set_balance",
+			"tolerance": 0.001
+		},
+		{
+			"cases": [
+				{
+					"constructor_params": [
+						"Roberto",
+						0.0
+					],
+					"expected_output": "Roberto",
+					"name": "get_name returns the current name"
+				}
+			],
+			"name": "get_name"
+		},
+		{
+			"cases": [
+				{
+					"constructor_params": [
+						"Antonio",
+						0.0
+					],
+					"input": [
+						"Fernanda"
+					],
+					"name": "set_name updates the name",
+					"properties": {
+						"name": "Fernanda"
+					}
+				}
+			],
+			"name": "set_name"
+		}
+	],
+	"timeout": 1000.0,
+	"type": "class"
+}
+
+

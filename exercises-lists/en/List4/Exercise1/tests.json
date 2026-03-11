@@ -1,5 +1,94 @@
 {
-  "type": "classe_custom",
-  "class": "TaskOrganizer",
-  "arquivo_testes": "res://listas/Lista4/Exercicio1/tests_custom.gd"
+	"type": "class",
+	"class": "OrganizadorDeTarefas",
+	"timeout": 1000.0,
+	"methods": [
+		{
+			"name": "get_tarefas",
+			"cases": [
+				{
+					"name": "Organizador inicia sem tarefas",
+					"expected_output": []
+				}
+			]
+		},
+		{
+			"name": "concluir_tarefa",
+			"cases": [
+				{
+					"name": "Concluir tarefa existente retorna true",
+					"setup_calls": [
+						{
+							"method": "adicionar_tarefa",
+							"input": [
+								"Fazer compras"
+							]
+						}
+					],
+					"input": [
+						0.0
+					],
+					"expected_output": true
+				},
+				{
+					"name": "Concluir indice invalido retorna false",
+					"input": [
+						0.0
+					],
+					"expected_output": false
+				}
+			]
+		},
+		{
+			"name": "deletar_tarefa",
+			"cases": [
+				{
+					"name": "Deletar tarefa existente retorna true",
+					"setup_calls": [
+						{
+							"method": "adicionar_tarefa",
+							"input": [
+								"Primeira tarefa"
+							]
+						},
+						{
+							"method": "adicionar_tarefa",
+							"input": [
+								"Segunda tarefa"
+							]
+						}
+					],
+					"input": [
+						0.0
+					],
+					"expected_output": true
+				},
+				{
+					"name": "Deletar indice invalido retorna false",
+					"input": [
+						0.0
+					],
+					"expected_output": false
+				}
+			]
+		},
+		{
+			"name": "marcar_concluida",
+			"cases": [
+				{
+					"name": "Tarefa marca concluida e preserva dados basicos",
+					"class": "Tarefa",
+					"constructor_params": [
+						0.0,
+						"Estudar GDScript"
+					],
+					"properties": {
+						"id": 0.0,
+						"descricao": "Estudar GDScript",
+						"concluida": true
+					}
+				}
+			]
+		}
+	]
 }

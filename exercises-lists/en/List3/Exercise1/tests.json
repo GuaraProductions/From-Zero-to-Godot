@@ -1,55 +1,123 @@
 {
-  "type": "class",
-  "class": "Rectangle",
-  "timeout": 1000,
-  "methods": [
-	{
-	  "name": "calculate_area",
-	  "comparison": "exact",
-	  "cases": [
+	"type": "class",
+	"class": "Retangulo",
+	"timeout": 1000.0,
+	"methods": [
 		{
-		  "name": "Área: base=10, altura=5",
-		  "constructor_params": [10, 5],
-		  "input": [],
-		  "expected_output": 50
+			"name": "get_base",
+			"comparison": "approximate",
+			"tolerance": 0.001,
+			"cases": [
+				{
+					"name": "Construtor inicializa a base corretamente",
+					"constructor_params": [
+						10.0,
+						5.0
+					],
+					"expected_output": 10.0
+				}
+			]
 		},
 		{
-		  "name": "Área: base=7, altura=3",
-		  "constructor_params": [7, 3],
-		  "input": [],
-		  "expected_output": 21
+			"name": "get_altura",
+			"comparison": "approximate",
+			"tolerance": 0.001,
+			"cases": [
+				{
+					"name": "Construtor inicializa a altura corretamente",
+					"constructor_params": [
+						10.0,
+						5.0
+					],
+					"expected_output": 5.0
+				}
+			]
 		},
 		{
-		  "name": "Área: base=20, altura=15",
-		  "constructor_params": [20, 15],
-		  "input": [],
-		  "expected_output": 300
+			"name": "set_base",
+			"comparison": "approximate",
+			"tolerance": 0.001,
+			"cases": [
+				{
+					"name": "set_base atualiza o atributo privado",
+					"constructor_params": [
+						5.0,
+						3.0
+					],
+					"input": [
+						15.0
+					],
+					"properties": {
+						"_base": 15.0
+					}
+				}
+			]
+		},
+		{
+			"name": "set_altura",
+			"comparison": "approximate",
+			"tolerance": 0.001,
+			"cases": [
+				{
+					"name": "set_altura atualiza o atributo privado",
+					"constructor_params": [
+						5.0,
+						3.0
+					],
+					"input": [
+						12.0
+					],
+					"properties": {
+						"_altura": 12.0
+					}
+				}
+			]
+		},
+		{
+			"name": "calcular_area",
+			"comparison": "approximate",
+			"tolerance": 0.001,
+			"cases": [
+				{
+					"name": "Calcula area para base 10 e altura 5",
+					"constructor_params": [
+						10.0,
+						5.0
+					],
+					"expected_output": 50.0
+				},
+				{
+					"name": "Calcula area para base 7 e altura 3",
+					"constructor_params": [
+						7.0,
+						3.0
+					],
+					"expected_output": 21.0
+				}
+			]
+		},
+		{
+			"name": "calcular_perimetro",
+			"comparison": "approximate",
+			"tolerance": 0.001,
+			"cases": [
+				{
+					"name": "Calcula perimetro para base 10 e altura 5",
+					"constructor_params": [
+						10.0,
+						5.0
+					],
+					"expected_output": 30.0
+				},
+				{
+					"name": "Calcula perimetro para base 7 e altura 3",
+					"constructor_params": [
+						7.0,
+						3.0
+					],
+					"expected_output": 20.0
+				}
+			]
 		}
-	  ]
-	},
-	{
-	  "name": "calculate_perimeter",
-	  "comparison": "exact",
-	  "cases": [
-		{
-		  "name": "Perímetro: base=10, altura=5",
-		  "constructor_params": [10, 5],
-		  "input": [],
-		  "expected_output": 30
-		},
-		{
-		  "name": "Perímetro: base=7, altura=3",
-		  "constructor_params": [7, 3],
-		  "input": [],
-		  "expected_output": 20
-		},
-		{
-		  "name": "Perímetro: base=20, altura=15",
-		  "constructor_params": [20, 15],
-		  "input": [],
-		  "expected_output": 70
-		}
-	  ]
-	}
-  ]
+	]
 }

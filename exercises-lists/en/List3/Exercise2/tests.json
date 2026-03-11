@@ -1,19 +1,36 @@
 {
-  "type": "class",
-  "class": "Animal",
-  "timeout": 1000,
-  "methods": [
-    {
-      "name": "falar",
-      "comparison": "exact",
-      "cases": [
-        {
-          "name": "Cachorro fala 'Au au!'",
-          "constructor_params": [],
-          "input": [],
-          "expected_output": "Au au!"
-        }
-      ]
-    }
-  ]
+	"type": "class",
+	"class": "Animal",
+	"timeout": 1000.0,
+	"methods": [
+		{
+			"name": "falar",
+			"cases": [
+				{
+					"name": "Cachorro fala corretamente",
+					"class": "Cachorro",
+					"constructor_params": [
+						null
+					],
+					"expected_output": "Au au!"
+				},
+				{
+					"name": "Gato fala corretamente",
+					"class": "Gato",
+					"constructor_params": [
+						null
+					],
+					"expected_output": "Miau!"
+				},
+				{
+					"name": "Ovelha fala corretamente",
+					"class": "Ovelha",
+					"constructor_params": [
+						null
+					],
+					"expected_output": "Beehhh!"
+				}
+			]
+		}
+	]
 }

@@ -1,5 +1,5 @@
 {
-	"function": "calcular_montante",
+	"function": "calculate_amount",
 	"timeout": 5,
 	"comparison": "approximate",
 	"tolerance": 0.01,

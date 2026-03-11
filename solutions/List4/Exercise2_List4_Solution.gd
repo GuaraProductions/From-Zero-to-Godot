@@ -1,5 +1,4 @@
 extends Control
-class_name List4Exercise2
 
 #region AlreadyImplemented
 

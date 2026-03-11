@@ -9,7 +9,7 @@ signal locale_changed(new_locale: String)
 const SETTING_EXERCISES_PATH = "from_zero_to_godot/exercises_path"
 
 ## Default path for exercises folder
-const EXERCISES_PATH_DEFAULT = "res://exercises-lists"
+const EXERCISES_PATH_DEFAULT = "res://exercises-testing"
 
 ## Project settings key for the ebook folder path
 const SETTING_EBOOK_PATH = "from_zero_to_godot/ebook_path"
@@ -274,8 +274,7 @@ static func get_ebook_path() -> String:
 ## Example: "res://exercises-lists/pt-br"
 static func get_localized_exercises_path() -> String:
 	var base = get_exercises_path()
-	var locale = get_locale()
-	return base.path_join(locale)
+	return base
 
 ## Returns the full ebook path including locale
 ## Example: "res://ebook/pt-br"

@@ -1,0 +1,127 @@
+﻿{
+	"functions": [
+		{
+			"cases": [
+				{
+					"expected_output": 900.0,
+					"input": [
+						1000.0,
+						10.0
+					],
+					"name": "1000 with 10 percent discount"
+				},
+				{
+					"expected_output": 570.0,
+					"input": [
+						600.0,
+						5.0
+					],
+					"name": "600 with 5 percent discount"
+				},
+				{
+					"expected_output": 320.0,
+					"input": [
+						400.0,
+						20.0
+					],
+					"name": "400 with 20 percent discount"
+				},
+				{
+					"expected_output": 500.0,
+					"input": [
+						625.0,
+						20.0
+					],
+					"name": "625 with 20 percent discount reaches exact boundary"
+				},
+				{
+					"expected_output": 501.0,
+					"input": [
+						626.25,
+						20.0
+					],
+					"name": "626.25 with 20 percent discount stays above boundary"
+				},
+				{
+					"expected_output": 250.0,
+					"input": [
+						250.0,
+						0.0
+					],
+					"name": "250 with zero discount keeps original value"
+				},
+				{
+					"expected_output": 0.0,
+					"input": [
+						800.0,
+						100.0
+					],
+					"name": "800 with 100 percent discount becomes zero"
+				},
+				{
+					"expected_output": 87.4125,
+					"input": [
+						99.9,
+						12.5
+					],
+					"name": "99.90 with 12.5 percent discount"
+				}
+			],
+			"comparison": "approximate",
+			"function": "calculate_discounted_value",
+			"tolerance": 0.01
+		},
+		{
+			"cases": [
+				{
+					"expected_output": true,
+					"input": [
+						900.0
+					],
+					"name": "900 gets gift"
+				},
+				{
+					"expected_output": false,
+					"input": [
+						500.0
+					],
+					"name": "500 does not get gift"
+				},
+				{
+					"expected_output": true,
+					"input": [
+						501.0
+					],
+					"name": "501 gets gift"
+				},
+				{
+					"expected_output": false,
+					"input": [
+						499.99
+					],
+					"name": "499.99 does not get gift"
+				},
+				{
+					"expected_output": false,
+					"input": [
+						0.0
+					],
+					"name": "zero does not get gift"
+				},
+				{
+					"expected_output": true,
+					"input": [
+						1500.0
+					],
+					"name": "very high value gets gift"
+				}
+			],
+			"comparison": "exact",
+			"function": "calculate_if_customer_gets_gift"
+		}
+	],
+	"timeout": 5.0,
+	"type": "function_group"
+}
+
+

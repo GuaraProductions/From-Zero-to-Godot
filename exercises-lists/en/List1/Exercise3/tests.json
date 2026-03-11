@@ -1,5 +1,5 @@
 {
-	"function": "calcular_situacao_escolar",
+	"function": "calculate_school_status",
 	"timeout": 5,
 	"comparison": "exact",
 	"cases": [

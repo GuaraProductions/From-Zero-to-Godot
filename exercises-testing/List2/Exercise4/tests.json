@@ -1,0 +1,52 @@
+﻿{
+	"cases": [
+		{
+			"expected_output": 6.0,
+			"input": [
+				3.0
+			],
+			"name": "Factorial of 3"
+		},
+		{
+			"expected_output": 120.0,
+			"input": [
+				5.0
+			],
+			"name": "Factorial of 5"
+		},
+		{
+			"expected_output": 1.0,
+			"input": [
+				0.0
+			],
+			"name": "Factorial of 0"
+		},
+		{
+			"expected_output": 1.0,
+			"input": [
+				1.0
+			],
+			"name": "Factorial of 1"
+		},
+		{
+			"expected_output": 5040.0,
+			"input": [
+				7.0
+			],
+			"name": "Factorial of 7"
+		},
+		{
+			"expected_output": 3628800.0,
+			"input": [
+				10.0
+			],
+			"name": "Factorial of 10"
+		}
+	],
+	"comparison": "exact",
+	"function": "calculate_factorial",
+	"timeout": 1000.0,
+	"type": "funcao"
+}
+
+

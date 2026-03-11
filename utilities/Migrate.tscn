@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://djxaegeogqyhb"]
+
+[ext_resource type="Script" uid="uid://cdjpelypbuxnj" path="res://utilities/MigratePtBrTestsToExercisesTesting.gd" id="1_hyjin"]
+
+[node name="Migrate" type="Node" unique_id=2117056127]
+script = ExtResource("1_hyjin")

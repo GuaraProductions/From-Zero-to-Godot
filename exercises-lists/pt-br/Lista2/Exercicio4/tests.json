@@ -1,6 +1,6 @@
 {
   "tipo": "funcao",
-  "function": "calcular_fatorial",
+  "function": "calculate_factorial",
   "timeout": 1000,
   "comparison": "exact",
   "cases": [

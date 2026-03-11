@@ -17,10 +17,10 @@ func executar_testes(
 		push_error("Erro ao carregar arquivo de testes: %s" % arquivo_testes)
 		return resultados
 	
-	var casos: Array = dados_testes.get("casos", [])
-	var funcao: String = dados_testes.get("funcao", "")
-	var comparacao: String = dados_testes.get("comparacao", "exato")
-	var tolerancia: float = dados_testes.get("tolerancia", 0.01)
+	var casos: Array = dados_testes.get("cases", [])
+	var funcao: String = dados_testes.get("function", "")
+	var comparacao: String = dados_testes.get("comparison", "exact")
+	var tolerancia: float = dados_testes.get("tolerance", 0.01)
 	var timeout: int = dados_testes.get("timeout", 5)
 	
 	# Executa cada caso de teste
@@ -53,20 +53,20 @@ func _executar_caso(
 	timeout: int
 ) -> Dictionary:
 	var resultado := {
-		"nome": caso.get("nome", "Teste sem nome"),
-		"passou": false,
-		"tempo_ms": 0,
-		"entrada": caso.get("entrada", []),
-		"saida_esperada": caso.get("saida_esperada"),
-		"saida_obtida": null,
-		"erro": ""
+		"name": caso.get("name", "Unnamed test"),
+		"passed": false,
+		"time_ms": 0,
+		"input": caso.get("input", []),
+		"expected_output": caso.get("expected_output"),
+		"actual_output": null,
+		"error": ""
 	}
 	
 	# Cria instância
 	var instancia = script.new()
 	
 	if not instancia.has_method(funcao):
-		resultado.error = "Função '%s' não encontrada no script" % funcao
+		resultado.error = "Function '%s' not found in script" % funcao
 		instancia.free()
 		return resultado
 	
@@ -74,27 +74,27 @@ func _executar_caso(
 	var inicio = Time.get_ticks_msec()
 	var callable_func = Callable(instancia, funcao)
 	
-	var saida = callable_func.callv(resultado.entrada)
+	var saida = callable_func.callv(resultado.input)
 	
 	resultado.time_ms = Time.get_ticks_msec() - inicio
-	resultado.saida_obtida = saida
+	resultado.actual_output = saida
 	
 	# Verifica timeout
 	if resultado.time_ms > timeout * 1000:
-		resultado.error = "Timeout: teste levou %dms (limite: %ds)" % [resultado.time_ms, timeout]
+		resultado.error = "Timeout: test took %dms (limit: %ds)" % [resultado.time_ms, timeout]
 		instancia.free()
 		return resultado
 	
 	# Compara resultado
 	resultado.passed = _comparar_saidas(
-		resultado.saida_esperada,
-		resultado.saida_obtida,
+		resultado.expected_output,
+		resultado.actual_output,
 		tipo_comparacao,
 		tolerancia
 	)
 	
 	if not resultado.passed and resultado.error.is_empty():
-		resultado.error = "Saída diferente da esperada"
+		resultado.error = "Output differs from expected"
 	
 	instancia.free()
 	return resultado
@@ -104,14 +104,14 @@ func _comparar_saidas(esperado, obtido, tipo: String, tolerancia: float) -> bool
 		return obtido == null
 	
 	match tipo:
-		"aproximado":
+		"approximate":
 			if typeof(esperado) == TYPE_FLOAT or typeof(esperado) == TYPE_INT:
 				return absf(float(esperado) - float(obtido)) <= tolerancia
 			elif typeof(esperado) == TYPE_DICTIONARY:
 				return _comparar_dicts_aproximado(esperado, obtido, tolerancia)
 			elif typeof(esperado) == TYPE_ARRAY:
 				return _comparar_arrays_aproximado(esperado, obtido, tolerancia)
-		"exato":
+		"exact":
 			return esperado == obtido
 		_:
 			return esperado == obtido
@@ -184,8 +184,8 @@ func _gerar_resumo(resultados: Array[Dictionary]) -> Dictionary:
 	
 	return {
 		"total": resultados.size(),
-		"passou": passou_count,
-		"falhou": resultados.size() - passou_count,
+		"passed": passou_count,
+		"failed": resultados.size() - passou_count,
 		"tempo_total_ms": tempo_total,
 		"tempo_medio_ms": float(tempo_total) / resultados.size() if resultados.size() > 0 else 0.0,
 		"percentual": (float(passou_count) / resultados.size()) * 100.0 if resultados.size() > 0 else 0.0

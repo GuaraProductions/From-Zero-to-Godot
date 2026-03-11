@@ -128,29 +128,18 @@ func _carregar_exercicios_da_lista(caminho_lista: String, nome_lista: String) ->
 			var caminho_usar = caminho_config if FileAccess.file_exists(caminho_config) else caminho_tests
 			
 			if FileAccess.file_exists(caminho_usar):
-				# Read configuration file
-				var file = FileAccess.open(caminho_usar, FileAccess.READ)
-				if file:
-					var json_string = file.get_as_text()
-					file.close()
-					
-					var json = JSON.new()
-					var parse_result = json.parse(json_string)
-					
-					if parse_result == OK:
-						var dados = json.data
-						# Support both English and Portuguese keys
-						var nome_funcao = dados.get("function", dados.get("funcao", dados.get("class", dados.get("classe", "unknown"))))
-						var tipo_teste = dados.get("type", dados.get("tipo", "function"))  # Default: function
-						var arquivo_testes_custom = dados.get("test_file", dados.get("arquivo_testes", ""))
-						var exercicio_info =	{"nome": "%s - %s" % [nome_lista, nome_pasta],
-							"caminho_tests": arquivo_testes_custom if not arquivo_testes_custom.is_empty() else caminho_usar,
-							"lista": nome_lista,
-							"exercicio": nome_pasta,
-							"funcao": nome_funcao,
-							"tipo": tipo_teste
-						}
-						todos_exercicios.append(exercicio_info)
+				var config = TestConfigFactory.load_from_json(caminho_usar)
+				if config:
+					var exercicio_info = {
+						"nome": "%s - %s" % [nome_lista, nome_pasta],
+						"caminho_config": caminho_usar,
+						"caminho_tests": config.test_file if not config.test_file.is_empty() else caminho_usar,
+						"lista": nome_lista,
+						"exercicio": nome_pasta,
+						"funcao": config.get_target_name(),
+						"tipo": config.type
+					}
+					todos_exercicios.append(exercicio_info)
 		
 		nome_pasta = dir.get_next()
 	
@@ -185,102 +174,75 @@ func _on_exercicio_item_selecionado(index: int) -> void:
 	exercicio_selecionado = exercicios_filtrados[index]
 	_atualizar_detalhes_exercicio()
 	_limpar_resultado()
+	_limpar_exercicio_escolhido()
 
 func _atualizar_detalhes_exercicio() -> void:
 	if not detalhes_exercicio_atual or exercicio_selecionado.is_empty():
 		return
 	
-	var tipo_teste = exercicio_selecionado.get("tipo", "funcao")
-	var dados
-	
-	# For classe_custom, load script and get cases
-	if tipo_teste == "classe_custom":
-		var script_testes = load(exercicio_selecionado.caminho_tests)
-		if not script_testes:
-			detalhes_exercicio_atual.text = "[color=red]Error loading test script[/color]"
-			return
-		
-		var instancia_testes = script_testes.new()
-		if not instancia_testes.has_method("get_test_cases"):
-			detalhes_exercicio_atual.text = "[color=red]Script does not have method get_test_cases()[/color]"
-			instancia_testes.free()
-			return
-		
-		var casos = instancia_testes.get_test_cases()
-		instancia_testes.free()
-		
-		# Build data in expected format
-		dados = {
-			"tipo": "classe_custom",
-			"classe": exercicio_selecionado.funcao,
-			"timeout": 1000,
-			"casos": casos
-		}
-	else:
-		# For other types, read JSON normally
-		var file = FileAccess.open(exercicio_selecionado.caminho_tests, FileAccess.READ)
-		if not file:
-			detalhes_exercicio_atual.text = "[color=red]Error reading test file[/color]"
-			return
-		
-		var json_string = file.get_as_text()
-		file.close()
-		
-		var json = JSON.new()
-		var parse_result = json.parse(json_string)
-		
-		if parse_result != OK:
-			detalhes_exercicio_atual.text = "[color=red]Error parsing JSON[/color]"
-			return
-		
-		dados = json.data
+	var tipo_teste = exercicio_selecionado.get("tipo", TestConfigResource.TYPE_FUNCTION)
+	var config = TestConfigFactory.load_from_json(exercicio_selecionado.get("caminho_config", exercicio_selecionado.caminho_tests))
+	if not config:
+		detalhes_exercicio_atual.text = "[color=red]Error loading test configuration[/color]"
+		return
+
+	var custom_cases: Array[TestCaseConfig] = []
+	if tipo_teste == TestConfigResource.TYPE_CLASS_CUSTOM:
+		custom_cases = TestConfigFactory.load_custom_cases(exercicio_selecionado.caminho_tests)
 	
 	var locale = FromZeroToGodot.get_locale()
 	
 	# Format information
 	var texto = "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Exercício:", locale), exercicio_selecionado.nome]
 	
-	# Display function or class name (support both English and Portuguese keys)
-	if tipo_teste == "classe" or tipo_teste == "classe_custom":
-		texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Classe:", locale), dados.get("class", dados.get("classe", "?"))]
-		if tipo_teste == "classe_custom":
-			texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Tipo:", locale), TranslationHelper.translate("Testes customizados (por código)", locale)]
+	# Display function or class name
+	if tipo_teste == TestConfigResource.TYPE_CLASS:
+		texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Classe:", locale), config.name_class]
+	elif tipo_teste == TestConfigResource.TYPE_CLASS_CUSTOM:
+		texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Tipo:", locale), TranslationHelper.translate("Testes customizados (por código)", locale)]
+		texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Arquivo de teste:", locale), exercicio_selecionado.caminho_tests]
+		if not config.scene_path.is_empty():
+			texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Cena base:", locale), config.scene_path]
+	elif tipo_teste == TestConfigResource.TYPE_FUNCTION_GROUP:
+		texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Funções:", locale), ", ".join(config.get_function_names())]
 	else:
-		texto += "[b]%s[/b] %s()\n\n" % [TranslationHelper.translate("Função:", locale), dados.get("function", dados.get("funcao", "?"))]
+		texto += "[b]%s[/b] %s()\n\n" % [TranslationHelper.translate("Função:", locale), config.function_name]
 	
-	texto += "[b]%s[/b] %dms\n\n" % [TranslationHelper.translate("Timeout:", locale), dados.get("timeout", 1000)]
+	texto += "[b]%s[/b] %dms\n\n" % [TranslationHelper.translate("Timeout:", locale), config.timeout_ms]
 	
-	# Comparison information (if applicable) - support both English and Portuguese keys
-	if dados.has("comparison") or dados.has("comparacao"):
-		var comparison_value = dados.get("comparison", dados.get("comparacao", "exact"))
-		# Map Portuguese values to display
-		if comparison_value == "aproximado":
-			comparison_value = "approximate"
-		elif comparison_value == "exato":
-			comparison_value = "exact"
+	# Comparison information (if applicable)
+	if not config.comparison.is_empty():
+		var comparison_value = config.comparison
 		texto += "[b]Comparação:[/b] %s" % comparison_value
 		if comparison_value == "approximate":
-			texto += " (tolerância: %.4f)" % dados.get("tolerance", dados.get("tolerancia", 0.01))
+			texto += " (tolerância: %.4f)" % config.tolerance
 		texto += "\n\n"
 	
 	# Conta casos de teste baseado no tipo
 	var total_casos = 0
 	var casos_para_exibir = []
 	
-	if tipo_teste == "classe":
-		# For class, sum cases from all methods (support both English and Portuguese keys)
-		var metodos = dados.get("methods", dados.get("metodos", []))
-		for metodo in metodos:
-			var casos = metodo.get("cases", metodo.get("casos", []))
-			total_casos += casos.size()
-			for caso in casos:
-				casos_para_exibir.append(caso.get("name", caso.get("nome", "Test without name")))
+	if tipo_teste == TestConfigResource.TYPE_CLASS:
+		# For class, sum cases from all methods
+		for metodo in config.methods:
+			total_casos += metodo.cases.size()
+			for caso in metodo.cases:
+				casos_para_exibir.append(caso.name if not caso.name.is_empty() else "Test without name")
+	elif tipo_teste == TestConfigResource.TYPE_FUNCTION_GROUP:
+		for function_config in config.functions:
+			total_casos += function_config.cases.size()
+			for caso in function_config.cases:
+				var case_name = caso.name if not caso.name.is_empty() else "Test without name"
+				casos_para_exibir.append("%s :: %s" % [function_config.function_name, case_name])
+	elif tipo_teste == TestConfigResource.TYPE_CLASS_CUSTOM:
+		total_casos = custom_cases.size()
+		for caso in custom_cases:
+			casos_para_exibir.append(caso.name if not caso.name.is_empty() else "Test without name")
 	else:
-		# For function and scene, direct cases (support both English and Portuguese keys)
-		var casos = dados.get("cases", dados.get("casos", []))
-		total_casos = casos.size()
-		for caso in casos:
-			casos_para_exibir.append(caso.get("name", caso.get("nome", "Test without name")))
+		# For function and scene, direct cases
+		total_casos = config.cases.size()
+		for caso in config.cases:
+			casos_para_exibir.append(caso.name if not caso.name.is_empty() else "Test without name")
 	
 	texto += "[b]Casos de teste:[/b] %d\n\n" % total_casos
 	
@@ -320,6 +282,11 @@ func _on_arquivo_selecionado(caminho: String) -> void:
 	if exercicio_selecionado.is_empty():
 		push_error("No exercise selected")
 		return
+
+	var config = TestConfigFactory.load_from_json(exercicio_selecionado.get("caminho_config", exercicio_selecionado.caminho_tests))
+	if not config:
+		_exibir_erro("Error loading test configuration")
+		return
 	
 	# Load the script
 	var script = load(caminho)
@@ -328,10 +295,10 @@ func _on_arquivo_selecionado(caminho: String) -> void:
 		return
 	
 	# Validate based on test type (support both English and Portuguese values)
-	var tipo_teste = exercicio_selecionado.get("tipo", "funcao")
+	var tipo_teste = exercicio_selecionado.get("tipo", TestConfigResource.TYPE_FUNCTION)
 	var nome_alvo = exercicio_selecionado.funcao
 	
-	if tipo_teste == "classe" or tipo_teste == "class":
+	if tipo_teste == TestConfigResource.TYPE_CLASS:
 		# For class tests, verify if class exists
 		var classe_encontrada = false
 		
@@ -352,13 +319,21 @@ func _on_arquivo_selecionado(caminho: String) -> void:
 		if not classe_encontrada:
 			_exibir_erro("Script does not contain class '%s'" % nome_alvo)
 			return
-	elif tipo_teste == "funcao" or tipo_teste == "function":
+	elif tipo_teste == TestConfigResource.TYPE_FUNCTION or tipo_teste == TestConfigResource.TYPE_FUNCTION_GROUP:
 		# For function tests, check if function exists
 		var instancia_temp = script.new()
-		if not instancia_temp.has_method(nome_alvo):
-			instancia_temp.free()
-			_exibir_erro("Script does not contain function '%s()'" % nome_alvo)
-			return
+		var functions_to_validate: Array[String] = []
+		if tipo_teste == TestConfigResource.TYPE_FUNCTION_GROUP:
+			functions_to_validate = config.get_function_names()
+		else:
+			functions_to_validate = [nome_alvo]
+
+		for function_name in functions_to_validate:
+			if not instancia_temp.has_method(function_name):
+				instancia_temp.free()
+				_exibir_erro("Script does not contain function '%s()'" % function_name)
+				return
+
 		instancia_temp.free()
 	# For "cena" and "classe_custom" types, we don't validate here
 	
@@ -369,6 +344,7 @@ func _on_arquivo_selecionado(caminho: String) -> void:
 
 func _limpar_exercicio_escolhido() -> void:
 	exercicio_escolhido_line_edit.text = ""
+	script_carregado = null
 
 func _exibir_erro(mensagem: String) -> void:
 	if exercicio_escolhido_line_edit:
@@ -389,7 +365,7 @@ func _on_executar_teste_pressed() -> void:
 	_limpar_resultado()
 	
 	# Create appropriate runner based on test type
-	var tipo_teste = exercicio_selecionado.get("tipo", "funcao")
+	var tipo_teste = exercicio_selecionado.get("tipo", TestConfigResource.TYPE_FUNCTION)
 	
 	# Free previous runner if it exists
 	if runner:
@@ -401,27 +377,17 @@ func _on_executar_teste_pressed() -> void:
 			runner.todos_testes_concluidos.disconnect(_on_todos_testes_concluidos)
 		runner = null
 	
-	# Create new runner of appropriate type
-	match tipo_teste:
-		"funcao":
-			var script_runner = load("res://addons/from_zero_to_godot/TestRunner/TestRunnerFuncao.gd")
-			runner = script_runner.new()
-		"classe":
-			var script_runner = load("res://addons/from_zero_to_godot/TestRunner/TestRunnerClasse.gd")
-			runner = script_runner.new()
-		"classe_custom":
-			var script_runner = load("res://addons/from_zero_to_godot/TestRunner/TestRunnerClasseCustom.gd")
-			runner = script_runner.new()
-		"cena":
-			var script_runner = load("res://addons/from_zero_to_godot/TestRunner/TestRunnerCena.gd")
-			runner = script_runner.new()
-			# For scene tests, try to load .tscn instead of script
-			var caminho_cena = exercicio_escolhido_line_edit.text.replace(".gd", ".tscn")
-			if FileAccess.file_exists(caminho_cena):
-				runner.cena_path = caminho_cena
-		_:
-			_exibir_resultado_erro("Unknown test type: %s" % tipo_teste)
-			return
+	runner = TestRunnerFactory.create_runner(tipo_teste)
+	if not runner:
+		_exibir_resultado_erro("Unknown or unavailable test type: %s" % tipo_teste)
+		return
+
+	# For scene tests, try to load .tscn instead of script
+	if tipo_teste == TestConfigResource.TYPE_SCENE and "cena_path" in runner:
+		var caminho_cena = exercicio_escolhido_line_edit.text.replace(".gd", ".tscn")
+		if FileAccess.file_exists(caminho_cena):
+			runner.cena_path = caminho_cena
+		
 	
 	# Connect signals
 	runner.teste_iniciado.connect(_on_teste_iniciado)
@@ -433,14 +399,17 @@ func _on_executar_teste_pressed() -> void:
 		executar_teste_atual.disabled = true
 	
 	# Execute tests
-	runner.executar_testes(script_carregado, exercicio_selecionado.caminho_tests)
+	var caminho_execucao_testes = exercicio_selecionado.caminho_tests
+	if tipo_teste == TestConfigResource.TYPE_CLASS_CUSTOM:
+		caminho_execucao_testes = exercicio_selecionado.get("caminho_config", exercicio_selecionado.caminho_tests)
+
+	runner.executar_testes(script_carregado, caminho_execucao_testes)
 
 func _limpar_resultado() -> void:
 	if resultado_teste:
 		resultado_teste.text = ""
 	if progresso_testes:
 		progresso_testes.value = 0
-	_limpar_exercicio_escolhido()
 
 func _exibir_resultado_erro(mensagem: String) -> void:
 	if resultado_teste:
@@ -461,37 +430,36 @@ func _on_todos_testes_concluidos(resumo: Dictionary) -> void:
 	# Re-enable button
 	if executar_teste_atual:
 		executar_teste_atual.disabled = false
-	
 	# Add summary to result
 	if resultado_teste:
-		var cor = Color.GREEN if resumo.percentual >= 70 else Color.ORANGE if resumo.percentual >= 50 else Color.RED
+		var cor = Color.GREEN if resumo.percentage >= 70 else Color.ORANGE if resumo.percentage >= 50 else Color.RED
 		var cor_hex = cor.to_html(false)
 		
 		resultado_teste.text += "\n[center][bgcolor=#%s][b]═══════════════════════════[/b][/bgcolor][/center]\n\n" % cor_hex
 		resultado_teste.text += "[center][b]RESUMO DOS TESTES[/b][/center]\n\n"
 		resultado_teste.text += "[b]Total:[/b] %d testes\n" % resumo.total
-		resultado_teste.text += "[color=green][b]Passou:[/b] %d[/color]\n" % resumo.passou
-		resultado_teste.text += "[color=red][b]Falhou:[/b] %d[/color]\n\n" % resumo.falhou
-		resultado_teste.text += "[b]Percentual:[/b] [color=#%s]%.1f%%[/color]\n\n" % [cor_hex, resumo.percentual]
-		resultado_teste.text += "[b]Tempo total:[/b] %dms\n" % resumo.tempo_total_ms
-		resultado_teste.text += "[b]Tempo médio:[/b] %.1fms\n" % resumo.tempo_medio_ms
+		resultado_teste.text += "[color=green][b]Passou:[/b] %d[/color]\n" % resumo.passed
+		resultado_teste.text += "[color=red][b]Falhou:[/b] %d[/color]\n\n" % resumo.failed
+		resultado_teste.text += "[b]Percentual:[/b] [color=#%s]%.1f%%[/color]\n\n" % [cor_hex, resumo.percentage]
+		resultado_teste.text += "[b]Tempo total:[/b] %dms\n" % resumo.total_time_ms
+		resultado_teste.text += "[b]Tempo médio:[/b] %.1fms\n" % resumo.average_time_ms
 
 func _adicionar_resultado_ao_texto(resultado: Dictionary) -> void:
 	if not resultado_teste:
 		return
 	
-	var cor = "green" if resultado.passou else "red"
-	var icone = "✅" if resultado.passou else "❌"
+	var cor = "green" if resultado.passed else "red"
+	var icone = "✅" if resultado.passed else "❌"
 	
 	var locale = FromZeroToGodot.get_locale()
 	
-	resultado_teste.text += "[bgcolor=#333333]%s [b]%s[/b] (%dms)[/bgcolor]\n" % [icone, resultado.nome, resultado.tempo_ms]
-	resultado_teste.text += "[b]%s[/b] %s\n" % [TranslationHelper.translate("Entrada:", locale), str(resultado.entrada)]
-	resultado_teste.text += "[b]%s[/b] %s\n" % [TranslationHelper.translate("Esperado:", locale), str(resultado.saida_esperada)]
-	resultado_teste.text += "[b]%s[/b] [color=%s]%s[/color]\n" % [TranslationHelper.translate("Obtido:", locale), cor, str(resultado.saida_obtida)]
+	resultado_teste.text += "[bgcolor=#333333]%s [b]%s[/b] (%dms)[/bgcolor]\n" % [icone, resultado.name, resultado.time_ms]
+	resultado_teste.text += "[b]%s[/b] %s\n" % [TranslationHelper.translate("Entrada:", locale), str(resultado.input)]
+	resultado_teste.text += "[b]%s[/b] %s\n" % [TranslationHelper.translate("Esperado:", locale), str(resultado.expected_output)]
+	resultado_teste.text += "[b]%s[/b] [color=%s]%s[/color]\n" % [TranslationHelper.translate("Obtido:", locale), cor, str(resultado.actual_output)]
 	
-	if not resultado.erro.is_empty():
-		resultado_teste.text += "[color=orange][b]Erro:[/b] %s[/color]\n" % resultado.erro
+	if not resultado.error.is_empty():
+		resultado_teste.text += "[color=orange][b]Erro:[/b] %s[/color]\n" % resultado.error
 	
 	resultado_teste.text += "\n"
 

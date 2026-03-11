@@ -65,3 +65,15 @@ func _on_triangulo_pressed() -> void:
 	
 	triangulo_resultado.modulate = Color.WHITE
 	triangulo_resultado.text = "Área do Triângulo: %s" % Numeros.formatar(area)
+
+class Forma:
+	pass
+
+class Triangulo:
+	pass
+
+class Retangulo:
+	pass
+
+class Quadrado:
+	pass

@@ -1,0 +1,52 @@
+﻿{
+	"cases": [
+		{
+			"expected_output": 3.0,
+			"input": [
+				10.0
+			],
+			"name": "Count multiples of 3 up to 10"
+		},
+		{
+			"expected_output": 1.0,
+			"input": [
+				3.0
+			],
+			"name": "Count multiples of 3 up to 3"
+		},
+		{
+			"expected_output": 10.0,
+			"input": [
+				30.0
+			],
+			"name": "Count multiples of 3 up to 30"
+		},
+		{
+			"expected_output": 5.0,
+			"input": [
+				15.0
+			],
+			"name": "Count multiples of 3 up to 15"
+		},
+		{
+			"expected_output": 0.0,
+			"input": [
+				2.0
+			],
+			"name": "Count multiples of 3 up to 2"
+		},
+		{
+			"expected_output": 33.0,
+			"input": [
+				100.0
+			],
+			"name": "Count multiples of 3 up to 100"
+		}
+	],
+	"comparison": "exact",
+	"function": "count_multiples_of_3",
+	"timeout": 1000.0,
+	"type": "funcao"
+}
+
+
