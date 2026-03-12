@@ -1,4 +1,3 @@
-````markdown
 # Dictionaries
 
 While Arrays organize data sequentially through numerical indices (0, 1, 2...), there are scenarios where accessing data by "position" is inefficient or illogical. For these cases, we use the **Dictionary** (`Dictionary`).
@@ -152,4 +151,3 @@ func _ready():
     skills.erase("Intelligence")
     print("\nTotal remaining attributes: ", skills.size())
 ```
-````

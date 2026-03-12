@@ -1,4 +1,3 @@
-````markdown
 # Encapsulation
 
 **Encapsulate**, as the name suggests, means putting something inside a "capsule" to protect it. In programming, this concept serves to control how an object's data is accessed or modified, preventing external parts of the code from making improper or dangerous modifications.
@@ -117,4 +116,3 @@ func _ready():
 ✅ **Validation**: Ensures that your game data (health, ammunition, speed) is always within acceptable limits
 
 ✅ **Ease of Maintenance**: If you need to change how data is calculated, you only change inside the Getter or Setter, and the rest of the game will continue working normally
-````

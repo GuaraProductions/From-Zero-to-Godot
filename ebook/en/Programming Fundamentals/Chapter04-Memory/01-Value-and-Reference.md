@@ -1,4 +1,3 @@
-````markdown
 # Value and Reference
 
 To close our understanding of how the Engine and GDScript deal with data, we need to look "under the hood" and understand how information is stored in the computer's memory. There are two main ways to manipulate data: **by Value** and **by Reference**.
@@ -55,4 +54,3 @@ The Engine uses a system called **RefCounted** (Reference Counting) to manage th
 ✅ **Performance**: Passing a reference is instantaneous, while copying an Array with 10,000 items at each function would make the game slow
 
 ✅ **Consistency**: Ensures that when giving an item to the player, all parts of the system (HUD, Inventory, Shop) see the same updated object
-````

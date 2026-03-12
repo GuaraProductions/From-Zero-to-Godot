@@ -1,4 +1,3 @@
-````markdown
 # Abstraction
 
 Continuing our studies on the pillars of OOP, we come to a concept that seems abstract by name, but that you apply every day in real life: **Abstraction**.
@@ -79,4 +78,3 @@ func _ready():
 ✅ **Flexibility**: Allows creating generic systems that work with any object that follows the same logical "contract"
 
 ✅ **Organization**: Helps separate "what the object does" from "how it does it"
-````

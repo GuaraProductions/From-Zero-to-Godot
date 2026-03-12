@@ -1,4 +1,3 @@
-````markdown
 # Loop Structures (Loops)
 
 **Loop structures**, also known as **loops**, are essential when we need the computer to execute the same block of code multiple times without us having to write it repeatedly. Imagine you want to create 10 enemies in a level or sum all items in an inventory; without loops, you'd have to write 10 manual lines, but with them, you write just one instruction that repeats.
@@ -54,4 +53,3 @@ func _ready():
 - **Infinite Loop**: Happens in `while` if you forget to update the stop condition
 
 > 💡 **Tip**: When possible, prefer `for` because it's safer and harder to create infinite loops!
-````

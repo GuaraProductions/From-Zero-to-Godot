@@ -1,4 +1,3 @@
-````markdown
 # Inheritance
 
 In the previous chapter, we saw that **Classes** work as molds to create objects. Now, imagine you're creating a game with several types of enemies: an **Orc**, a **Skeleton**, and a **Dragon**. They all have things in common, like health, position on the map, and the ability to take damage. It would be very tiring to write the same "health" code for each of them, right?
@@ -60,4 +59,3 @@ func _ready():
 ✅ **Organization**: If you need to change how damage is calculated in the entire game, you only need to modify the parent class, and all children will be automatically updated
 
 ✅ **Standardization**: Ensures that all your enemies behave similarly, avoiding unexpected errors
-````

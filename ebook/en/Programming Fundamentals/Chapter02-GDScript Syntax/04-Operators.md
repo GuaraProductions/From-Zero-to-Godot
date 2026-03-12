@@ -1,4 +1,3 @@
-````markdown
 # Operators
 
 In game development, you'll spend a good part of your time performing calculations and comparisons, like decreasing an enemy's health, checking if the player has enough coins, or deciding if a level has been completed. For this, GDScript offers three main types of operators.
@@ -61,4 +60,3 @@ func _ready():
 	print("Victory? ", team_a_victory)
 	print("Can pass? ", can_pass)
 ```
-````

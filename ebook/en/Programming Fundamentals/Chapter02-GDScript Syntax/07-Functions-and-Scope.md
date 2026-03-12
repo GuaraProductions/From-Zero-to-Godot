@@ -1,4 +1,3 @@
-````markdown
 # Functions and Scope
 
 If variables are memory boxes and operators are tools, **functions** are the machines in your factory. A function is a block of code that groups several instructions to perform a specific task. Instead of writing all the logic to "jump" every time the player presses a button, you create a function called `jump()` and just call it when needed.
@@ -64,4 +63,3 @@ func add_gold(local_amount):
 ✅ **Clarity**: It's much easier to read `play_explosion_sound()` than ten lines of mathematical calculations mixed in your main code
 
 > 💡 **Tip**: Give descriptive names to your functions using action verbs: `calculate_damage()`, `move_character()`, `load_level()`
-````

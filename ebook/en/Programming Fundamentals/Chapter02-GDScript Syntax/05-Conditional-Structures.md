@@ -1,4 +1,3 @@
-````markdown
 # Conditional Structures
 
 **Conditional structures** are the tools that allow your program to make decisions. Until now, we've seen code as a straight line, but with conditionals, we create "forks" where the software decides which path to follow depending on the data. If a condition is true, a block of code is executed; otherwise, the program can follow an alternative path or simply ignore that part.
@@ -59,4 +58,3 @@ func _ready():
 ```
 
 > 💡 **Tip**: Try changing the values of `team_a_points`, `team_b_points`, and `player_state` to see different results!
-````

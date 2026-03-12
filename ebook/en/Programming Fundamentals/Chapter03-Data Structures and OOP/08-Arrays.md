@@ -1,4 +1,3 @@
-````markdown
 # Arrays
 
 In previous lessons, we defined variables as memory spaces for singular data. However, developing systems requires manipulating data sets. The fundamental structure for this is the **Array**.
@@ -104,4 +103,3 @@ func _ready():
     # 3. Display final size
     print("Total items processed: ", inventory.size())
 ```
-````

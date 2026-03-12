@@ -1,4 +1,3 @@
-````markdown
 # Variables, Assignment, and Declaration
 
 Now that you understand what a language is and how logic works, it's time to learn to write your first commands. The most fundamental concept in programming is variables. You can imagine a variable as a small empty "box" inside the computer's memory, where you store information to use later. Without variables, the computer would have no way to store data during program execution.
@@ -54,4 +53,3 @@ GDScript can automatically identify what you store in the variable, but it's imp
 - Integer (int): Whole numbers, positive or negative (e.g., 550).
 - Float: Numbers with decimal places (e.g., 15.5).
 - Boolean (bool): Represents only two states, true or false, like a light switch.
-````

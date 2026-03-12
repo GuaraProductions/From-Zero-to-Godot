@@ -1,4 +1,3 @@
-````markdown
 # Polymorphism
 
 We've reached the last of the four pillars of Object-Oriented Programming: **Polymorphism**. The name comes from Greek and means "many forms." In programming, this concept allows different objects to respond to the same function call in different ways, according to their own nature.
@@ -77,4 +76,4 @@ func _ready():
 ✅ **Organization**: Allows treating groups of different objects uniformly
 
 ✅ **Clean Code**: Avoids excessive use of "ifs" to check what type of object it is before performing a common action
-````
+

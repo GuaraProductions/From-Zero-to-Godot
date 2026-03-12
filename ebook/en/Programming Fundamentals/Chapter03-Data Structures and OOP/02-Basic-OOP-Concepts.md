@@ -1,4 +1,3 @@
-````markdown
 # What is Object-Oriented Programming (OOP)?
 
 Imagine you're progressing in developing your game and suddenly need to manage hundreds of pieces of information at once: the position of 50 enemies, the attributes of 20 different items, and the state of all the dungeon doors.
@@ -190,4 +189,3 @@ static func try_heal():
 ```
 
 **Summary:** Use `static` for general tools and global data. Use normal variables for everything that's individual to the character.
-````

@@ -1,4 +1,3 @@
-````markdown
 # Composition
 
 After exploring **Inheritance**, it's essential to know its inseparable "partner" in the Engine: **Composition**. While inheritance defines **what an object is** (a Lobo Guará **is** an Animal), composition defines **what an object has** (a Character **has** an Inventory, **has** a Health Bar).
@@ -63,4 +62,3 @@ func _ready():
 ✅ **Easy Maintenance**: If the "Inventory" component gives an error, you only need to fix one file, without fear of breaking the entire game's inheritance hierarchy.
 
 ✅ **Modularity**: You build your game as if you were assembling LEGO blocks. You only add the components that a class needs.
-````

@@ -1,4 +1,3 @@
-````markdown
 # Object, RefCounted, and Node
 
 To finish our ebook, let's understand how Godot organizes everything we've seen so far (Classes, Objects, Inheritance, and Memory) within its own internal structure. In the Engine, almost everything you touch follows a **"birth" hierarchy** that defines how that object behaves and how it dies.
@@ -80,4 +79,3 @@ func _ready():
 
 - If you need something to **process mathematical calculations**, use a `RefCounted`
 - If you need something that **appears on screen** or interacts with game time, use a `Node`
-````

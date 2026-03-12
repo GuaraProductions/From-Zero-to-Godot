@@ -1,4 +1,3 @@
-````markdown
 # What are Data Structures?
 
 Until now, we've worked with isolated information, like a name or a number. But as your game grows, managing hundreds of loose variables becomes impossible. To understand how to solve this, we first need to understand that not every data "box" is the same. In programming, we divide storage tools into two large groups: the **Primitives** and the **Composites**.
@@ -130,4 +129,3 @@ func _ready() -> void:
 func _ready() -> void:
 	var npc_list: Array[String] = [NPC.new("Guard"), NPC.new("Blacksmith"), NPC.new("Knight")]
 ```
-````
