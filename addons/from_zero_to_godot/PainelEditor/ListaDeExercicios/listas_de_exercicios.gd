@@ -12,10 +12,7 @@ var plugin_reference: FromZeroToGodot = null
 
 
 func _ready():
-	if Engine.is_editor_hint():
-		diretorio_listas = FromZeroToGodot.get_localized_exercises_path()
-	else:
-		diretorio_listas = FromZeroToGodot.get_localized_exercises_path()
+	diretorio_listas = FromZeroToGodot.get_localized_exercises_list_path()
 		
 	
 	# Atualiza traduções
@@ -43,12 +40,14 @@ func _atualizar_traducoes() -> void:
 
 func recarregar_listas() -> void:
 	"""Recarrega listas após mudança de locale"""
-	diretorio_listas = FromZeroToGodot.get_localized_exercises_path()
+	diretorio_listas = FromZeroToGodot.get_localized_exercises_list_path()
 	_criar_botoes_listas()
 
 func _criar_botoes_listas():
+	var locale = FromZeroToGodot.get_locale()
+
 	if diretorio_listas.is_empty():
-		push_warning("Diretório de listas não configurado")
+		push_warning(TranslationHelper.translate("Diretório de listas de exercícios não configurado", locale))
 		return
 	
 	# Limpa botões existentes
@@ -58,7 +57,7 @@ func _criar_botoes_listas():
 	# Verifica se o diretório existe
 	if not DirAccess.dir_exists_absolute(diretorio_listas):
 		var label = Label.new()
-		label.text = "Exercise lists not available for this language yet.\nDirectory: %s" % diretorio_listas
+		label.text = TranslationHelper.translate("As listas de exercícios ainda não estão disponíveis para este idioma.\nDiretório: %s", locale) % diretorio_listas
 		label.add_theme_color_override("font_color", Color.ORANGE)
 		listas.add_child(label)
 		return
@@ -66,7 +65,7 @@ func _criar_botoes_listas():
 	# Lê as pastas do diretório
 	var dir = DirAccess.open(diretorio_listas)
 	if not dir:
-		push_error("Não foi possível abrir o diretório: %s" % diretorio_listas)
+		push_error(TranslationHelper.translate("Não foi possível abrir o diretório: %s", locale) % diretorio_listas)
 		return
 	
 	dir.list_dir_begin()
@@ -87,9 +86,10 @@ func _criar_botao_para_lista(nome_pasta: String):
 
 func _carregar_markdown(nome_pasta: String):
 	var caminho_md = diretorio_listas.path_join(nome_pasta).path_join(nome_pasta + ".md")
+	var locale = FromZeroToGodot.get_locale()
 	
 	if not FileAccess.file_exists(caminho_md):
-		push_error("Arquivo não encontrado: %s" % caminho_md)
+		push_error(TranslationHelper.translate("Arquivo não encontrado: %s", locale) % caminho_md)
 		return
 	
 	# Limpa conteúdo anterior do markdown_pre_processador

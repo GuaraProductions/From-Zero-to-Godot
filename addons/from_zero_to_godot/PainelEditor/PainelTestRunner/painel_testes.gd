@@ -67,16 +67,16 @@ func _atualizar_traducoes() -> void:
 	var locale = FromZeroToGodot.get_locale()
 	
 	if achar_questao:
-		achar_questao.placeholder_text = TranslationHelper.translate("Type which exercise you want to test", locale)
+		achar_questao.placeholder_text = TranslationHelper.translate("Digite qual questão você quer testar", locale)
 	
 	if escolha_exercicio_button:
-		escolha_exercicio_button.text = TranslationHelper.translate("Choose the script", locale)
+		escolha_exercicio_button.text = TranslationHelper.translate("Escolha o script", locale)
 	
 	if executar_teste_atual:
-		executar_teste_atual.text = TranslationHelper.translate("Run tests", locale)
+		executar_teste_atual.text = TranslationHelper.translate("Executar testes", locale)
 	
 	if resultado_label:
-		resultado_label.text = TranslationHelper.translate("Test Results", locale)
+		resultado_label.text = TranslationHelper.translate("Resultado dos Testes", locale)
 
 func recarregar_todos_exercicios() -> void:
 	"""Recarrega todos exercícios após mudança de locale"""
@@ -85,17 +85,18 @@ func recarregar_todos_exercicios() -> void:
 
 func _carregar_todos_exercicios() -> void:
 	todos_exercicios.clear()
+	var locale = FromZeroToGodot.get_locale()
 
 	# Check if directory exists
 	if not DirAccess.dir_exists_absolute(diretorio_listas):
-		push_warning("Exercises directory not available for this language: %s" % diretorio_listas)
+		push_warning(TranslationHelper.translate("Diretório de exercícios não disponível para este idioma: %s", locale) % diretorio_listas)
 		_atualizar_lista_ui()
 		return
 
 	var dir = DirAccess.open(diretorio_listas)
 	
 	if not dir:
-		push_error("Could not open directory: %s" % diretorio_listas)
+		push_error(TranslationHelper.translate("Não foi possível abrir o diretório: %s", locale) % diretorio_listas)
 		return
 	
 	dir.list_dir_begin()
@@ -183,7 +184,8 @@ func _atualizar_detalhes_exercicio() -> void:
 	var tipo_teste = exercicio_selecionado.get("tipo", TestConfigResource.TYPE_FUNCTION)
 	var config = TestConfigFactory.load_from_json(exercicio_selecionado.get("caminho_config", exercicio_selecionado.caminho_tests))
 	if not config:
-		detalhes_exercicio_atual.text = "[color=red]Error loading test configuration[/color]"
+		var locale = FromZeroToGodot.get_locale()
+		detalhes_exercicio_atual.text = "[color=red]%s[/color]" % TranslationHelper.translate("Erro ao carregar configuração de testes", locale)
 		return
 
 	var custom_cases: Array[TestCaseConfig] = []
@@ -193,29 +195,29 @@ func _atualizar_detalhes_exercicio() -> void:
 	var locale = FromZeroToGodot.get_locale()
 	
 	# Format information
-	var texto = "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Exercise:", locale), exercicio_selecionado.nome]
+	var texto = "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Exercício:", locale), exercicio_selecionado.nome]
 	
 	# Display function or class name
 	if tipo_teste == TestConfigResource.TYPE_CLASS:
-		texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Class:", locale), config.name_class]
+		texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Classe:", locale), config.name_class]
 	elif tipo_teste == TestConfigResource.TYPE_CLASS_CUSTOM:
-		texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Type:", locale), TranslationHelper.translate("Custom tests (code-based)", locale)]
-		texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Test file:", locale), exercicio_selecionado.caminho_tests]
+		texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Tipo:", locale), TranslationHelper.translate("Testes customizados (por código)", locale)]
+		texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Arquivo de teste:", locale), exercicio_selecionado.caminho_tests]
 		if not config.scene_path.is_empty():
-			texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Base scene:", locale), config.scene_path]
+			texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Cena base:", locale), config.scene_path]
 	elif tipo_teste == TestConfigResource.TYPE_FUNCTION_GROUP:
-		texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Functions:", locale), ", ".join(config.get_function_names())]
+		texto += "[b]%s[/b] %s\n\n" % [TranslationHelper.translate("Funções:", locale), ", ".join(config.get_function_names())]
 	else:
-		texto += "[b]%s[/b] %s()\n\n" % [TranslationHelper.translate("Function:", locale), config.function_name]
+		texto += "[b]%s[/b] %s()\n\n" % [TranslationHelper.translate("Função:", locale), config.function_name]
 	
 	texto += "[b]%s[/b] %dms\n\n" % [TranslationHelper.translate("Timeout:", locale), config.timeout_ms]
 	
 	# Comparison information (if applicable)
 	if not config.comparison.is_empty():
 		var comparison_value = config.comparison
-		texto += "[b]%s[/b] %s" % [TranslationHelper.translate("Comparison:", locale), comparison_value]
+		texto += "[b]%s[/b] %s" % [TranslationHelper.translate("Comparação:", locale), comparison_value]
 		if comparison_value == "approximate":
-			texto += " (%s %.4f)" % [TranslationHelper.translate("tolerance:", locale), config.tolerance]
+			texto += " (%s %.4f)" % [TranslationHelper.translate("tolerância:", locale), config.tolerance]
 		texto += "\n\n"
 	
 	# Conta casos de teste baseado no tipo
@@ -227,24 +229,24 @@ func _atualizar_detalhes_exercicio() -> void:
 		for metodo in config.methods:
 			total_casos += metodo.cases.size()
 			for caso in metodo.cases:
-				casos_para_exibir.append(caso.name if not caso.name.is_empty() else TranslationHelper.translate("Test without name", locale))
+				casos_para_exibir.append(caso.name if not caso.name.is_empty() else TranslationHelper.translate("Teste sem nome", locale))
 	elif tipo_teste == TestConfigResource.TYPE_FUNCTION_GROUP:
 		for function_config in config.functions:
 			total_casos += function_config.cases.size()
 			for caso in function_config.cases:
-				var case_name = caso.name if not caso.name.is_empty() else TranslationHelper.translate("Test without name", locale)
+				var case_name = caso.name if not caso.name.is_empty() else TranslationHelper.translate("Teste sem nome", locale)
 				casos_para_exibir.append("%s :: %s" % [function_config.function_name, case_name])
 	elif tipo_teste == TestConfigResource.TYPE_CLASS_CUSTOM:
 		total_casos = custom_cases.size()
 		for caso in custom_cases:
-			casos_para_exibir.append(caso.name if not caso.name.is_empty() else TranslationHelper.translate("Test without name", locale))
+			casos_para_exibir.append(caso.name if not caso.name.is_empty() else TranslationHelper.translate("Teste sem nome", locale))
 	else:
 		# For function and scene, direct cases
 		total_casos = config.cases.size()
 		for caso in config.cases:
-			casos_para_exibir.append(caso.name if not caso.name.is_empty() else TranslationHelper.translate("Test without name", locale))
+			casos_para_exibir.append(caso.name if not caso.name.is_empty() else TranslationHelper.translate("Teste sem nome", locale))
 	
-	texto += "[b]%s[/b] %d\n\n" % [TranslationHelper.translate("Test cases:", locale), total_casos]
+	texto += "[b]%s[/b] %d\n\n" % [TranslationHelper.translate("Casos de teste:", locale), total_casos]
 	
 	# List some test cases
 	var max_casos = min(3, casos_para_exibir.size())
@@ -252,7 +254,7 @@ func _atualizar_detalhes_exercicio() -> void:
 		texto += "• %s\n" % casos_para_exibir[i]
 	
 	if casos_para_exibir.size() > max_casos:
-		texto += "• %s\n" % (TranslationHelper.translate("... and %d more cases", locale) % (casos_para_exibir.size() - max_casos))
+		texto += "• %s\n" % (TranslationHelper.translate("... e mais %d casos", locale) % (casos_para_exibir.size() - max_casos))
 	
 	detalhes_exercicio_atual.text = texto
 
@@ -279,19 +281,20 @@ func _criar_file_dialog_nativo() -> void:
 	file_dialog = dialog
 
 func _on_arquivo_selecionado(caminho: String) -> void:
+	var locale = FromZeroToGodot.get_locale()
 	if exercicio_selecionado.is_empty():
-		push_error("No exercise selected")
+		push_error(TranslationHelper.translate("Nenhum exercício selecionado", locale))
 		return
 
 	var config = TestConfigFactory.load_from_json(exercicio_selecionado.get("caminho_config", exercicio_selecionado.caminho_tests))
 	if not config:
-		_exibir_erro("Error loading test configuration")
+		_exibir_erro(TranslationHelper.translate("Erro ao carregar configuração de testes", locale))
 		return
 	
 	# Load the script
 	var script = load(caminho)
 	if not script or not script is GDScript:
-		_exibir_erro("Selected file is not a valid GDScript")
+		_exibir_erro(TranslationHelper.translate("O arquivo selecionado não é um GDScript válido", locale))
 		return
 	
 	# Validate based on test type (support both English and Portuguese values)
@@ -317,7 +320,7 @@ func _on_arquivo_selecionado(caminho: String) -> void:
 			instancia_temp.free()
 		
 		if not classe_encontrada:
-			_exibir_erro("Script does not contain class '%s'" % nome_alvo)
+			_exibir_erro(TranslationHelper.translate("O script não contém a classe '%s'", locale) % nome_alvo)
 			return
 	elif tipo_teste == TestConfigResource.TYPE_FUNCTION or tipo_teste == TestConfigResource.TYPE_FUNCTION_GROUP:
 		# For function tests, check if function exists
@@ -331,7 +334,7 @@ func _on_arquivo_selecionado(caminho: String) -> void:
 		for function_name in functions_to_validate:
 			if not instancia_temp.has_method(function_name):
 				instancia_temp.free()
-				_exibir_erro("Script does not contain function '%s()'" % function_name)
+				_exibir_erro(TranslationHelper.translate("O script não contém a função '%s()'", locale) % function_name)
 				return
 
 		instancia_temp.free()
@@ -353,12 +356,13 @@ func _exibir_erro(mensagem: String) -> void:
 	push_error(mensagem)
 
 func _on_executar_teste_pressed() -> void:
+	var locale = FromZeroToGodot.get_locale()
 	if exercicio_selecionado.is_empty():
-		_exibir_resultado_erro("Select an exercise first")
+		_exibir_resultado_erro(TranslationHelper.translate("Selecione um exercício primeiro", locale))
 		return
 	
 	if not script_carregado:
-		_exibir_resultado_erro("Select a valid script first")
+		_exibir_resultado_erro(TranslationHelper.translate("Selecione primeiro um script válido", locale))
 		return
 	
 	# Clear previous result
@@ -379,7 +383,7 @@ func _on_executar_teste_pressed() -> void:
 	
 	runner = TestRunnerFactory.create_runner(tipo_teste)
 	if not runner:
-		_exibir_resultado_erro("Unknown or unavailable test type: %s" % tipo_teste)
+		_exibir_resultado_erro(TranslationHelper.translate("Tipo de teste desconhecido ou indisponível: %s", locale) % tipo_teste)
 		return
 
 	# For scene tests, try to load .tscn instead of script
@@ -437,13 +441,13 @@ func _on_todos_testes_concluidos(resumo: Dictionary) -> void:
 		var locale = FromZeroToGodot.get_locale()
 		
 		resultado_teste.text += "\n[center][bgcolor=#%s][b]═══════════════════════════[/b][/bgcolor][/center]\n\n" % cor_hex
-		resultado_teste.text += "[center][b]%s[/b][/center]\n\n" % TranslationHelper.translate("Test Summary", locale)
-		resultado_teste.text += "[b]%s[/b] %d %s\n" % [TranslationHelper.translate("Total:", locale), resumo.total, TranslationHelper.translate("tests", locale)]
-		resultado_teste.text += "[color=green][b]%s[/b] %d[/color]\n" % [TranslationHelper.translate("Approved:", locale), resumo.passed]
-		resultado_teste.text += "[color=red][b]%s[/b] %d[/color]\n\n" % [TranslationHelper.translate("Failed:", locale), resumo.failed]
-		resultado_teste.text += "[b]%s[/b] [color=#%s]%.1f%%[/color]\n\n" % [TranslationHelper.translate("Percentage:", locale), cor_hex, resumo.percentage]
-		resultado_teste.text += "[b]%s[/b] %dms\n" % [TranslationHelper.translate("Total time:", locale), resumo.total_time_ms]
-		resultado_teste.text += "[b]%s[/b] %.1fms\n" % [TranslationHelper.translate("Average time:", locale), resumo.average_time_ms]
+		resultado_teste.text += "[center][b]%s[/b][/center]\n\n" % TranslationHelper.translate("Resumo dos Testes", locale)
+		resultado_teste.text += "[b]%s[/b] %d %s\n" % [TranslationHelper.translate("Total:", locale), resumo.total, TranslationHelper.translate("testes", locale)]
+		resultado_teste.text += "[color=green][b]%s[/b] %d[/color]\n" % [TranslationHelper.translate("Aprovados:", locale), resumo.passed]
+		resultado_teste.text += "[color=red][b]%s[/b] %d[/color]\n\n" % [TranslationHelper.translate("Falharam:", locale), resumo.failed]
+		resultado_teste.text += "[b]%s[/b] [color=#%s]%.1f%%[/color]\n\n" % [TranslationHelper.translate("Percentual:", locale), cor_hex, resumo.percentage]
+		resultado_teste.text += "[b]%s[/b] %dms\n" % [TranslationHelper.translate("Tempo total:", locale), resumo.total_time_ms]
+		resultado_teste.text += "[b]%s[/b] %.1fms\n" % [TranslationHelper.translate("Tempo médio:", locale), resumo.average_time_ms]
 
 func _adicionar_resultado_ao_texto(resultado: Dictionary) -> void:
 	if not resultado_teste:
@@ -455,12 +459,12 @@ func _adicionar_resultado_ao_texto(resultado: Dictionary) -> void:
 	var locale = FromZeroToGodot.get_locale()
 	
 	resultado_teste.text += "[bgcolor=#333333]%s [b]%s[/b] (%dms)[/bgcolor]\n" % [icone, resultado.name, resultado.time_ms]
-	resultado_teste.text += "[b]%s[/b] %s\n" % [TranslationHelper.translate("Input:", locale), str(resultado.input)]
-	resultado_teste.text += "[b]%s[/b] %s\n" % [TranslationHelper.translate("Expected:", locale), str(resultado.expected_output)]
-	resultado_teste.text += "[b]%s[/b] [color=%s]%s[/color]\n" % [TranslationHelper.translate("Actual:", locale), cor, str(resultado.actual_output)]
+	resultado_teste.text += "[b]%s[/b] %s\n" % [TranslationHelper.translate("Entrada:", locale), str(resultado.input)]
+	resultado_teste.text += "[b]%s[/b] %s\n" % [TranslationHelper.translate("Esperado:", locale), str(resultado.expected_output)]
+	resultado_teste.text += "[b]%s[/b] [color=%s]%s[/color]\n" % [TranslationHelper.translate("Obtido:", locale), cor, str(resultado.actual_output)]
 	
 	if not resultado.error.is_empty():
-		resultado_teste.text += "[color=orange][b]%s[/b] %s[/color]\n" % [TranslationHelper.translate("Error:", locale), resultado.error]
+		resultado_teste.text += "[color=orange][b]%s[/b] %s[/color]\n" % [TranslationHelper.translate("Erro:", locale), resultado.error]
 	
 	resultado_teste.text += "\n"
 

@@ -11,6 +11,12 @@ const SETTING_EXERCISES_PATH = "from_zero_to_godot/exercises_path"
 ## Default path for exercises folder
 const EXERCISES_PATH_DEFAULT = "res://exercises-testing"
 
+## Project settings key for the exercises lists folder path
+const SETTING_EXERCISES_LIST_PATH = "from_zero_to_godot/exercises_list_path"
+
+## Default path for exercises lists folder
+const EXERCISES_LIST_PATH_DEFAULT = "res://exercises-lists"
+
 ## Project settings key for the ebook folder path
 const SETTING_EBOOK_PATH = "from_zero_to_godot/ebook_path"
 
@@ -174,6 +180,21 @@ func _configurar_project_settings() -> void:
 		# Mark as basic setting (appears in General tab)
 		ProjectSettings.set_initial_value(SETTING_EXERCISES_PATH, EXERCISES_PATH_DEFAULT)
 		ProjectSettings.set_as_basic(SETTING_EXERCISES_PATH, true)
+
+	# Add exercises list path setting if it doesn't exist
+	if not ProjectSettings.has_setting(SETTING_EXERCISES_LIST_PATH):
+		ProjectSettings.set_setting(SETTING_EXERCISES_LIST_PATH, EXERCISES_LIST_PATH_DEFAULT)
+
+		var property_info_exercises_list = {
+			"name": SETTING_EXERCISES_LIST_PATH,
+			"type": TYPE_STRING,
+			"hint": PROPERTY_HINT_DIR,
+			"hint_string": ""
+		}
+		ProjectSettings.add_property_info(property_info_exercises_list)
+
+		ProjectSettings.set_initial_value(SETTING_EXERCISES_LIST_PATH, EXERCISES_LIST_PATH_DEFAULT)
+		ProjectSettings.set_as_basic(SETTING_EXERCISES_LIST_PATH, true)
 	
 	# Add ebook path setting if it doesn't exist
 	if not ProjectSettings.has_setting(SETTING_EBOOK_PATH):
@@ -211,6 +232,9 @@ func _remover_project_settings() -> void:
 	# Remove settings when plugin is disabled
 	if ProjectSettings.has_setting(SETTING_EXERCISES_PATH):
 		ProjectSettings.clear(SETTING_EXERCISES_PATH)
+
+	if ProjectSettings.has_setting(SETTING_EXERCISES_LIST_PATH):
+		ProjectSettings.clear(SETTING_EXERCISES_LIST_PATH)
 	
 	if ProjectSettings.has_setting(SETTING_EBOOK_PATH):
 		ProjectSettings.clear(SETTING_EBOOK_PATH)
@@ -269,6 +293,20 @@ static func get_exercises_path() -> String:
 ## var path = FromZeroToGodot.get_ebook_path()
 static func get_ebook_path() -> String:
 	return ProjectSettings.get_setting(SETTING_EBOOK_PATH, EBOOK_PATH_DEFAULT)
+
+## Returns the exercises list folder path configured in ProjectSettings
+## Use this static function in other scripts to access the path:
+## var path = FromZeroToGodot.get_exercises_list_path()
+static func get_exercises_list_path() -> String:
+	return ProjectSettings.get_setting(SETTING_EXERCISES_LIST_PATH, EXERCISES_LIST_PATH_DEFAULT)
+
+## Returns the exercises list folder path configured in ProjectSettings
+## Use this static function in other scripts to access the path:
+## var path = FromZeroToGodot.get_exercises_list_path()
+static func get_localized_exercises_list_path() -> String:
+	var base = get_exercises_list_path()
+	var locale = get_locale()
+	return base.path_join(locale)
 
 ## Returns the full exercises path including locale
 ## Example: "res://exercises-lists/pt-br"

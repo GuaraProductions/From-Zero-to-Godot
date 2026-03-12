@@ -15,7 +15,7 @@ msgid "Seja Bem Vindo"
 msgstr "Welcome"
 
 #: addons/from_zero_to_godot/PainelEditor/painel_editor.gd
-msgid "Welcome"
+msgid "Seja Bem Vindo"
 msgstr "Welcome"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelEditor.tscn
@@ -27,7 +27,7 @@ msgid "Listas De Exercicios"
 msgstr "Exercise Lists"
 
 #: addons/from_zero_to_godot/PainelEditor/painel_editor.gd
-msgid "Exercise Lists"
+msgid "Listas De Exercicios"
 msgstr "Exercise Lists"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelEditor.tscn
@@ -35,11 +35,11 @@ msgid "Testador de Exercicios"
 msgstr "Exercise Tester"
 
 #: addons/from_zero_to_godot/PainelEditor/painel_editor.gd
-msgid "Exercise Tester"
+msgid "Testador de Exercicios"
 msgstr "Exercise Tester"
 
 #: addons/from_zero_to_godot/PainelEditor/painel_editor.gd
-msgid "README.md not found at: %s"
+msgid "README.md não encontrado em: %s"
 msgstr "README.md not found at: %s"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
@@ -47,7 +47,7 @@ msgid "Digite qual questão você quer testar"
 msgstr "Type which exercise you want to test"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Type which exercise you want to test"
+msgid "Digite qual questão você quer testar"
 msgstr "Type which exercise you want to test"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
@@ -123,7 +123,7 @@ msgid "Escolha o script"
 msgstr "Choose the script"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Choose the script"
+msgid "Escolha o script"
 msgstr "Choose the script"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
@@ -131,7 +131,7 @@ msgid "Resultado dos Testes"
 msgstr "Test Results"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Test Results"
+msgid "Resultado dos Testes"
 msgstr "Test Results"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/PainelTestRunner.tscn
@@ -139,39 +139,39 @@ msgid "Executar testes"
 msgstr "Run tests"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Run tests"
+msgid "Executar testes"
 msgstr "Run tests"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Exercise:"
+msgid "Exercício:"
 msgstr "Exercise:"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Class:"
+msgid "Classe:"
 msgstr "Class:"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Type:"
+msgid "Tipo:"
 msgstr "Type:"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Custom tests (code-based)"
+msgid "Testes customizados (por código)"
 msgstr "Custom tests (code-based)"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Test file:"
+msgid "Arquivo de teste:"
 msgstr "Test file:"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Base scene:"
+msgid "Cena base:"
 msgstr "Base scene:"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Functions:"
+msgid "Funções:"
 msgstr "Functions:"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Function:"
+msgid "Função:"
 msgstr "Function:"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
@@ -179,27 +179,27 @@ msgid "Timeout:"
 msgstr "Timeout:"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Comparison:"
+msgid "Comparação:"
 msgstr "Comparison:"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "tolerance:"
+msgid "tolerância:"
 msgstr "tolerance:"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Test without name"
+msgid "Teste sem nome"
 msgstr "Test without name"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Test cases:"
+msgid "Casos de teste:"
 msgstr "Test cases:"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "... and %d more cases"
+msgid "... e mais %d casos"
 msgstr "... and %d more cases"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Test Summary"
+msgid "Resumo dos Testes"
 msgstr "Test Summary"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
@@ -207,96 +207,144 @@ msgid "Total:"
 msgstr "Total:"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "tests"
+msgid "testes"
 msgstr "tests"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Approved:"
+msgid "Aprovados:"
 msgstr "Approved:"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Failed:"
+msgid "Falharam:"
 msgstr "Failed:"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Percentage:"
+msgid "Percentual:"
 msgstr "Percentage:"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Total time:"
+msgid "Tempo total:"
 msgstr "Total time:"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Average time:"
+msgid "Tempo médio:"
 msgstr "Average time:"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Input:"
+msgid "Entrada:"
 msgstr "Input:"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Expected:"
+msgid "Esperado:"
 msgstr "Expected:"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Actual:"
+msgid "Obtido:"
 msgstr "Actual:"
 
 #: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
-msgid "Error:"
+msgid "Erro:"
 msgstr "Error:"
 
 #: addons/from_zero_to_godot/PainelEditor/ListaDeExercicios/listas_de_exercicios.tscn
 msgid "Escolha uma lista"
 msgstr "Choose a list"
 
+#: addons/from_zero_to_godot/PainelEditor/ListaDeExercicios/listas_de_exercicios.gd
+msgid "Escolha uma lista"
+msgstr "Choose a list"
+
+#: addons/from_zero_to_godot/PainelEditor/ListaDeExercicios/listas_de_exercicios.gd
+msgid "Diretório de listas de exercícios não configurado"
+msgstr "Exercise lists directory is not configured"
+
+#: addons/from_zero_to_godot/PainelEditor/ListaDeExercicios/listas_de_exercicios.gd
+msgid "As listas de exercícios ainda não estão disponíveis para este idioma.\nDiretório: %s"
+msgstr "Exercise lists not available for this language yet.\nDirectory: %s"
+
 #: addons/from_zero_to_godot/PainelEditor/Ebook/Ebook.tscn
 msgid "Escolha um ebook"
 msgstr "Choose an ebook"
 
 #: addons/from_zero_to_godot/PainelEditor/Ebook/ebook.gd
-msgid "Choose an ebook"
+msgid "Escolha um ebook"
 msgstr "Choose an ebook"
 
 #: addons/from_zero_to_godot/PainelEditor/Ebook/ebook.gd
-msgid "Ebook directory is not configured"
+msgid "Diretório de ebooks não configurado"
 msgstr "Ebook directory is not configured"
 
 #: addons/from_zero_to_godot/PainelEditor/Ebook/ebook.gd
-msgid "Ebooks not available for this language yet.\nDirectory: %s"
+msgid "Ebooks ainda não estão disponíveis para este idioma.\nDiretório: %s"
 msgstr "Ebooks not available for this language yet.\nDirectory: %s"
 
 #: addons/from_zero_to_godot/PainelEditor/Ebook/ebook.gd
-msgid "Could not open directory: %s"
+msgid "Não foi possível abrir o diretório: %s"
 msgstr "Could not open directory: %s"
 
 #: addons/from_zero_to_godot/PainelEditor/Ebook/ebook.gd
-msgid "📖 Introduction"
+msgid "📖 Introdução"
 msgstr "📖 Introduction"
 
 #: addons/from_zero_to_godot/PainelEditor/Ebook/ebook.gd
-msgid "Could not open ebook directory: %s"
+msgid "Não foi possível abrir o diretório do ebook: %s"
 msgstr "Could not open ebook directory: %s"
 
 #: addons/from_zero_to_godot/PainelEditor/Ebook/ebook.gd
-msgid "🎓 Conclusion"
+msgid "🎓 Conclusão"
 msgstr "🎓 Conclusion"
 
 #: addons/from_zero_to_godot/PainelEditor/Ebook/ebook.gd
-msgid "Could not open chapter directory: %s"
+msgid "Não foi possível abrir o diretório do capítulo: %s"
 msgstr "Could not open chapter directory: %s"
 
 #: addons/from_zero_to_godot/PainelEditor/Ebook/ebook.gd
-msgid "File not found: %s"
+msgid "Arquivo não encontrado: %s"
 msgstr "File not found: %s"
 
 #: addons/from_zero_to_godot/PainelEditor/Ebook/ebook.gd
-msgid "Could not open config file: %s"
+msgid "Não foi possível abrir o arquivo de configuração: %s"
 msgstr "Could not open config file: %s"
 
 #: addons/from_zero_to_godot/PainelEditor/Ebook/ebook.gd
-msgid "Error parsing JSON in %s: %s"
+msgid "Erro ao parsear JSON em %s: %s"
 msgstr "Error parsing JSON in %s: %s"
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
+msgid "Diretório de exercícios não disponível para este idioma: %s"
+msgstr "Exercises directory not available for this language: %s"
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
+msgid "Erro ao carregar configuração de testes"
+msgstr "Error loading test configuration"
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
+msgid "Nenhum exercício selecionado"
+msgstr "No exercise selected"
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
+msgid "O arquivo selecionado não é um GDScript válido"
+msgstr "Selected file is not a valid GDScript"
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
+msgid "O script não contém a classe '%s'"
+msgstr "Script does not contain class '%s'"
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
+msgid "O script não contém a função '%s()'"
+msgstr "Script does not contain function '%s()'"
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
+msgid "Selecione um exercício primeiro"
+msgstr "Select an exercise first"
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
+msgid "Selecione primeiro um script válido"
+msgstr "Select a valid script first"
+
+#: addons/from_zero_to_godot/PainelEditor/PainelTestRunner/painel_testes.gd
+msgid "Tipo de teste desconhecido ou indisponível: %s"
+msgstr "Unknown or unavailable test type: %s"
 
 #: addons/from_zero_to_godot/from_zero_to_godot.gd
 msgid "Do Zero ao Godot"

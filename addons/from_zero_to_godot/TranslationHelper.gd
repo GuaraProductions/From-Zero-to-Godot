@@ -10,21 +10,60 @@ static func translate(text: String, locale: String = "") -> String:
 		locale = _get_current_locale()
 	
 	var localized_text: String = ""
+	var locale_candidates = _build_locale_candidates(locale)
 	
 	if Engine.is_editor_hint():
-		# In editor, manually get translation object
-		var translation: Translation = TranslationServer.get_translation_object(locale)
-		if translation:
-			localized_text = translation.get_message(text)
+		# In editor, manually get translation object.
+		# Try locale aliases because the plugin uses folder locales like pt-br
+		# while Translation resources commonly register as pt_BR.
+		for candidate in locale_candidates:
+			var translation: Translation = TranslationServer.get_translation_object(candidate)
+			if translation:
+				localized_text = translation.get_message(text)
+				if not localized_text.is_empty():
+					break
 	else:
-		# In game, use TranslationServer
-		localized_text = TranslationServer.translate(text, locale)
+		# In game, use TranslationServer with locale aliases.
+		for candidate in locale_candidates:
+			localized_text = TranslationServer.translate(text, candidate)
+			if not localized_text.is_empty() and localized_text != text:
+				break
 	
 	# Fallback to original text if translation not found
 	if localized_text.is_empty():
 		return text
 	
 	return localized_text
+
+static func _build_locale_candidates(locale: String) -> Array[String]:
+	var candidates: Array[String] = []
+	var normalized = locale.strip_edges()
+	if normalized.is_empty():
+		return candidates
+
+	_add_candidate(candidates, normalized)
+	_add_candidate(candidates, normalized.to_lower())
+	_add_candidate(candidates, normalized.replace("-", "_"))
+	_add_candidate(candidates, normalized.replace("_", "-"))
+
+	var with_underscore = normalized.replace("-", "_")
+	var parts = with_underscore.split("_", false)
+	if parts.size() >= 2:
+		var language = parts[0].to_lower()
+		var region = parts[1].to_upper()
+		_add_candidate(candidates, "%s_%s" % [language, region])
+		_add_candidate(candidates, "%s-%s" % [language, region.to_lower()])
+		_add_candidate(candidates, language)
+	else:
+		_add_candidate(candidates, normalized.get_slice("-", 0).to_lower())
+
+	return candidates
+
+static func _add_candidate(candidates: Array[String], candidate: String) -> void:
+	if candidate.is_empty():
+		return
+	if not candidates.has(candidate):
+		candidates.append(candidate)
 
 static func _get_current_locale() -> String:
 	# Try to get editor locale
