@@ -29,7 +29,7 @@ The **Class** is just the concept. It's the code you write in the `.gd` file. It
 
 ```gdscript
 # File: Robot.gd
-class_name Robot  # Here we define the TYPE
+class_name Robot  # Here we define the name of our class
 
 var color: String = "Gray"  # Default rule
 var energy: int = 100
