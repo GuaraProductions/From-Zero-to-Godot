@@ -32,6 +32,8 @@ func _debug_print(mensagem: String) -> void:
 		print(mensagem)
 
 func parse_markdown_to_scene(md_path: String) -> Control:
+	var locale = FromZeroToGodot.get_locale()
+
 	# Carrega o arquivo markdown
 	var file = FileAccess.open(md_path, FileAccess.READ)
 	if not file:
@@ -343,7 +345,7 @@ func parse_markdown_to_scene(md_path: String) -> Control:
 			if not caminho_cena.is_empty():
 				var full_scene_path = base_dir.path_join(caminho_cena)
 				var btn = Button.new()
-				btn.text = "📂 Abrir Cena"
+				btn.text = "📂 " + TranslationHelper.translate("Abrir Cena", locale)
 				btn.custom_minimum_size = Vector2(120, 0)
 				btn.pressed.connect(_on_botao_abrir_cena_pressed.bind(full_scene_path))
 				hbox.add_child(btn)
@@ -358,7 +360,7 @@ func parse_markdown_to_scene(md_path: String) -> Control:
 					var exercicio = partes[-1].get_basename()  # Último elemento sem extensão
 					
 					var btn_teste = Button.new()
-					btn_teste.text = "🧪 Testar"
+					btn_teste.text = "🧪 " + TranslationHelper.translate("Testar", locale)
 					btn_teste.custom_minimum_size = Vector2(100, 0)
 					btn_teste.pressed.connect(_on_botao_abrir_teste_pressed.bind(lista, exercicio))
 					hbox.add_child(btn_teste)
@@ -469,6 +471,7 @@ func _adicionar_details_colapsavel(container: VBoxContainer, linha_details: Stri
 
 func _adicionar_bloco_codigo(container: VBoxContainer, codigo: String, linguagem: String) -> void:
 	_debug_print("  -> Adicionando bloco de código (linguagem: %s, linhas: %d)" % [linguagem, codigo.count("\n")])
+	var locale = FromZeroToGodot.get_locale()
 	
 	# Cria o CodeEdit
 	var code_edit = CodeEdit.new()
@@ -499,7 +502,7 @@ func _adicionar_bloco_codigo(container: VBoxContainer, codigo: String, linguagem
 	
 	# Cria o botão de copiar
 	var btn_copiar = Button.new()
-	btn_copiar.text = "📋 Copiar"
+	btn_copiar.text = "📋 " + TranslationHelper.translate("Copiar", locale)
 	btn_copiar.custom_minimum_size = Vector2(100, 30)
 
 	# Configura âncoras para canto superior direito
@@ -545,12 +548,13 @@ func _adicionar_bloco_codigo(container: VBoxContainer, codigo: String, linguagem
 
 func _on_copiar_codigo_pressed(code_edit: CodeEdit, btn: Button) -> void:
 	var codigo = code_edit.text
+	var locale = FromZeroToGodot.get_locale()
 	DisplayServer.clipboard_set(codigo)
 	_debug_print("Código copiado para o clipboard (%d caracteres)" % codigo.length())
 	
 	# Feedback visual: muda temporariamente o texto do botão
 	var texto_original = btn.text
-	btn.text = "✓ Copiado!"
+	btn.text = "✓ " + TranslationHelper.translate("Copiado!", locale)
 	await get_tree().create_timer(1.5).timeout
 	if is_instance_valid(btn):
 		btn.text = texto_original

@@ -350,3 +350,19 @@ msgstr "Tipo de teste desconhecido ou indisponível: %s"
 #: addons/from_zero_to_godot/from_zero_to_godot.gd
 msgid "Do Zero ao Godot"
 msgstr "Do Zero ao Godot"
+
+#: addons/from_zero_to_godot/Markdown/MarkdownPreProcessador.gd
+msgid "Abrir Cena"
+msgstr "Abrir Cena"
+
+#: addons/from_zero_to_godot/Markdown/MarkdownPreProcessador.gd
+msgid "Testar"
+msgstr "Testar"
+
+#: addons/from_zero_to_godot/Markdown/MarkdownPreProcessador.gd
+msgid "Copiar"
+msgstr "Copiar"
+
+#: addons/from_zero_to_godot/Markdown/MarkdownPreProcessador.gd
+msgid "Copiado!"
+msgstr "Copiado!"
